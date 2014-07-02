@@ -21,7 +21,10 @@ class HomeTimelineStream : Stream {
         }
         TFNTwitter.sharedTwitter.twitterAPI.twitterGetRequestWithResponse(.GetHomeTimeline, parameters: params) { (response, data, error) in
             var myError : NSError? = error
-            NSLog("got a reply! %@\nData %@", response!, NSString(data: data!, encoding: NSUTF8StringEncoding))
+            NSLog("got a reply!")
+            if let myData = data {
+                NSLog("%@\nData %@", response!, NSString(data: myData, encoding: NSUTF8StringEncoding))
+            }
             if (response?.statusCode >= 400 && response?.statusCode <= 499) {
                 TFNTwitter.sharedTwitter.currentAccount = nil
                 if !error.getLogicValue() {

@@ -11,9 +11,9 @@ import MiniPlatform
 
 class TimelineViewController : TFNTableViewController {
     
-    init(nibName nibNameOrNil: String!, bundle nibBundleOrNil: NSBundle!)
+    init(coder aDecoder: NSCoder)
     {
-        super.init(nibName: nibNameOrNil, bundle: nibBundleOrNil)
+        super.init(coder: aDecoder)
         self.stream = HomeTimelineStream()
         self.sectionAdapter = HomeTimelineSectionAdapter()
         // Can't just say Tweet here since it'll be a mangled Swift name

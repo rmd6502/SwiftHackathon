@@ -110,8 +110,11 @@ class TwitterAPI : NSObject,NSURLSessionDataDelegate {
         // Pull in the parameters from the query string
         if let components = request.URL.query?.componentsSeparatedByString("&") {
             for (var param) in components {
+                NSLog("param: %@", param)
                 let comps = param.componentsSeparatedByString("=")
-                params[comps[0]] = comps[1]
+                if comps.count > 1 {
+                    params[comps[0]] = comps[1]
+                }
             }
         }
 

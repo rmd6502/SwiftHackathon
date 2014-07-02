@@ -21,7 +21,6 @@ class HomeTimelineSectionAdapter : SectionAdapter {
         }
         // otherwise, tack on a PTR and a footer (we'll deal with gaps later)
         var sections = Identifiable[]()
-        sections.append(PTRItem())
         sections.extend(inArray!)
         sections.append(FooterItem())
         return [sections]
