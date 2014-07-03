@@ -19,6 +19,14 @@ class ErrorItem : SpecialItem {
     }
 }
 
+class EmptyStreamItem : SpecialItem {
+    init()
+    {
+        super.init()
+        self.ID = -6
+    }
+}
+
 class PTRItem : SpecialItem {
     init()
     {

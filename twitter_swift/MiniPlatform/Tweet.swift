@@ -9,6 +9,16 @@
 import Foundation
 
 class Tweet : NSObject,Identifiable {
+    let CONTRIBUTORS_KEY = "contributors"
+    let COORDINATES_KEY = "coordinates"
+    let CREATED_AT_KEY = "created_at"
+    let ENTITIES_KEY = "entities"
+    let FAVORITE_COUNT_KEY = "favorite_count"
+    let ID_KEY = "id"
+    let IN_REPLY_TO_STATUS_KEY = "in_reply_to_status_id"
+    let IN_REPLY_TO_USER_KEY = "in_reply_to_user_id"
+
+
     var ID : Int64 = 0
     var tweetID : Int64 = 0
     var createdAt : NSDate = NSDate.distantPast() as NSDate
