@@ -27,7 +27,7 @@
 		D6C1BD6C196204A9008E2DE2 /* SpecialItems.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6C1BD6B196204A9008E2DE2 /* SpecialItems.swift */; };
 		D6C22DBC19452A1100F719DE /* HMacEncoder.h in Headers */ = {isa = PBXBuildFile; fileRef = D6C22DBA19452A1100F719DE /* HMacEncoder.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		D6C22DBD19452A1100F719DE /* HMacEncoder.m in Sources */ = {isa = PBXBuildFile; fileRef = D6C22DBB19452A1100F719DE /* HMacEncoder.m */; };
-		D6D0FD661958E98B00D8DE48 /* Identifiable.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6D0FD651958E98B00D8DE48 /* Identifiable.swift */; };
+		D6D0FD661958E98B00D8DE48 /* ModelObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6D0FD651958E98B00D8DE48 /* ModelObject.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -65,7 +65,7 @@
 		D6C22DB9194527A900F719DE /* twitter.playground */ = {isa = PBXFileReference; lastKnownFileType = file.playground; path = twitter.playground; sourceTree = "<group>"; };
 		D6C22DBA19452A1100F719DE /* HMacEncoder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HMacEncoder.h; sourceTree = "<group>"; };
 		D6C22DBB19452A1100F719DE /* HMacEncoder.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HMacEncoder.m; sourceTree = "<group>"; };
-		D6D0FD651958E98B00D8DE48 /* Identifiable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Identifiable.swift; sourceTree = "<group>"; };
+		D6D0FD651958E98B00D8DE48 /* ModelObject.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ModelObject.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -128,7 +128,7 @@
 				D6E85C8E195DD9480091A945 /* RowAdapters */,
 				D6A0CF1519429AAB00436D50 /* Supporting Files */,
 				D6E85C8F195DD9B00091A945 /* ViewControllers */,
-				D6D0FD651958E98B00D8DE48 /* Identifiable.swift */,
+				D6D0FD651958E98B00D8DE48 /* ModelObject.swift */,
 				D6A0CF1719429AAB00436D50 /* MiniPlatform.h */,
 				D6A0CF3719429AF800436D50 /* TwitterAPI.swift */,
 				D6C22DBA19452A1100F719DE /* HMacEncoder.h */,
@@ -294,7 +294,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				D6BE3BBD1957A48000246307 /* HomeTimelineStream.swift in Sources */,
-				D6D0FD661958E98B00D8DE48 /* Identifiable.swift in Sources */,
+				D6D0FD661958E98B00D8DE48 /* ModelObject.swift in Sources */,
 				D6AADDC5194F7C3200BBF226 /* TFNTwitter.swift in Sources */,
 				9CDF2A98195F270500CE2DD5 /* RowAdapterFactory.swift in Sources */,
 				D6A1E8A7195A4E4000379944 /* SectionAdapter.swift in Sources */,

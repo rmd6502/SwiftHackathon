@@ -15,13 +15,13 @@ import UIKit
 class RowAdapter : NSObject {
     var cellReuseIdentifier : String!
 
-    func cellForItem(Identifiable,UITableView) -> UITableViewCell?
+    func cellForItem(ModelObject,UITableView) -> UITableViewCell?
     {
         // handled in subclass
         return nil
     }
 
-    func didSelectItem(Identifiable,UITableView)
+    func didSelectItem(ModelObject,UITableView)
     {
 
     }

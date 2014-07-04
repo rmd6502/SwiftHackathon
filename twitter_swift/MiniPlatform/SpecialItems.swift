@@ -6,8 +6,12 @@
 //  Copyright (c) 2014 Robert Diamond. All rights reserved.
 //
 
-class SpecialItem : NSObject,Identifiable {
-    var ID : Int64 = -1
+class SpecialItem : ModelObject {
+    init()
+    {
+        super.init()
+        ID = -1
+    }
 }
 
 class ErrorItem : SpecialItem {

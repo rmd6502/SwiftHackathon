@@ -8,18 +8,26 @@
 
 import Foundation
 
-class Tweet : NSObject,Identifiable {
+class Tweet : ModelObject {
     let CONTRIBUTORS_KEY = "contributors"
     let COORDINATES_KEY = "coordinates"
     let CREATED_AT_KEY = "created_at"
     let ENTITIES_KEY = "entities"
+    let EXTENDED_ENTITIES_KEY = "extended_entities"
     let FAVORITE_COUNT_KEY = "favorite_count"
     let ID_KEY = "id"
     let IN_REPLY_TO_STATUS_KEY = "in_reply_to_status_id"
     let IN_REPLY_TO_USER_KEY = "in_reply_to_user_id"
+    let LOCALE_KEY = "lang"
+    let MEDIA_KEY = "media"
+    let PLACE_KEY = "place"
+    let RETWEET_COUNT_KEY = "retweet_count"
+    let RETWEETED_KEY = "retweeted"
+    let RETWEETED_STATUS_KEY = "retweeted_status"
+    let SOURCE_KEY = "source"
+    let TRUNCATED = "truncated"
+    let USER_KEY = "user"
 
-
-    var ID : Int64 = 0
     var tweetID : Int64 = 0
     var createdAt : NSDate = NSDate.distantPast() as NSDate
     var contributors : Array<User>?

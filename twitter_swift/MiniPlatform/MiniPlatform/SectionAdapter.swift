@@ -10,7 +10,7 @@ import Foundation
 
 class SectionAdapter : NSObject {
 
-    func sectionArray(Array<Identifiable>?) -> Array<Array<Identifiable>>?
+    func sectionArray(Array<ModelObject>?) -> Array<Array<ModelObject>>?
     {
         // default implementation does nothing
         return nil

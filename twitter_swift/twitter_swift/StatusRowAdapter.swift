@@ -10,7 +10,7 @@ import MiniPlatform
 import UIKit
 
 class StatusRowAdapter : RowAdapter {
-    func cellForItem(item : Identifiable,tableView : UITableView) -> UITableViewCell?
+    func cellForItem(item : ModelObject,tableView : UITableView) -> UITableViewCell?
     {
         var cell : TimelineCell = tableView.dequeueReusableCellWithIdentifier(self.cellReuseIdentifier) as TimelineCell
         let tweet = item as Tweet
@@ -20,7 +20,7 @@ class StatusRowAdapter : RowAdapter {
         return cell
     }
 
-    func didSelectItem(item : Identifiable,tableView : UITableView)
+    func didSelectItem(item : ModelObject,tableView : UITableView)
     {
 
     }

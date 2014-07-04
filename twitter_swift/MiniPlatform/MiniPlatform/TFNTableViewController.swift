@@ -16,7 +16,7 @@ class TFNTableViewController : UITableViewController {
     var minID : Int64?
     var maxID : Int64?
     
-    var sections : Array<Array<Identifiable>>?
+    var sections : Array<Array<ModelObject>>?
     {
     didSet {
         self.tableView.reloadData()
@@ -60,7 +60,7 @@ class TFNTableViewController : UITableViewController {
     {
         var cell : UITableViewCell? = nil;
         if sections?.count > indexPath.section && sections![indexPath.section].count > indexPath.row {
-            let item : Identifiable = sections![indexPath.section][indexPath.row]
+            let item : ModelObject = sections![indexPath.section][indexPath.row]
             let itemClass = NSString(CString: class_getName((item as AnyObject).dynamicType))
             if rowAdapters![itemClass].getLogicValue() {
                 cell = rowAdapters![itemClass]!.cellForItem(item,tableView)

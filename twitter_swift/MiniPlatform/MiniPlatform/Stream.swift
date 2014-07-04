@@ -11,13 +11,13 @@ import Foundation
 typealias CompletionFunction = (results : AnyObject?, error : NSError?) -> Void
 class Stream : NSObject {
     let STREAM_ERROR_DOMAIN = "stream"
-    var streamObjects : Array<Identifiable>
+    var streamObjects : Array<ModelObject>
     var error : NSError?
     var api : TwitterAPI?
 
     init()
     {
-        streamObjects = Array<Identifiable>()
+        streamObjects = Array<ModelObject>()
         super.init()
     }
 
