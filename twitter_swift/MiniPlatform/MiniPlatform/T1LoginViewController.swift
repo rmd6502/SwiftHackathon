@@ -20,20 +20,14 @@ class T1LoginViewController : UIViewController,TwitterDeepLinkable,UIWebViewDele
     {
         super.viewDidLoad()
         self.webView.delegate = self
-        let sharedApp = UIApplication.sharedApplication().delegate as AppDelegate
-        api.appToken = sharedApp.apiKey;
-        api.appSecret = NSString(data: sharedApp.apiSecret, encoding: NSUTF8StringEncoding)
-        api.authSecret = nil
-        api.authToken = nil
         if let url = incomingURL {
             NSLog("Processing URL %@", url)
-            if let token = sharedApp.authToken {
+            if let token = api.authToken {
                 let queryParams = api.splitQueryString(url.query)
                 if !queryParams?["oauth_token"].getLogicValue() || queryParams?["oauth_token"]! != token {
                         NSLog("Bad token or response: %@", (queryParams) ? queryParams! : "(nil)")
                 } else {
-                    api.authToken = sharedApp.authToken
-                    api.authSecret = sharedApp.authSecret
+                    api.authSecret = queryParams?["oauth_secret"]
                     if let oauth_verifier = queryParams?["oauth_verifier"] {
                         self._exchangeToken(oauth_verifier)
                     }
@@ -48,12 +42,9 @@ class T1LoginViewController : UIViewController,TwitterDeepLinkable,UIWebViewDele
             (response, data, error) in
             NSLog("got response %@", response!)
             if let authResponse = self.api.splitQueryString(NSString(data: data?, encoding: NSUTF8StringEncoding)) {
-                let sharedApp = UIApplication.sharedApplication().delegate as AppDelegate
-                sharedApp.authToken = authResponse["oauth_token"]
-                sharedApp.authSecret = authResponse["oauth_token_secret"]
                 var account = TFNTwitterAccount()
-                account.authSecret = sharedApp.authSecret
-                account.authToken = sharedApp.authToken
+                account.authSecret = self.api.authSecret
+                account.authToken = self.api.authToken
                 account.userName = authResponse["screen_name"]
                 if let userIDString = authResponse["user_id"] {
                     account.userID = (userIDString as NSString).longLongValue
@@ -116,11 +107,8 @@ class T1LoginViewController : UIViewController,TwitterDeepLinkable,UIWebViewDele
             return
         }
         self.webView.hidden = false;
-        api.authToken = oauth_token
-        api.authSecret = oauth_secret
-        let sharedApp = UIApplication.sharedApplication().delegate as AppDelegate
-        sharedApp.authToken = oauth_token
-        sharedApp.authSecret = oauth_secret
+        self.api.authToken = oauth_token
+        self.api.authSecret = oauth_secret
         var url = api.urlForRequest(TwitterAPI.TwitterAPIRequest.Authenticate, parameters: ["oauth_token": oauth_token!])
         self.webView.loadRequest(NSURLRequest(URL: url))
         self.view.setNeedsLayout()

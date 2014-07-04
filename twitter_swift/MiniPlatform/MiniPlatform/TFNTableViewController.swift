@@ -84,7 +84,13 @@ class TFNTableViewController : UITableViewController {
     {
         stream?.loadTop() {
             (results : AnyObject?, error : NSError?) in
-            self.update()
+            if let errorval = error {
+                if errorval.code >= 400 && errorval.code <= 499 {
+                    
+                }
+            } else {
+                self.update()
+            }
             completion(results: results, error: error)
         }
     }

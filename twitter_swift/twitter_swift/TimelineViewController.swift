@@ -16,7 +16,6 @@ class TimelineViewController : TFNTableViewController {
         super.init(coder: aDecoder)
         self.stream = HomeTimelineStream()
         self.sectionAdapter = HomeTimelineSectionAdapter()
-        // Can't just say Tweet here since it'll be a mangled Swift name
         var newRowAdapters : Dictionary<String,RowAdapter> = RowAdapterFactory().adapters()
         newRowAdapters[NSString(CString: class_getName(Tweet))] = StatusRowAdapter(reuseIdentifier: "StatusCell")
         self.rowAdapters = newRowAdapters
