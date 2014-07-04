@@ -42,12 +42,15 @@ class T1LoginViewController : UIViewController,TwitterDeepLinkable,UIWebViewDele
             NSLog("got response %@", response!)
             if let authResponse = self.api.splitQueryString(NSString(data: data?, encoding: NSUTF8StringEncoding)) {
                 var account = TFNTwitterAccount()
+                self.api.authSecret = authResponse["oauth_token_secret"]
+                self.api.authToken = authResponse["oauth_token"]
                 account.authSecret = self.api.authSecret
                 account.authToken = self.api.authToken
                 account.userName = authResponse["screen_name"]
                 if let userIDString = authResponse["user_id"] {
                     account.userID = (userIDString as NSString).longLongValue
                 }
+                NSLog("token %@ userid %lld name %@", account.authToken!, account.userID!, account.userName!)
                 TFNTwitter.sharedTwitter.currentAccount = account
                 self.navigationController.popToRootViewControllerAnimated(true)
             }
