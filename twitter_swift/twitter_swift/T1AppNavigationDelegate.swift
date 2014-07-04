@@ -9,25 +9,25 @@
 import MiniPlatform
 import UIKit
 
-class T1AppNavigationDelegate : NSObject,UITabBarControllerDelegate, UINavigationControllerDelegate {
-
+class T1AppNavigationDelegate : NSObject, NavigationDelegate, UITabBarControllerDelegate, UINavigationControllerDelegate {
+    
     @IBOutlet var navigationController : UINavigationController
     {
         didSet {
             NSLog("navbar set")
             self.tabBarController = navigationController.viewControllers[0] as? UITabBarController
+            if (tabBarController?.viewControllers.count > 0) {
+                for (var vc : AnyObject) in tabBarController!.viewControllers {
+                    if let tvc = vc as? TFNTableViewController {
+                        tvc.navigationDelegate = self
+                    }
+                }
+            }
         }
     }
     
     var tabBarController : UITabBarController?
-    {
-        didSet {
-            NSLog("tab controller set")
-            if (tabBarController?.viewControllers.count > 0) {
-                self.loginIfNeeded(fromViewController: tabBarController?.viewControllers[0] as UIViewController)
-            }
-        }
-    }
+
     init()
     {
         NSLog("created a navdelegate")
@@ -49,15 +49,5 @@ class T1AppNavigationDelegate : NSObject,UITabBarControllerDelegate, UINavigatio
                 viewController?.navigationController?.pushViewController(loginVC, animated: true)
             }
         }
-    }
-
-    func tabBarController(tabBarController: UITabBarController!, didEndCustomizingViewControllers viewControllers: AnyObject[]!, changed: Bool)
-    {
-        NSLog("customized")
-    }
-
-    func tabBarController(tabBarController: UITabBarController!, didSelectViewController viewController: UIViewController!)
-    {
-        NSLog("selected %@", viewController)
     }
 }

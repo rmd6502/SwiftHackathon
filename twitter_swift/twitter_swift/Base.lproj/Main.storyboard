@@ -33,7 +33,7 @@
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
                     <connections>
-                        <outlet property="delegate" destination="vBh-Y2-drn" id="Cxd-tt-Aft"/>
+                        <outlet property="delegate" destination="vBh-Y2-drn" id="rKg-WE-YHu"/>
                         <segue destination="49e-Tb-3d3" kind="relationship" relationship="rootViewController" id="5v6-fA-kFx"/>
                     </connections>
                 </navigationController>
@@ -276,6 +276,9 @@
                             <webView hidden="YES" contentMode="scaleToFill" restorationIdentifier="login" translatesAutoresizingMaskIntoConstraints="NO" id="4Sd-4X-xdU">
                                 <rect key="frame" x="0.0" y="0.0" width="480" height="480"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <connections>
+                                    <outlet property="delegate" destination="3Sq-5g-Cec" id="h6u-20-avW"/>
+                                </connections>
                             </webView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -289,7 +292,7 @@
                     </view>
                     <keyCommands/>
                     <connections>
-                        <outlet property="webView" destination="4Sd-4X-xdU" id="tc6-Xd-S8F"/>
+                        <outlet property="webView" destination="4Sd-4X-xdU" id="U70-oy-Bzn"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Trv-Pr-qge" userLabel="First Responder" sceneMemberID="firstResponder"/>

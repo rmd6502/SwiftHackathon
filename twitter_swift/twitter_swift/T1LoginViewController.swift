@@ -19,12 +19,11 @@ class T1LoginViewController : UIViewController,TwitterDeepLinkable,UIWebViewDele
     override func viewDidLoad()
     {
         super.viewDidLoad()
-        self.webView.delegate = self
         if let url = incomingURL {
             NSLog("Processing URL %@", url)
             if let token = api.authToken {
                 let queryParams = api.splitQueryString(url.query)
-                if !queryParams?["oauth_token"].getLogicValue() || queryParams?["oauth_token"]! != token {
+                if !queryParams.getLogicValue() || !queryParams?["oauth_token"].getLogicValue() || queryParams?["oauth_token"]! != token {
                         NSLog("Bad token or response: %@", (queryParams) ? queryParams! : "(nil)")
                 } else {
                     api.authSecret = queryParams?["oauth_secret"]

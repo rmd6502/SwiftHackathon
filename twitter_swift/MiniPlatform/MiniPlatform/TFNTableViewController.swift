@@ -15,6 +15,7 @@ class TFNTableViewController : UITableViewController {
     var sectionAdapter : SectionAdapter?
     var minID : Int64?
     var maxID : Int64?
+    var navigationDelegate : NavigationDelegate?
     
     var sections : Array<Array<ModelObject>>?
     {
@@ -28,13 +29,6 @@ class TFNTableViewController : UITableViewController {
         // TODO: install default row adapters, e.g. String
         super.viewDidLoad()
         self.refreshControl?.addTarget(self, action: "refresh", forControlEvents: .ValueChanged)
-        self.refreshControl?.beginRefreshing()
-        self.loadTop() {
-            (results : AnyObject?, error : NSError?) in
-            if let control = self.refreshControl {
-                control.endRefreshing()
-            }
-        }
     }
 
     func refresh(sender: AnyObject)
@@ -86,7 +80,7 @@ class TFNTableViewController : UITableViewController {
             (results : AnyObject?, error : NSError?) in
             if let errorval = error {
                 if errorval.code >= 400 && errorval.code <= 499 {
-                    
+                    self.navigationDelegate?.loginIfNeeded(fromViewController: self)
                 }
             } else {
                 self.update()
@@ -98,6 +92,12 @@ class TFNTableViewController : UITableViewController {
     override func viewWillAppear(animated: Bool)
     {
         super.viewWillAppear(animated)
-        self.loadTop()
+        self.refreshControl?.beginRefreshing()
+        self.loadTop() {
+            (results : AnyObject?, error : NSError?) in
+            if let control = self.refreshControl {
+                control.endRefreshing()
+            }
+        }
     }
 }
