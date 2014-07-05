@@ -14,7 +14,7 @@ import Foundation
 class ModelObject : NSObject {
     var ID : Int64 = 0
     
-    convenience init(dict : Dictionary<String,String>?)
+    convenience init(dict : Dictionary<String,AnyObject>?)
     {
         self.init()
     }
@@ -22,5 +22,17 @@ class ModelObject : NSObject {
     init()
     {
         super.init()
+    }
+    
+    func parseInt(obj : AnyObject?) -> Int64
+    {
+        let ret = (obj as? NSNumber)?.longLongValue
+        return (ret) ? ret! : 0
+    }
+    
+    func parseDate(obj : AnyObject?) -> NSDate
+    {
+        let ret = (obj as? NSDate)
+        return (ret) ? ret! : (NSDate.distantPast() as NSDate)
     }
 }

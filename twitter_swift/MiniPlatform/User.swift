@@ -79,7 +79,7 @@ class User : ModelObject {
     var utcOffset : Int = 0
     var verified : Bool = false
     
-    convenience init(dict : Dictionary<String,String>?)
+    convenience init(dict : Dictionary<String,AnyObject>?)
     {
         self.init()
     }

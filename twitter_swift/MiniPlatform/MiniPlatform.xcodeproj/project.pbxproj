@@ -67,7 +67,7 @@
 		D6C22DB9194527A900F719DE /* twitter.playground */ = {isa = PBXFileReference; lastKnownFileType = file.playground; path = twitter.playground; sourceTree = "<group>"; };
 		D6C22DBA19452A1100F719DE /* HMacEncoder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HMacEncoder.h; sourceTree = "<group>"; };
 		D6C22DBB19452A1100F719DE /* HMacEncoder.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HMacEncoder.m; sourceTree = "<group>"; };
-		D6D0FD651958E98B00D8DE48 /* ModelObject.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ModelObject.swift; sourceTree = "<group>"; };
+		D6D0FD651958E98B00D8DE48 /* ModelObject.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ModelObject.swift; path = MiniPlatform/ModelObject.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -92,6 +92,7 @@
 		D6251A1A1956299B00CE7E11 /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				D6D0FD651958E98B00D8DE48 /* ModelObject.swift */,
 				D6AADDC6194F7C7F00BBF226 /* TFNTwitterAccount.swift */,
 				D6251A1B195629AD00CE7E11 /* User.swift */,
 				D6251A1D195629B900CE7E11 /* Tweet.swift */,
@@ -130,7 +131,6 @@
 				D6E85C8E195DD9480091A945 /* RowAdapters */,
 				D6A0CF1519429AAB00436D50 /* Supporting Files */,
 				D6E85C8F195DD9B00091A945 /* ViewControllers */,
-				D6D0FD651958E98B00D8DE48 /* ModelObject.swift */,
 				D6A0CF1719429AAB00436D50 /* MiniPlatform.h */,
 				D6A0CF3719429AF800436D50 /* TwitterAPI.swift */,
 				D6C22DBA19452A1100F719DE /* HMacEncoder.h */,

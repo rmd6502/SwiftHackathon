@@ -35,12 +35,25 @@ class HomeTimelineStream : Stream {
                 completion(results: nil, error: myError)
             } else {
                 var options = NSJSONReadingOptions(0)
-                var results : AnyObject? = nil
+                var results : Array<Tweet>? = nil
                 if let resultData = data {
-                    results = NSJSONSerialization.JSONObjectWithData(resultData, options: options, error: &myError)
+                    var jsonData : AnyObject! = NSJSONSerialization.JSONObjectWithData(resultData, options: options, error: &myError)
+                    results = self._parseJSONData(jsonData)
                 }
                 completion(results: results, error: myError)
             }
         }
+    }
+    
+    func _parseJSONData(data: AnyObject!) -> Array<Tweet>?
+    {
+        var results : Array<Tweet>? = nil
+        if let jsonArray = data as? Array<Dictionary<String,AnyObject>> {
+            for (var tweetDict) in jsonArray {
+                var tweet = Tweet(dict: tweetDict)
+            }
+        }
+        
+        return results
     }
 }

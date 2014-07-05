@@ -27,6 +27,7 @@ class Tweet : ModelObject {
     let SOURCE_KEY = "source"
     let TRUNCATED = "truncated"
     let USER_KEY = "user"
+    let TEXT_KEY = "text"
 
     var tweetID : Int64 = 0
     var createdAt : NSDate = NSDate.distantPast() as NSDate
@@ -45,4 +46,14 @@ class Tweet : ModelObject {
     // TODO: replace with Tweet? when that won't crash the compiler
     var inReplyToStatus : AnyObject?
     var retweetedStatus : AnyObject?
+    
+    convenience init(dict: Dictionary<String,AnyObject>?)
+    {
+        self.init()
+        if let jsonDict = dict {
+            tweetID = self.parseInt(jsonDict[ID_KEY])
+            createdAt = self.parseDate(jsonDict[CREATED_AT_KEY])
+            text = jsonDict[TEXT_KEY]?.stringValue
+        }
+    }
 }

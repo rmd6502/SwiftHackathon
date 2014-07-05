@@ -3,11 +3,10 @@
 import Cocoa
 import Foundation
 
-var t : Array<Int>?
-t = Int[]()
+var t : Dictionary<String,AnyObject>?
 
-t?.append(5)
+t = ["a": "B", "c": 1048576]
 
-
-t.getLogicValue() == false || t?.count > 0
-
+if let u = t {
+    println(u["c"])
+}
