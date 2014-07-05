@@ -57,6 +57,9 @@ class Tweet : ModelObject {
             if let mytext : AnyObject = jsonDict[TEXT_KEY] {
                 text = mytext as? String
             }
+            if let userDict : AnyObject = jsonDict[USER_KEY] {
+                user = User(dict: userDict as? Dictionary<String,AnyObject>)
+            }
         }
     }
 }

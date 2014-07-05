@@ -48,7 +48,7 @@ class User : ModelObject {
     
     var contributorsEnabled : Bool = false
     var createdAt : NSDate?
-    var userDescription : String!
+    var userDescription : String! = ""
     var entities : Array<Entity>?
     var favorites : Int = 0
     var followers : Int = 0
@@ -58,10 +58,10 @@ class User : ModelObject {
     var friends : Int = 0
     var geoEnabled : Bool = false
     var userID : Int64 = 0
-    var locale : String!
+    var locale : NSLocale?
     var listedCount : Int = 0
     var location : Place?
-    var name : String!
+    var name : String! = ""
     var notificationsToUser : Bool = false
     var profileImageURL : NSURL?
     var profileBackgroundColor : UIColor?
@@ -72,9 +72,9 @@ class User : ModelObject {
     var profileTextColor : UIColor?
     var profileUseBackgroundImage : Bool = false
     var protected : Bool = false
-    var screenName : String!
-    var statusCount : Int = 0
-    var timeZone : String!
+    var screenName : String! = ""
+    var statusCount : Int64 = 0
+    var timeZone : String! = ""
     var url : NSURL?
     var utcOffset : Int = 0
     var verified : Bool = false
@@ -82,5 +82,15 @@ class User : ModelObject {
     convenience init(dict : Dictionary<String,AnyObject>?)
     {
         self.init()
+        if let jsonDict = dict {
+            userID = self.parseInt(jsonDict[ID_KEY])
+            statusCount = self.parseInt(jsonDict[STATUS_COUNT_KEY])
+            name = jsonDict[NAME_KEY]? as? NSString
+            if jsonDict[PROFILE_IMAGE_URL_HTTPS_KEY].getLogicValue() {
+                profileImageURL = NSURL(string:jsonDict[PROFILE_IMAGE_URL_HTTPS_KEY]? as? NSString)
+            } else {
+                profileImageURL = NSURL(string:jsonDict[PROFILE_IMAGE_URL_KEY]? as? NSString)
+            }
+        }
     }
 }
