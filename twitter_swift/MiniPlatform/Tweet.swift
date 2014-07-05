@@ -28,6 +28,7 @@ class Tweet : ModelObject {
     let TRUNCATED = "truncated"
     let USER_KEY = "user"
     let TEXT_KEY = "text"
+    let POSSIBLY_SENSITIVE_KEY = "possibly_sensitive"
 
     var tweetID : Int64 = 0
     var createdAt : NSDate = NSDate.distantPast() as NSDate
@@ -53,7 +54,9 @@ class Tweet : ModelObject {
         if let jsonDict = dict {
             tweetID = self.parseInt(jsonDict[ID_KEY])
             createdAt = self.parseDate(jsonDict[CREATED_AT_KEY])
-            text = jsonDict[TEXT_KEY]?.stringValue
+            if let mytext : AnyObject = jsonDict[TEXT_KEY] {
+                text = mytext as? String
+            }
         }
     }
 }
