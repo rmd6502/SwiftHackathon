@@ -58,5 +58,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         }
         return false
     }
+
+    func applicationDidReceiveMemoryWarning(application: UIApplication!)
+    {
+        TFNImageCache.dictionary.removeAll(keepCapacity: false)
+    }
 }
 

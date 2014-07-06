@@ -16,9 +16,9 @@ class TimelineViewController : TFNTableViewController {
         super.init(coder: aDecoder)
         self.stream = HomeTimelineStream()
         self.sectionAdapter = HomeTimelineSectionAdapter()
-        var newRowAdapters : Dictionary<String,RowAdapter> = RowAdapterFactory().adapters()
-        newRowAdapters[NSString(CString: class_getName(Tweet))] = StatusRowAdapter(reuseIdentifier: "StatusCell")
-        self.rowAdapters = newRowAdapters
+        var rowAdapters = self.rowAdapters!
+        rowAdapters[NSString(CString: class_getName(Tweet))] = StatusRowAdapter(reuseIdentifier: "StatusCell")
+        self.rowAdapters = rowAdapters
     }
 
 }

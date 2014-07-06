@@ -6,11 +6,12 @@
 //  Copyright (c) 2014 Robert Diamond. All rights reserved.
 //
 
+import MiniPlatform
 import UIKit
 
 class TimelineCell : UITableViewCell {
     
-    @IBOutlet var userAvatar: UIImageView
+    @IBOutlet var userAvatar: TFNCachedImageView
     @IBOutlet var socialProofLabel: UILabel
     @IBOutlet var socialProofIcon: UIImageView
     @IBOutlet var userNameLabel: UILabel

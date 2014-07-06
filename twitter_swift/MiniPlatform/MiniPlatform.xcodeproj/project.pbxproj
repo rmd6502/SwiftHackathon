@@ -25,6 +25,8 @@
 		D6ADD5F21954D34A0055E11F /* TwitterDeepLinkable.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6ADD5F11954D34A0055E11F /* TwitterDeepLinkable.swift */; };
 		D6B755731959BCEB00E0417B /* TFNTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6B755721959BCEB00E0417B /* TFNTableViewController.swift */; };
 		D6BE3BBD1957A48000246307 /* HomeTimelineStream.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6BE3BBC1957A48000246307 /* HomeTimelineStream.swift */; };
+		D6C0090E1968ED6D00D9EFEF /* TFNCachedImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6C0090D1968ED6D00D9EFEF /* TFNCachedImageView.swift */; };
+		D6C009101969CA8300D9EFEF /* SpecialItemRowAdapters.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6C0090F1969CA8300D9EFEF /* SpecialItemRowAdapters.swift */; };
 		D6C1BD6C196204A9008E2DE2 /* SpecialItems.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6C1BD6B196204A9008E2DE2 /* SpecialItems.swift */; };
 		D6C22DBC19452A1100F719DE /* HMacEncoder.h in Headers */ = {isa = PBXBuildFile; fileRef = D6C22DBA19452A1100F719DE /* HMacEncoder.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		D6C22DBD19452A1100F719DE /* HMacEncoder.m in Sources */ = {isa = PBXBuildFile; fileRef = D6C22DBB19452A1100F719DE /* HMacEncoder.m */; };
@@ -63,6 +65,8 @@
 		D6ADD5F11954D34A0055E11F /* TwitterDeepLinkable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = TwitterDeepLinkable.swift; path = MiniPlatform/TwitterDeepLinkable.swift; sourceTree = "<group>"; };
 		D6B755721959BCEB00E0417B /* TFNTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TFNTableViewController.swift; sourceTree = "<group>"; };
 		D6BE3BBC1957A48000246307 /* HomeTimelineStream.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeTimelineStream.swift; sourceTree = "<group>"; };
+		D6C0090D1968ED6D00D9EFEF /* TFNCachedImageView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TFNCachedImageView.swift; sourceTree = "<group>"; };
+		D6C0090F1969CA8300D9EFEF /* SpecialItemRowAdapters.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SpecialItemRowAdapters.swift; sourceTree = "<group>"; };
 		D6C1BD6B196204A9008E2DE2 /* SpecialItems.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SpecialItems.swift; sourceTree = "<group>"; };
 		D6C22DB9194527A900F719DE /* twitter.playground */ = {isa = PBXFileReference; lastKnownFileType = file.playground; path = twitter.playground; sourceTree = "<group>"; };
 		D6C22DBA19452A1100F719DE /* HMacEncoder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HMacEncoder.h; sourceTree = "<group>"; };
@@ -138,6 +142,7 @@
 				D6251A2319562B3100CE7E11 /* Stream.swift */,
 				D6BE3BBC1957A48000246307 /* HomeTimelineStream.swift */,
 				9C92C3121967639B002721CA /* NavigationDelegate.swift */,
+				D6C0090D1968ED6D00D9EFEF /* TFNCachedImageView.swift */,
 			);
 			path = MiniPlatform;
 			sourceTree = "<group>";
@@ -174,6 +179,7 @@
 				D6A1E8A6195A4E4000379944 /* SectionAdapter.swift */,
 				D628765B195D109900A956C6 /* RowAdapter.swift */,
 				9CDF2A97195F270500CE2DD5 /* RowAdapterFactory.swift */,
+				D6C0090F1969CA8300D9EFEF /* SpecialItemRowAdapters.swift */,
 			);
 			name = RowAdapters;
 			path = ..;
@@ -299,6 +305,7 @@
 				D6BE3BBD1957A48000246307 /* HomeTimelineStream.swift in Sources */,
 				D6D0FD661958E98B00D8DE48 /* ModelObject.swift in Sources */,
 				D6AADDC5194F7C3200BBF226 /* TFNTwitter.swift in Sources */,
+				D6C009101969CA8300D9EFEF /* SpecialItemRowAdapters.swift in Sources */,
 				9CDF2A98195F270500CE2DD5 /* RowAdapterFactory.swift in Sources */,
 				9C92C3131967639B002721CA /* NavigationDelegate.swift in Sources */,
 				D6A1E8A7195A4E4000379944 /* SectionAdapter.swift in Sources */,
@@ -311,6 +318,7 @@
 				D628765C195D109900A956C6 /* RowAdapter.swift in Sources */,
 				D6251A2219562AA100CE7E11 /* Place.swift in Sources */,
 				D6ADD5F21954D34A0055E11F /* TwitterDeepLinkable.swift in Sources */,
+				D6C0090E1968ED6D00D9EFEF /* TFNCachedImageView.swift in Sources */,
 				D6B755731959BCEB00E0417B /* TFNTableViewController.swift in Sources */,
 				D6C22DBD19452A1100F719DE /* HMacEncoder.m in Sources */,
 				D6251A2419562B3100CE7E11 /* Stream.swift in Sources */,

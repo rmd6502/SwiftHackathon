@@ -9,6 +9,8 @@
 import Foundation
 import UIKit
 
+// TODO: stream, rowadapterfactory, and sectionadapter can be generics,
+// when this won't crash the compiler
 class TFNTableViewController : UITableViewController {
     var stream : Stream?
     var rowAdapters : Dictionary<String,RowAdapter>?
@@ -24,11 +26,23 @@ class TFNTableViewController : UITableViewController {
     }
     }
 
+    init(coder aDecoder: NSCoder)
+    {
+        super.init(coder: aDecoder)
+        rowAdapters = self._defaultRowAdapters()
+    }
+
     override func viewDidLoad()
     {
         // TODO: install default row adapters, e.g. String
         super.viewDidLoad()
         self.refreshControl?.addTarget(self, action: "refresh", forControlEvents: .ValueChanged)
+    }
+
+    func _defaultRowAdapters()
+    {
+        var newRowAdapters = Dictionary<String,RowAdapter>()
+        newRowAdapters[NSString(CString: class_getName(ErrorItem))] = 
     }
 
     func refresh(sender: AnyObject)
