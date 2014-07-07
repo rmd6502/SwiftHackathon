@@ -14,6 +14,7 @@ class TimelineViewController : TFNTableViewController {
     init(coder aDecoder: NSCoder)
     {
         super.init(coder: aDecoder)
+        self.navigationItem.title = self.title
         self.stream = HomeTimelineStream()
         self.sectionAdapter = HomeTimelineSectionAdapter()
         var rowAdapters = self.rowAdapters!

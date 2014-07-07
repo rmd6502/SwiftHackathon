@@ -32,7 +32,7 @@ class StatusRowAdapter : RowAdapter {
 
     func _attributedTextForTweet(tweet: Tweet) -> NSAttributedString?
     {
-        var value = NSMutableAttributedString(string:tweet.text)
+        var value = NSMutableAttributedString(string:tweet.text,attributes:[NSFontAttributeName:UIFont(name: "HelveticaNeue", size: 11.0)])
         if let entityArray = tweet.entities {
             for entity in entityArray {
                 value.setAttributes([NSForegroundColorAttributeName: UIColor.blueColor()], range: entity.indices)
