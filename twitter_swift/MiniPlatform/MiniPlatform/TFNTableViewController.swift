@@ -22,7 +22,9 @@ class TFNTableViewController : UITableViewController {
     var sections : Array<Array<ModelObject>>?
     {
     didSet {
-        self.tableView.reloadData()
+        dispatch_async(dispatch_get_main_queue()) {
+            self.tableView.reloadData()
+        }
     }
     }
 
@@ -85,9 +87,11 @@ class TFNTableViewController : UITableViewController {
         if sections?.count > indexPath.section && sections![indexPath.section].count > indexPath.row {
             let item : ModelObject = sections![indexPath.section][indexPath.row]
             let itemClass = NSString(CString: class_getName((item as AnyObject).dynamicType))
-            if rowAdapters![itemClass].getLogicValue() {
-                // This may call right back into this class - beware confusion
-                rowAdapters?[itemClass]?.didSelectItem(item, tableViewController: self)
+            if let tIndexPath = indexPath {
+                if rowAdapters![itemClass].getLogicValue() {
+                    // This may call right back into this class - beware confusion
+                    rowAdapters?[itemClass]?.didSelectItem(item, tableViewController: self, indexPath: tIndexPath)
+                }
             }
         }
     }
@@ -119,7 +123,7 @@ class TFNTableViewController : UITableViewController {
         }
     }
 
-    func loadBottom()
+    func loadBottom(indexPath : NSIndexPath?)
     {
         stream?.loadBottom() {
             (results : AnyObject?, error : NSError?) in

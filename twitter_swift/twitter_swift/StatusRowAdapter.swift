@@ -25,7 +25,7 @@ class StatusRowAdapter : RowAdapter {
         return cell
     }
 
-    override func didSelectItem(item : ModelObject,tableViewController : UITableViewController)
+    override func didSelectItem(item : ModelObject, tableViewController : UITableViewController, indexPath : NSIndexPath?)
     {
         // TODO: tweet details
     }

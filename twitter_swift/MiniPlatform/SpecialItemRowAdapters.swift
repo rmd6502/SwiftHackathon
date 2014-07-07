@@ -27,7 +27,7 @@ class ErrorItemRowAdapter : RowAdapter {
         return cell
     }
 
-    override func didSelectItem(item: ModelObject, tableViewController: UITableViewController)
+    override func didSelectItem(item: ModelObject, tableViewController: UITableViewController, indexPath : NSIndexPath?)
     {
         (tableViewController as? TFNTableViewController)?.loadTop()
     }
@@ -51,8 +51,8 @@ class FooterItemRowAdapter : RowAdapter {
         return cell
     }
 
-    override func didSelectItem(item: ModelObject, tableViewController: UITableViewController)
+    override func didSelectItem(item: ModelObject, tableViewController: UITableViewController, indexPath : NSIndexPath?)
     {
-        (tableViewController as? TFNTableViewController)?.loadBottom()
+        (tableViewController as? TFNTableViewController)?.loadBottom(indexPath)
     }
 }

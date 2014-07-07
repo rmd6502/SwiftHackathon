@@ -27,7 +27,7 @@ import UIKit
         return nil
     }
 
-    func didSelectItem(item : ModelObject, tableViewController : UITableViewController)
+    func didSelectItem(item : ModelObject, tableViewController : UITableViewController, indexPath : NSIndexPath?)
     {
         // up to subclass
     }
