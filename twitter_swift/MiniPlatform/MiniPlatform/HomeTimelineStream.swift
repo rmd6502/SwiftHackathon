@@ -29,6 +29,10 @@ class HomeTimelineStream : Stream {
                 myError = NSError(domain: "HTTPStatus", code: response!.statusCode, userInfo: [NSLocalizedDescriptionKey: NSString(format: "HTTP error %d", response!.statusCode)])
             }
             if myError.getLogicValue() {
+                NSLog("error %@", myError!)
+                if let myData = data {
+                    NSLog("%@\nData %@", response!, NSString(data: myData, encoding: NSUTF8StringEncoding))
+                }
                 completion(results: nil, error: myError)
             } else {
                 var options = NSJSONReadingOptions(0)
