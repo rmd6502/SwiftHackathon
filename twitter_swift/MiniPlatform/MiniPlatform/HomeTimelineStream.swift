@@ -39,6 +39,7 @@ class HomeTimelineStream : Stream {
                 if let resultData = data {
                     var jsonData : AnyObject! = NSJSONSerialization.JSONObjectWithData(resultData, options: options, error: &myError)
                     results = self._parseJSONData(jsonData)
+                    self.streamObjects = results
                 }
                 completion(results: results, error: myError)
             }
@@ -47,10 +48,11 @@ class HomeTimelineStream : Stream {
     
     func _parseJSONData(data: AnyObject!) -> Array<Tweet>?
     {
-        var results : Array<Tweet>? = nil
+        var results = Array<Tweet>()
         if let jsonArray = data as? Array<Dictionary<String,AnyObject>> {
             for (var tweetDict) in jsonArray {
                 var tweet = Tweet(dict: tweetDict)
+                results.append(tweet)
             }
         }
         

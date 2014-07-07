@@ -32,3 +32,27 @@ class ErrorItemRowAdapter : RowAdapter {
         (tableViewController as? TFNTableViewController)?.loadTop()
     }
 }
+
+class FooterItemRowAdapter : RowAdapter {
+    init()
+    {
+        super.init(reuseIdentifier: "ErrorItem")
+    }
+
+    override func cellForItem(item: ModelObject, tableViewController: UITableViewController) -> UITableViewCell?
+    {
+        var cell : UITableViewCell? = tableViewController.tableView.dequeueReusableCellWithIdentifier(self.cellReuseIdentifier) as? UITableViewCell
+
+        if !cell.getLogicValue() {
+            cell = UITableViewCell(style: .Default, reuseIdentifier: self.cellReuseIdentifier)
+        }
+        cell!.textLabel.text = "Tap to load more"
+
+        return cell
+    }
+
+    override func didSelectItem(item: ModelObject, tableViewController: UITableViewController)
+    {
+        (tableViewController as? TFNTableViewController)?.loadBottom()
+    }
+}

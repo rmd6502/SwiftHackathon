@@ -10,19 +10,19 @@ import MiniPlatform
 import UIKit
 
 class StatusRowAdapter : RowAdapter {
-    func cellForItem(item : ModelObject,tableView : UITableView) -> UITableViewCell?
+    override func cellForItem(item : ModelObject,tableViewController : UITableViewController) -> UITableViewCell?
     {
-        var cell : TimelineCell = tableView.dequeueReusableCellWithIdentifier(self.cellReuseIdentifier) as TimelineCell
+        var cell : TimelineCell = tableViewController.tableView.dequeueReusableCellWithIdentifier(self.cellReuseIdentifier) as TimelineCell
         let tweet = item as Tweet
-        cell.userAvatar.image = UIImage(data:NSData(contentsOfURL:tweet.user?.profileImageURL))
+        cell.userAvatar.url = tweet.user?.profileImageURL
         cell.tweetTextLabel.attributedText = self._attributedTextForTweet(tweet)
 
         return cell
     }
 
-    func didSelectItem(item : ModelObject,tableView : UITableView)
+    override func didSelectItem(item : ModelObject,tableViewController : UITableViewController)
     {
-
+        // TODO: tweet details
     }
 
     func _attributedTextForTweet(tweet: Tweet) -> NSAttributedString?

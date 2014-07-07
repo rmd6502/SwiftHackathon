@@ -11,7 +11,7 @@ import Foundation
 typealias CompletionFunction = (results : AnyObject?, error : NSError?) -> Void
 class Stream : NSObject {
     let STREAM_ERROR_DOMAIN = "stream"
-    var streamObjects : Array<ModelObject>
+    var streamObjects : Array<ModelObject>?
     var error : NSError?
     var api : TwitterAPI?
 
@@ -26,7 +26,7 @@ class Stream : NSObject {
      */
     func minID() -> Int64?
     {
-        return streamObjects.reduce(nil) {
+        return streamObjects?.reduce(nil) {
             (minValue : Int64?, element) in
             return (!minValue.getLogicValue() || element.ID < minValue!) ? element.ID : minValue
         }
@@ -34,7 +34,7 @@ class Stream : NSObject {
 
     func maxID() -> Int64?
     {
-        return streamObjects.reduce(nil) {
+        return streamObjects?.reduce(nil) {
             (maxValue : Int64?, element) in
             return (!maxValue.getLogicValue() || element.ID > maxValue!) ? element.ID : maxValue
         }
@@ -52,6 +52,8 @@ class Stream : NSObject {
 
     func loadBottom(completion : CompletionFunction)
     {
-        self.load(minID: nil, maxID: self.minID(), completion: completion)
+        var min_id = self.minID()
+        min_id = (min_id) ? min_id! - 1 : min_id
+        self.load(minID: nil, maxID: min_id, completion: completion)
     }
 }

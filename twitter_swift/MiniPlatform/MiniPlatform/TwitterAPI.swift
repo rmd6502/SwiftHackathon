@@ -226,7 +226,7 @@ class TwitterAPI : NSObject,NSURLSessionDataDelegate {
     func requestWithResponse(let request : NSURLRequest?, callback : CallbackFunction)
     {
         if let urlRequest = request {
-            NSLog("URLRequest: URL %@ Body %@ headers %@", urlRequest.URL, NSString(data:urlRequest.HTTPBody, encoding:NSUTF8StringEncoding), urlRequest.allHTTPHeaderFields)
+            NSLog("URLRequest: URL %@ Body %@ headers %@", urlRequest.URL, (urlRequest.HTTPBody) ? NSString(data:urlRequest.HTTPBody, encoding:NSUTF8StringEncoding) : "(empty)", (urlRequest.allHTTPHeaderFields) ? urlRequest.allHTTPHeaderFields : "(no headers)" )
             let task : NSURLSessionTask = session.dataTaskWithRequest(urlRequest)
             callbacks[task] = callback
             task.resume()

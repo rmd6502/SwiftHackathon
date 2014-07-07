@@ -37,7 +37,6 @@ class ModelObject : NSObject {
         if let value = obj as? String {
             formatter.dateFormat = "EEE MMM dd HH:mm:ss xxxx yyyy"
             ret = formatter.dateFromString(value)
-            NSLog("Parsing %@ to %@", value, ret!)
         }
         return (ret) ? ret! : (NSDate.distantPast() as NSDate)
     }

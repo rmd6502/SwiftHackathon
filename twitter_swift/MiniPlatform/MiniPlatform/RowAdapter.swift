@@ -12,11 +12,12 @@ import UIKit
 /**
  * Pluggables to handle cells in multiple view controllers
  */
-class RowAdapter : NSObject {
+@objc class RowAdapter : NSObject {
     var cellReuseIdentifier : String!
 
     func cellForItem(item : ModelObject, tableViewController : UITableViewController) -> UITableViewCell?
     {
+        assert(false, "Need to implement cellForItem", file: __FILE__, line: __LINE__)
         // handled in subclass
         return nil
     }

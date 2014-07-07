@@ -18,6 +18,12 @@ class TFNCachedImageView : UIImageView {
     }
     }
 
+    init(coder aDecoder: NSCoder!)
+    {
+        super.init(coder: aDecoder)
+        url = nil
+    }
+
     init(url newurl: NSURL?)
     {
         super.init(image: nil)

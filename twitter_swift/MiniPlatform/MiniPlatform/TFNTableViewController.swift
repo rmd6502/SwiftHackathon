@@ -36,7 +36,7 @@ class TFNTableViewController : UITableViewController {
     {
         // TODO: install default row adapters, e.g. String
         super.viewDidLoad()
-        self.refreshControl?.addTarget(self, action: "refresh", forControlEvents: .ValueChanged)
+        self.refreshControl?.addTarget(self, action: "refresh:", forControlEvents: .ValueChanged)
     }
 
     func _defaultRowAdapters() -> Dictionary<String,RowAdapter>
@@ -72,7 +72,7 @@ class TFNTableViewController : UITableViewController {
             let item : ModelObject = sections![indexPath.section][indexPath.row]
             let itemClass = NSString(CString: class_getName((item as AnyObject).dynamicType))
             if rowAdapters![itemClass].getLogicValue() {
-                cell = rowAdapters![itemClass]!.cellForItem(item,tableViewController: self)
+                cell = rowAdapters?[itemClass]?.cellForItem(item,tableViewController: self)
             }
         }
 
@@ -86,7 +86,7 @@ class TFNTableViewController : UITableViewController {
             let itemClass = NSString(CString: class_getName((item as AnyObject).dynamicType))
             if rowAdapters![itemClass].getLogicValue() {
                 // This may call right back into this class - beware confusion
-                rowAdapters![itemClass]!.didSelectItem(item, tableViewController: self)
+                rowAdapters?[itemClass]?.didSelectItem(item, tableViewController: self)
             }
         }
     }
@@ -113,6 +113,20 @@ class TFNTableViewController : UITableViewController {
                 self.update()
             }
             completion(results: results, error: error)
+        }
+    }
+
+    func loadBottom()
+    {
+        stream?.loadBottom() {
+            (results : AnyObject?, error : NSError?) in
+            if let errorval = error {
+                if errorval.code >= 400 && errorval.code <= 499 {
+                    self.navigationDelegate?.loginIfNeeded(fromViewController: self)
+                }
+            } else {
+                self.update()
+            }
         }
     }
     
