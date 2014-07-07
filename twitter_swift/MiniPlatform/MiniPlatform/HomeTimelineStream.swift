@@ -23,7 +23,7 @@ class HomeTimelineStream : Stream {
             var myError : NSError? = error
             NSLog("got a reply!")
             if let myData = data {
-                NSLog("%@\nData %@", response!, NSString(data: myData, encoding: NSUTF8StringEncoding))
+                //NSLog("%@\nData %@", response!, NSString(data: myData, encoding: NSUTF8StringEncoding))
             }
             if response?.statusCode > 299 {
                 myError = NSError(domain: "HTTPStatus", code: response!.statusCode, userInfo: [NSLocalizedDescriptionKey: NSString(format: "HTTP error %d", response!.statusCode)])

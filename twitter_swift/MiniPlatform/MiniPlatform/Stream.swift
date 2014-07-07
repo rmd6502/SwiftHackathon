@@ -28,7 +28,6 @@ class Stream : NSObject {
     {
         return streamObjects?.reduce(nil) {
             (minValue : Int64?, element) in
-            NSLog("element ID %lld", element.ID)
             return (!minValue.getLogicValue() || element.ID < minValue!) ? element.ID : minValue
         }
     }
@@ -37,7 +36,6 @@ class Stream : NSObject {
     {
         return streamObjects?.reduce(nil) {
             (maxValue : Int64?, element) in
-            NSLog("element ID %lld", element.ID)
             return (!maxValue.getLogicValue() || element.ID > maxValue!) ? element.ID : maxValue
         }
     }

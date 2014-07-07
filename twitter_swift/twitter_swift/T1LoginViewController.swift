@@ -39,7 +39,7 @@ class T1LoginViewController : UIViewController,TwitterDeepLinkable,UIWebViewDele
     {
         api.twitterPostRequestWithResponse(.GetOAuthAccessToken, parameters: ["oauth_verifier": verifier]) {
             (response, data, error) in
-            NSLog("got response %@", response!)
+            //NSLog("got response %@", response!)
             if let authResponse = self.api.splitQueryString(NSString(data: data?, encoding: NSUTF8StringEncoding)) {
                 var account = TFNTwitterAccount()
                 self.api.authSecret = authResponse["oauth_token_secret"]
@@ -50,7 +50,7 @@ class T1LoginViewController : UIViewController,TwitterDeepLinkable,UIWebViewDele
                 if let userIDString = authResponse["user_id"] {
                     account.userID = (userIDString as NSString).longLongValue
                 }
-                NSLog("token %@ userid %lld name %@", account.authToken!, account.userID!, account.userName!)
+                //NSLog("token %@ userid %lld name %@", account.authToken!, account.userID!, account.userName!)
                 TFNTwitter.sharedTwitter.currentAccount = account
                 self.navigationController.popToRootViewControllerAnimated(true)
             }
@@ -66,7 +66,7 @@ class T1LoginViewController : UIViewController,TwitterDeepLinkable,UIWebViewDele
                 if error != nil {
                     self.loginFail(error!)
                 } else {
-                    NSLog("Got a response: %@", NSString(data: data, encoding:NSUTF8StringEncoding))
+                    //NSLog("Got a response: %@", NSString(data: data, encoding:NSUTF8StringEncoding))
                     self._authorizeRequestKey(data)
                 }
             }
@@ -99,7 +99,7 @@ class T1LoginViewController : UIViewController,TwitterDeepLinkable,UIWebViewDele
                     case "oauth_token": oauth_token = comps[1]
                     case "oauth_token_secret": oauth_secret = comps[1]
                 default:
-                    NSLog("Got \(comps[0])=%@", (comps.count > 1) ? comps[1] : "(nil)")
+                    break;//NSLog("Got \(comps[0])=%@", (comps.count > 1) ? comps[1] : "(nil)")
                 }
             }
         }
@@ -118,7 +118,7 @@ class T1LoginViewController : UIViewController,TwitterDeepLinkable,UIWebViewDele
 
     func webView(webView: UIWebView!, shouldStartLoadWithRequest request: NSURLRequest!, navigationType: UIWebViewNavigationType) -> Bool
     {
-        NSLog("About to load %@ type %d", request.URL, navigationType.toRaw())
+        //NSLog("About to load %@ type %d", request.URL, navigationType.toRaw())
         return true
     }
 }

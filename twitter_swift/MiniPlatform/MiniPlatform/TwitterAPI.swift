@@ -85,7 +85,7 @@ class TwitterAPI : NSObject,NSURLSessionDataDelegate {
         }
         let pathURL = request.URL.scheme + "://" + request.URL.host + ((request.URL.port != nil && request.URL.port != 80 && request.URL.port != 443) ? ":\(request.URL.port)" : "") + request.URL.path
         baseString = request.HTTPMethod + "&" + _urlEncode(pathURL) + "&" + _urlEncode(baseString)
-        NSLog("baseString %@", baseString)
+        //NSLog("baseString %@", baseString)
         return baseString
     }
 
@@ -110,7 +110,7 @@ class TwitterAPI : NSObject,NSURLSessionDataDelegate {
         // Pull in the parameters from the query string
         if let components = request.URL.query?.componentsSeparatedByString("&") {
             for (var param) in components {
-                NSLog("param: %@", param)
+                //NSLog("param: %@", param)
                 let comps = param.componentsSeparatedByString("=")
                 if comps.count > 1 {
                     params[comps[0]] = comps[1]
@@ -129,7 +129,7 @@ class TwitterAPI : NSObject,NSURLSessionDataDelegate {
         var baseString = self._baseString(params, request: request)
 
         var keyString = ((appSecret) ? appSecret! : "") + "&" + ((authSecret) ? authSecret! : "")
-        NSLog("Key %@", keyString)
+        //NSLog("Key %@", keyString)
         let hmac = HMacEncoder(keyString: keyString)
         var signed = hmac.performEncoding(baseString)
         oauthParams["oauth_signature"] = signed.base64Encoding()
@@ -145,8 +145,8 @@ class TwitterAPI : NSObject,NSURLSessionDataDelegate {
         headerString = "OAuth "+headerString
         var newRequest = request.mutableCopy() as NSMutableURLRequest
         newRequest.setValue(headerString, forHTTPHeaderField: "Authorization")
-        NSLog("headers", newRequest.allHTTPHeaderFields)
-        NSLog("header %@", headerString)
+        //NSLog("headers", newRequest.allHTTPHeaderFields)
+        //NSLog("header %@", headerString)
 
         return newRequest as NSURLRequest
     }
@@ -219,14 +219,14 @@ class TwitterAPI : NSObject,NSURLSessionDataDelegate {
             }
             bodyString += "\(self._urlEncode(k))=\(self._urlEncode(v))"
         }
-        NSLog("body %@", bodyString)
+        //NSLog("body %@", bodyString)
         return bodyString
     }
 
     func requestWithResponse(let request : NSURLRequest?, callback : CallbackFunction)
     {
         if let urlRequest = request {
-            NSLog("URLRequest: URL %@ Body %@ headers %@", urlRequest.URL, (urlRequest.HTTPBody) ? NSString(data:urlRequest.HTTPBody, encoding:NSUTF8StringEncoding) : "(empty)", (urlRequest.allHTTPHeaderFields) ? urlRequest.allHTTPHeaderFields : "(no headers)" )
+            //NSLog("URLRequest: URL %@ Body %@ headers %@", urlRequest.URL, (urlRequest.HTTPBody) ? NSString(data:urlRequest.HTTPBody, encoding:NSUTF8StringEncoding) : "(empty)", (urlRequest.allHTTPHeaderFields) ? urlRequest.allHTTPHeaderFields : "(no headers)" )
             let task : NSURLSessionTask = session.dataTaskWithRequest(urlRequest)
             callbacks[task] = callback
             task.resume()
@@ -259,11 +259,11 @@ class TwitterAPI : NSObject,NSURLSessionDataDelegate {
         if !mdata {
             return
         }
-        NSLog("data: %d bytes", data.length)
+        //NSLog("data: %d bytes", data.length)
         var newData = NSMutableData(length: data.length)
         data.enumerateByteRangesUsingBlock() {
             (var pointer : CConstVoidPointer, range : NSRange, stop : CMutablePointer<ObjCBool>) in
-            NSLog("Range: %ld len %ld", range.location, range.length)
+            //NSLog("Range: %ld len %ld", range.location, range.length)
             if range.location + range.length > newData.length {
                 newData.increaseLengthBy(newData.length - range.location + range.length)
             }
