@@ -84,8 +84,10 @@ class User : ModelObject {
         self.init()
         if let jsonDict = dict {
             userID = self.parseInt(jsonDict[ID_KEY])
+            self.ID = userID
             statusCount = self.parseInt(jsonDict[STATUS_COUNT_KEY])
             name = jsonDict[NAME_KEY]? as? NSString
+            screenName = jsonDict[SCREEN_NAME_KEY] as? NSString
             if jsonDict[PROFILE_IMAGE_URL_HTTPS_KEY].getLogicValue() {
                 profileImageURL = NSURL(string:jsonDict[PROFILE_IMAGE_URL_HTTPS_KEY]? as? NSString)
             } else {

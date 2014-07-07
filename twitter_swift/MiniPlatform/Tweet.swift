@@ -53,6 +53,7 @@ class Tweet : ModelObject {
         self.init()
         if let jsonDict = dict {
             tweetID = self.parseInt(jsonDict[ID_KEY])
+            self.ID = tweetID
             createdAt = self.parseDate(jsonDict[CREATED_AT_KEY])
             if let mytext : AnyObject = jsonDict[TEXT_KEY] {
                 text = mytext as? String

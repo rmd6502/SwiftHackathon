@@ -15,7 +15,12 @@ class StatusRowAdapter : RowAdapter {
         var cell : TimelineCell = tableViewController.tableView.dequeueReusableCellWithIdentifier(self.cellReuseIdentifier) as TimelineCell
         let tweet = item as Tweet
         cell.userAvatar.url = tweet.user?.profileImageURL
+        if let handle = tweet.user?.screenName {
+            cell.userHandleLabel.text = "@"+handle
+        }
         cell.tweetTextLabel.attributedText = self._attributedTextForTweet(tweet)
+        cell.timeLabel.text = self.formatTimeInterval(NSDate().timeIntervalSinceDate(tweet.createdAt))
+        cell.userNameLabel.text = tweet.user?.name
 
         return cell
     }

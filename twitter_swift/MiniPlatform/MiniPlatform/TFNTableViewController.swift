@@ -43,6 +43,7 @@ class TFNTableViewController : UITableViewController {
     {
         var newRowAdapters = Dictionary<String,RowAdapter>()
         newRowAdapters[NSString(CString: class_getName(ErrorItem))] = ErrorItemRowAdapter()
+        newRowAdapters[NSString(CString: class_getName(FooterItem))] = FooterItemRowAdapter()
         return newRowAdapters
     }
 
@@ -105,6 +106,7 @@ class TFNTableViewController : UITableViewController {
     {
         stream?.loadTop() {
             (results : AnyObject?, error : NSError?) in
+            self.refreshControl?.endRefreshing()
             if let errorval = error {
                 if errorval.code == 403 {
                     TFNTwitter.sharedTwitter.currentAccount = nil
@@ -121,6 +123,7 @@ class TFNTableViewController : UITableViewController {
     {
         stream?.loadBottom() {
             (results : AnyObject?, error : NSError?) in
+            self.refreshControl?.endRefreshing()
             if let errorval = error {
                 if errorval.code == 403 {
                     TFNTwitter.sharedTwitter.currentAccount = nil
@@ -136,11 +139,6 @@ class TFNTableViewController : UITableViewController {
     {
         super.viewWillAppear(animated)
         self.refreshControl?.beginRefreshing()
-        self.loadTop() {
-            (results : AnyObject?, error : NSError?) in
-            if let control = self.refreshControl {
-                control.endRefreshing()
-            }
-        }
+        self.loadTop()
     }
 }

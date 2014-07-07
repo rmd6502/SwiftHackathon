@@ -28,6 +28,7 @@ class Stream : NSObject {
     {
         return streamObjects?.reduce(nil) {
             (minValue : Int64?, element) in
+            NSLog("element ID %lld", element.ID)
             return (!minValue.getLogicValue() || element.ID < minValue!) ? element.ID : minValue
         }
     }
@@ -36,6 +37,7 @@ class Stream : NSObject {
     {
         return streamObjects?.reduce(nil) {
             (maxValue : Int64?, element) in
+            NSLog("element ID %lld", element.ID)
             return (!maxValue.getLogicValue() || element.ID > maxValue!) ? element.ID : maxValue
         }
     }
@@ -61,10 +63,14 @@ class Stream : NSObject {
     {
         if let items = newItems {
             var integrated = (self.streamObjects) ? self.streamObjects! : ModelObject[]()
+            integrated = integrated.filter() {
+                (item) in
+                return item.ID >= 0
+            }
             integrated.extend(items)
             integrated.sort() {
                 (a,b) in
-                return a.ID < b.ID
+                return a.ID > b.ID
             }
             self.streamObjects = integrated
         }
