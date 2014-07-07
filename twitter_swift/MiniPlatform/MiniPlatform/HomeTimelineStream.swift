@@ -25,11 +25,8 @@ class HomeTimelineStream : Stream {
             if let myData = data {
                 NSLog("%@\nData %@", response!, NSString(data: myData, encoding: NSUTF8StringEncoding))
             }
-            if (response?.statusCode >= 400 && response?.statusCode <= 499) {
-                TFNTwitter.sharedTwitter.currentAccount = nil
-                if !error.getLogicValue() {
-                    myError = NSError(domain: self.STREAM_ERROR_DOMAIN, code: response!.statusCode, userInfo: [NSLocalizedDescriptionKey: "Credentials invalid"])
-                }
+            if response?.statusCode > 299 {
+                myError = NSError(domain: "HTTPStatus", code: response!.statusCode, userInfo: [NSLocalizedDescriptionKey: NSString(format: "HTTP error %d", response!.statusCode)])
             }
             if myError.getLogicValue() {
                 completion(results: nil, error: myError)
@@ -39,7 +36,7 @@ class HomeTimelineStream : Stream {
                 if let resultData = data {
                     var jsonData : AnyObject! = NSJSONSerialization.JSONObjectWithData(resultData, options: options, error: &myError)
                     results = self._parseJSONData(jsonData)
-                    self.streamObjects = results
+                    self.integrateItems(results)
                 }
                 completion(results: results, error: myError)
             }

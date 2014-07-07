@@ -106,7 +106,8 @@ class TFNTableViewController : UITableViewController {
         stream?.loadTop() {
             (results : AnyObject?, error : NSError?) in
             if let errorval = error {
-                if errorval.code >= 400 && errorval.code <= 499 {
+                if errorval.code == 403 {
+                    TFNTwitter.sharedTwitter.currentAccount = nil
                     self.navigationDelegate?.loginIfNeeded(fromViewController: self)
                 }
             } else {
@@ -121,7 +122,8 @@ class TFNTableViewController : UITableViewController {
         stream?.loadBottom() {
             (results : AnyObject?, error : NSError?) in
             if let errorval = error {
-                if errorval.code >= 400 && errorval.code <= 499 {
+                if errorval.code == 403 {
+                    TFNTwitter.sharedTwitter.currentAccount = nil
                     self.navigationDelegate?.loginIfNeeded(fromViewController: self)
                 }
             } else {

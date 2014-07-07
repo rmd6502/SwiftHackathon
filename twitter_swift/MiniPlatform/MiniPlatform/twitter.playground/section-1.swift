@@ -3,10 +3,8 @@
 import Cocoa
 import Foundation
 
-var t : Dictionary<String,AnyObject>?
+var t : Int64?
 
-t = ["a": "B", "c": 1048576]
+t = 7
 
-if let u = t {
-    println(u["c"])
-}
+String(t!-1)

@@ -56,4 +56,17 @@ class Stream : NSObject {
         min_id = (min_id) ? min_id! - 1 : min_id
         self.load(minID: nil, maxID: min_id, completion: completion)
     }
+
+    func integrateItems(newItems : ModelObject[]?)
+    {
+        if let items = newItems {
+            var integrated = (self.streamObjects) ? self.streamObjects! : ModelObject[]()
+            integrated.extend(items)
+            integrated.sort() {
+                (a,b) in
+                return a.ID < b.ID
+            }
+            self.streamObjects = integrated
+        }
+    }
 }
