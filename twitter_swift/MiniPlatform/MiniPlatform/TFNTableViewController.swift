@@ -39,10 +39,11 @@ class TFNTableViewController : UITableViewController {
         self.refreshControl?.addTarget(self, action: "refresh", forControlEvents: .ValueChanged)
     }
 
-    func _defaultRowAdapters()
+    func _defaultRowAdapters() -> Dictionary<String,RowAdapter>
     {
         var newRowAdapters = Dictionary<String,RowAdapter>()
-        newRowAdapters[NSString(CString: class_getName(ErrorItem))] = 
+        newRowAdapters[NSString(CString: class_getName(ErrorItem))] = ErrorItemRowAdapter()
+        return newRowAdapters
     }
 
     func refresh(sender: AnyObject)
@@ -71,11 +72,23 @@ class TFNTableViewController : UITableViewController {
             let item : ModelObject = sections![indexPath.section][indexPath.row]
             let itemClass = NSString(CString: class_getName((item as AnyObject).dynamicType))
             if rowAdapters![itemClass].getLogicValue() {
-                cell = rowAdapters![itemClass]!.cellForItem(item,tableView)
+                cell = rowAdapters![itemClass]!.cellForItem(item,tableViewController: self)
             }
         }
 
         return cell
+    }
+
+    override func tableView(tableView: UITableView!, didSelectRowAtIndexPath indexPath: NSIndexPath!)
+    {
+        if sections?.count > indexPath.section && sections![indexPath.section].count > indexPath.row {
+            let item : ModelObject = sections![indexPath.section][indexPath.row]
+            let itemClass = NSString(CString: class_getName((item as AnyObject).dynamicType))
+            if rowAdapters![itemClass].getLogicValue() {
+                // This may call right back into this class - beware confusion
+                rowAdapters![itemClass]!.didSelectItem(item, tableViewController: self)
+            }
+        }
     }
 
     func update()

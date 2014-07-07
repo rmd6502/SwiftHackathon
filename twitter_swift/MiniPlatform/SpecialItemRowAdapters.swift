@@ -12,20 +12,23 @@ class ErrorItemRowAdapter : RowAdapter {
         super.init(reuseIdentifier: "ErrorItem")
     }
 
-    override func cellForItem(item: ModelObject, tableView: UITableView) -> UITableViewCell?
+    override func cellForItem(item: ModelObject, tableViewController: UITableViewController) -> UITableViewCell?
     {
-        var cell : UITableViewCell? = tableView.dequeueReusableCellWithIdentifier(self.cellReuseIdentifier) as? UITableViewCell
+        var cell : UITableViewCell? = tableViewController.tableView.dequeueReusableCellWithIdentifier(self.cellReuseIdentifier) as? UITableViewCell
 
         if !cell.getLogicValue() {
             cell = UITableViewCell(style: .Subtitle, reuseIdentifier: self.cellReuseIdentifier)
         }
         if let errorItem = item as? ErrorItem {
             cell!.textLabel.text = errorItem.error?.localizedDescription
-            if let code = errorItem.error?.code {
-                cell!.detailTextLabel.text = NSString(format: "code %@",code)
-            }
+            cell!.detailTextLabel.text = "Tap to retry"
         }
 
         return cell
+    }
+
+    override func didSelectItem(item: ModelObject, tableViewController: UITableViewController)
+    {
+        (tableViewController as? TFNTableViewController)?.loadTop()
     }
 }

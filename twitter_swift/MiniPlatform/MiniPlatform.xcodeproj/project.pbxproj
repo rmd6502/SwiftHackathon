@@ -59,7 +59,7 @@
 		D6A0CF2319429AAB00436D50 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		D6A0CF2419429AAB00436D50 /* MiniPlatformTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MiniPlatformTests.swift; sourceTree = "<group>"; };
 		D6A0CF3719429AF800436D50 /* TwitterAPI.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TwitterAPI.swift; sourceTree = "<group>"; };
-		D6A1E8A6195A4E4000379944 /* SectionAdapter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SectionAdapter.swift; path = MiniPlatform/SectionAdapter.swift; sourceTree = "<group>"; };
+		D6A1E8A6195A4E4000379944 /* SectionAdapter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SectionAdapter.swift; sourceTree = "<group>"; };
 		D6AADDC4194F7C3200BBF226 /* TFNTwitter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = TFNTwitter.swift; path = MiniPlatform/TFNTwitter.swift; sourceTree = "<group>"; };
 		D6AADDC6194F7C7F00BBF226 /* TFNTwitterAccount.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = TFNTwitterAccount.swift; path = MiniPlatform/TFNTwitterAccount.swift; sourceTree = "<group>"; };
 		D6ADD5F11954D34A0055E11F /* TwitterDeepLinkable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = TwitterDeepLinkable.swift; path = MiniPlatform/TwitterDeepLinkable.swift; sourceTree = "<group>"; };
@@ -131,6 +131,7 @@
 		D6A0CF1419429AAB00436D50 /* MiniPlatform */ = {
 			isa = PBXGroup;
 			children = (
+				D6C00911196A0B5F00D9EFEF /* SectionAdapters */,
 				D6251A1A1956299B00CE7E11 /* Model */,
 				D6E85C8E195DD9480091A945 /* RowAdapters */,
 				D6A0CF1519429AAB00436D50 /* Supporting Files */,
@@ -173,10 +174,17 @@
 			name = "Supporting Files";
 			sourceTree = "<group>";
 		};
-		D6E85C8E195DD9480091A945 /* RowAdapters */ = {
+		D6C00911196A0B5F00D9EFEF /* SectionAdapters */ = {
 			isa = PBXGroup;
 			children = (
 				D6A1E8A6195A4E4000379944 /* SectionAdapter.swift */,
+			);
+			name = SectionAdapters;
+			sourceTree = "<group>";
+		};
+		D6E85C8E195DD9480091A945 /* RowAdapters */ = {
+			isa = PBXGroup;
+			children = (
 				D628765B195D109900A956C6 /* RowAdapter.swift */,
 				9CDF2A97195F270500CE2DD5 /* RowAdapterFactory.swift */,
 				D6C0090F1969CA8300D9EFEF /* SpecialItemRowAdapters.swift */,

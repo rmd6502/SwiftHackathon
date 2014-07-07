@@ -104,6 +104,17 @@
 			name = Products;
 			sourceTree = "<group>";
 		};
+		D6C00912196A0B7D00D9EFEF /* Home Timeline */ = {
+			isa = PBXGroup;
+			children = (
+				D63786C319622FB100F2B7C9 /* TimelineViewController.swift */,
+				D6E85C90195E03160091A945 /* StatusRowAdapter.swift */,
+				D6D153541960D86C00EF0E62 /* HomeTimelineSectionAdapter.swift */,
+				D6C49C9A194232AD00E58D64 /* TimelineCell.swift */,
+			);
+			name = "Home Timeline";
+			sourceTree = "<group>";
+		};
 		D6C49C6B19422FB700E58D64 = {
 			isa = PBXGroup;
 			children = (
@@ -126,17 +137,14 @@
 		D6C49C7619422FB700E58D64 /* twitter_swift */ = {
 			isa = PBXGroup;
 			children = (
+				D6C00912196A0B7D00D9EFEF /* Home Timeline */,
 				9CAF1F4119676072008ED001 /* T1LoginViewController.swift */,
-				D63786C319622FB100F2B7C9 /* TimelineViewController.swift */,
-				D6E85C90195E03160091A945 /* StatusRowAdapter.swift */,
 				D6C49C7919422FB700E58D64 /* AppDelegate.swift */,
 				D6C49C9C1942332300E58D64 /* ProfileTableViewController.swift */,
 				D6C49C9E1942333200E58D64 /* ProfileTableViewCell.swift */,
 				D6A4C34C194FBDCD00E2CBF3 /* T1AppNavigationDelegate.swift */,
-				D6C49C9A194232AD00E58D64 /* TimelineCell.swift */,
 				D6C49C7719422FB700E58D64 /* Supporting Files */,
 				D6D10D3419549A1D008B8B18 /* DeepLinkHandler.swift */,
-				D6D153541960D86C00EF0E62 /* HomeTimelineSectionAdapter.swift */,
 			);
 			path = twitter_swift;
 			sourceTree = "<group>";
