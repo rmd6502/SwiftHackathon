@@ -235,7 +235,7 @@ class TwitterAPI : NSObject,NSURLSessionDataDelegate {
 
     func URLSession(session: NSURLSession!, task: NSURLSessionTask!, didCompleteWithError error: NSError!)
     {
-        println("Task \(task) completed, error \(error)")
+        //println("Task \(task) completed, error \(error)")
         let callback : CallbackFunction? = callbacks[task]
         callback?(response: task.response as? NSHTTPURLResponse, data: urldata[task], error: error)
         urldata[task] = nil

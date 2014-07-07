@@ -21,7 +21,7 @@ class HomeTimelineStream : Stream {
         }
         TFNTwitter.sharedTwitter.twitterAPI.twitterGetRequestWithResponse(.GetHomeTimeline, parameters: params) { (response, data, error) in
             var myError : NSError? = error
-            NSLog("got a reply!")
+            //NSLog("got a reply!")
             if let myData = data {
                 //NSLog("%@\nData %@", response!, NSString(data: myData, encoding: NSUTF8StringEncoding))
             }

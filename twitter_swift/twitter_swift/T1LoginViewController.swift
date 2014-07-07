@@ -80,11 +80,13 @@ class T1LoginViewController : UIViewController,TwitterDeepLinkable,UIWebViewDele
 
     func loginFail(error : NSError)
     {
-        var a = UIAlertController(title: "Login flow failed", message: error.localizedDescription, preferredStyle: .Alert)
-        a.addAction(UIAlertAction(title: "Ok", style: .Cancel) { (action) in
-            a.dismissViewControllerAnimated(true, completion: nil)
-            })
-        self.presentViewController(a, animated: true, completion: nil)
+//        var a = UIAlertController(title: "Login flow failed", message: error.localizedDescription, preferredStyle: .Alert)
+//        a.addAction(UIAlertAction(title: "Ok", style: .Cancel) { (action) in
+//            a.dismissViewControllerAnimated(true, completion: nil)
+//            })
+//        self.presentViewController(a, animated: true, completion: nil)
+        let a = UIAlertView(title: "Login flow failed", message: error.localizedDescription, delegate: nil, cancelButtonTitle: "Ok")
+        a.show()
     }
 
     func _authorizeRequestKey(data : NSData?)
