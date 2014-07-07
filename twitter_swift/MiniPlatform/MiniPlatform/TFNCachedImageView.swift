@@ -43,6 +43,7 @@ class TFNCachedImageView : UIImageView {
                         TFNImageCache.dictionary[self.url!.absoluteString] = data!
                         dispatch_async(dispatch_get_main_queue()) {
                             self.image = UIImage(data: data!)
+                            self.setNeedsDisplay()
                         }
                     }
                 }

@@ -28,7 +28,7 @@ class Stream : NSObject {
     {
         return streamObjects?.reduce(nil) {
             (minValue : Int64?, element) in
-            return (!minValue.getLogicValue() || element.ID < minValue!) ? element.ID : minValue
+            return (!minValue.getLogicValue() || (element.ID < minValue! && element.ID >= 0)) ? element.ID : minValue
         }
     }
 
