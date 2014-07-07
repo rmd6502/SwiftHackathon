@@ -61,6 +61,9 @@ class Tweet : ModelObject {
             if let userDict : AnyObject = jsonDict[USER_KEY] {
                 user = User(dict: userDict as? Dictionary<String,AnyObject>)
             }
+            if let entityDict : AnyObject = jsonDict[ENTITIES_KEY] {
+                entities = Entity.entitiesWithDictionary(parent: self, dict: entityDict as Dictionary<String,Array<AnyObject>>)
+            }
         }
     }
 }
