@@ -31,6 +31,11 @@ class ErrorItemRowAdapter : RowAdapter {
     {
         (tableViewController as? TFNTableViewController)?.loadTop()
     }
+
+    override func heightForItem(item: ModelObject, tableViewController: UITableViewController) -> CGFloat
+    {
+        return 80
+    }
 }
 
 class FooterItemRowAdapter : RowAdapter {
@@ -54,5 +59,10 @@ class FooterItemRowAdapter : RowAdapter {
     override func didSelectItem(item: ModelObject, tableViewController: UITableViewController, indexPath : NSIndexPath?)
     {
         (tableViewController as? TFNTableViewController)?.loadBottom(indexPath)
+    }
+
+    override func heightForItem(item: ModelObject, tableViewController: UITableViewController) -> CGFloat
+    {
+        return 50
     }
 }

@@ -82,6 +82,19 @@ class TFNTableViewController : UITableViewController {
         return cell
     }
 
+    override func tableView(tableView: UITableView!, heightForRowAtIndexPath indexPath: NSIndexPath!) -> CGFloat
+    {
+        var height : CGFloat?
+        if sections?.count > indexPath.section && sections![indexPath.section].count > indexPath.row {
+            let item : ModelObject = sections![indexPath.section][indexPath.row]
+            let itemClass = NSString(CString: class_getName((item as AnyObject).dynamicType),encoding: NSUTF8StringEncoding)
+            if rowAdapters![itemClass].getLogicValue() {
+                height = rowAdapters?[itemClass]?.heightForItem(item,tableViewController: self)
+            }
+        }
+        return (height) ? height! : 0
+    }
+
     override func tableView(tableView: UITableView!, didSelectRowAtIndexPath indexPath: NSIndexPath!)
     {
         if sections?.count > indexPath.section && sections![indexPath.section].count > indexPath.row {

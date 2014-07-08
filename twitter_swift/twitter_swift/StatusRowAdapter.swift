@@ -14,14 +14,8 @@ class StatusRowAdapter : RowAdapter {
     {
         var cell : TimelineCell = tableViewController.tableView.dequeueReusableCellWithIdentifier(self.cellReuseIdentifier) as TimelineCell
         let tweet = item as Tweet
-        cell.userAvatar.url = tweet.user?.profileImageURL
-        if let handle = tweet.user?.screenName {
-            cell.userHandleLabel.text = "@"+handle
-        }
-        cell.tweetTextLabel.attributedText = self._attributedTextForTweet(tweet)
-        cell.timeLabel.text = self.formatTimeInterval(NSDate().timeIntervalSinceDate(tweet.createdAt))
-        cell.userNameLabel.text = tweet.user?.name
 
+        self._updateCell(cell, tweet: tweet)
         return cell
     }
 
@@ -40,5 +34,32 @@ class StatusRowAdapter : RowAdapter {
         }
 
         return value
+    }
+
+    func _updateCell(cell: TimelineCell, tweet: Tweet)
+    {
+        cell.userAvatar.url = tweet.user?.profileImageURL
+        if let handle = tweet.user?.screenName {
+            cell.userHandleLabel.text = "@"+handle
+        }
+        cell.tweetTextLabel.attributedText = self._attributedTextForTweet(tweet)
+        cell.timeLabel.text = self.formatTimeInterval(NSDate().timeIntervalSinceDate(tweet.createdAt))
+        cell.userNameLabel.text = tweet.user?.name
+    }
+
+    override func heightForItem(item: ModelObject, tableViewController: UITableViewController) -> CGFloat
+    {
+        var offlineCell = tableViewController.tableView.dequeueReusableCellWithIdentifier(self.cellReuseIdentifier) as TimelineCell
+        offlineCell.setNeedsUpdateConstraints()
+        offlineCell.updateConstraintsIfNeeded()
+
+        let tweet = item as Tweet
+        self._updateCell(offlineCell, tweet: tweet)
+
+        offlineCell.bounds = CGRect(x: 0, y: 0, width: tableViewController.tableView.bounds.size.width, height: CGRectGetHeight(offlineCell.bounds))
+        offlineCell.setNeedsLayout()
+        offlineCell.layoutIfNeeded()
+
+        return offlineCell.contentView.systemLayoutSizeFittingSize(UILayoutFittingCompressedSize).height + 1
     }
 }

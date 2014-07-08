@@ -22,4 +22,10 @@ class TimelineViewController : TFNTableViewController {
         self.rowAdapters = rowAdapters
     }
 
+    override func viewDidLoad()
+    {
+        super.viewDidLoad()
+        self.tableView.rowHeight = UITableViewAutomaticDimension
+        self.tableView.estimatedRowHeight = 195
+    }
 }
