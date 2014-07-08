@@ -69,7 +69,7 @@ class T1LoginViewController : UIViewController,TwitterDeepLinkable,UIWebViewDele
                 if error != nil {
                     self.loginFail(error!)
                 } else {
-                    //NSLog("Got a response: %@", NSString(data: data, encoding:NSUTF8StringEncoding))
+                    NSLog("Got a response: %@", NSString(data: data, encoding:NSUTF8StringEncoding))
                     self._authorizeRequestKey(data)
                 }
             }
@@ -100,6 +100,7 @@ class T1LoginViewController : UIViewController,TwitterDeepLinkable,UIWebViewDele
         var oauth_secret : String? = nil
         if let paramData = data {
             var params = NSString(data: paramData, encoding: NSUTF8StringEncoding)
+            //NSLog("Got a response: %@", NSString(data: paramData, encoding:NSUTF8StringEncoding))
             for (var param) in params.componentsSeparatedByString("&") as Array<String> {
                 var comps = param.componentsSeparatedByString("=") as Array<String>
                 switch (comps[0]) {
@@ -127,7 +128,7 @@ class T1LoginViewController : UIViewController,TwitterDeepLinkable,UIWebViewDele
 
     func webView(webView: UIWebView!, shouldStartLoadWithRequest request: NSURLRequest!, navigationType: UIWebViewNavigationType) -> Bool
     {
-        //NSLog("About to load %@ type %d", request.URL, navigationType.toRaw())
+        NSLog("About to load %@ type %d", request.URL, navigationType.toRaw())
         return true
     }
 }

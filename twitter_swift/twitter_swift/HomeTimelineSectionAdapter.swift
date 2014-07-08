@@ -20,7 +20,7 @@ class HomeTimelineSectionAdapter : SectionAdapter {
             return [inArray!]
         }
         // otherwise, tack on a PTR and a footer (we'll deal with gaps later)
-        var sections = ModelObject[]()
+        var sections = [ModelObject]()
         sections.extend(inArray!)
         sections.append(FooterItem())
         return [sections]

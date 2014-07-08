@@ -112,7 +112,7 @@ class TFNTableViewController : UITableViewController {
             (results : AnyObject?, error : NSError?) in
             self.refreshControl?.endRefreshing()
             if let errorval = error {
-                if errorval.code == 403 {
+                if errorval.code == 403 || errorval.code == 401 {
                     TFNTwitter.sharedTwitter.currentAccount = nil
                     self.navigationDelegate?.loginIfNeeded(fromViewController: self)
                 } else {

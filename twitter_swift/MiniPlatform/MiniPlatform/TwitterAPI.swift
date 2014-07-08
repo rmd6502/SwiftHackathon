@@ -83,7 +83,7 @@ class TwitterAPI : NSObject {
         }
         let pathURL = request.URL.scheme + "://" + request.URL.host + ((request.URL.port != nil && request.URL.port != 80 && request.URL.port != 443) ? ":\(request.URL.port)" : "") + request.URL.path
         baseString = request.HTTPMethod + "&" + _urlEncode(pathURL) + "&" + _urlEncode(baseString)
-        //NSLog("baseString %@", baseString)
+        NSLog("baseString %@", baseString)
         return baseString
     }
 
@@ -127,7 +127,7 @@ class TwitterAPI : NSObject {
         var baseString = self._baseString(params, request: request)
 
         var keyString = ((appSecret) ? appSecret! : "") + "&" + ((authSecret) ? authSecret! : "")
-        //NSLog("Key %@", keyString)
+        NSLog("Key %@", keyString)
         let hmac = HMacEncoder(keyString: keyString)
         var signed = hmac.performEncoding(baseString)
         oauthParams["oauth_signature"] = signed.base64EncodedStringWithOptions(NSDataBase64EncodingOptions(0))
@@ -143,8 +143,8 @@ class TwitterAPI : NSObject {
         headerString = "OAuth "+headerString
         var newRequest = request.mutableCopy() as NSMutableURLRequest
         newRequest.setValue(headerString, forHTTPHeaderField: "Authorization")
-        //NSLog("headers", newRequest.allHTTPHeaderFields)
-        //NSLog("header %@", headerString)
+        NSLog("headers", newRequest.allHTTPHeaderFields)
+        NSLog("header %@", headerString)
 
         return newRequest as NSURLRequest
     }
@@ -224,7 +224,7 @@ class TwitterAPI : NSObject {
     func requestWithResponse(let request : NSURLRequest?, callback : CallbackFunction)
     {
         if let urlRequest = request {
-            //NSLog("URLRequest: URL %@ Body %@ headers %@", urlRequest.URL, (urlRequest.HTTPBody) ? NSString(data:urlRequest.HTTPBody, encoding:NSUTF8StringEncoding) : "(empty)", (urlRequest.allHTTPHeaderFields) ? urlRequest.allHTTPHeaderFields : "(no headers)" )
+            NSLog("URLRequest: URL %@ Body %@ headers %@", urlRequest.URL, (urlRequest.HTTPBody) ? NSString(data:urlRequest.HTTPBody, encoding:NSUTF8StringEncoding) : "(empty)", (urlRequest.allHTTPHeaderFields) ? urlRequest.allHTTPHeaderFields : "(no headers)" )
             let task = session.dataTaskWithRequest(urlRequest) {
                 (data, response, error) in
                 callback(response: response as? NSHTTPURLResponse, data: data, error: error)
