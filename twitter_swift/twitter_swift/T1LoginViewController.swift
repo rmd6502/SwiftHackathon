@@ -52,7 +52,9 @@ class T1LoginViewController : UIViewController,TwitterDeepLinkable,UIWebViewDele
                 }
                 //NSLog("token %@ userid %lld name %@", account.authToken!, account.userID!, account.userName!)
                 TFNTwitter.sharedTwitter.currentAccount = account
-                self.navigationController.popToRootViewControllerAnimated(true)
+            }
+            dispatch_async(dispatch_get_main_queue()) {
+                let dummy = self.navigationController.popToRootViewControllerAnimated(true)
             }
         }
     }
@@ -85,8 +87,10 @@ class T1LoginViewController : UIViewController,TwitterDeepLinkable,UIWebViewDele
 //            a.dismissViewControllerAnimated(true, completion: nil)
 //            })
 //        self.presentViewController(a, animated: true, completion: nil)
-        let a = UIAlertView(title: "Login flow failed", message: error.localizedDescription, delegate: nil, cancelButtonTitle: "Ok")
-        a.show()
+        dispatch_async(dispatch_get_main_queue()) {
+            let a = UIAlertView(title: "Login flow failed", message: error.localizedDescription, delegate: nil, cancelButtonTitle: "Ok")
+            a.show()
+        }
     }
 
     func _authorizeRequestKey(data : NSData?)
@@ -110,12 +114,14 @@ class T1LoginViewController : UIViewController,TwitterDeepLinkable,UIWebViewDele
             self.loginFail(error)
             return
         }
-        self.webView.hidden = false;
         self.api.authToken = oauth_token
         self.api.authSecret = oauth_secret
         var url = api.urlForRequest(TwitterAPI.TwitterAPIRequest.Authenticate, parameters: ["oauth_token": oauth_token!])
-        self.webView.loadRequest(NSURLRequest(URL: url))
-        self.view.setNeedsLayout()
+        dispatch_async(dispatch_get_main_queue()) {
+            self.webView.hidden = false;
+            self.webView.loadRequest(NSURLRequest(URL: url))
+            self.view.setNeedsLayout()
+        }
     }
 
     func webView(webView: UIWebView!, shouldStartLoadWithRequest request: NSURLRequest!, navigationType: UIWebViewNavigationType) -> Bool

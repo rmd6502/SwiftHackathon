@@ -8,7 +8,7 @@
 
 import Accounts
 
-class TwitterAPI : NSObject,NSURLSessionDataDelegate {
+class TwitterAPI : NSObject {
     enum TwitterAPIRequest : String {
         case GetOAuthRequestToken = "oauth/request_token"
         case GetOAuthAccessToken = "oauth/access_token"
@@ -23,8 +23,6 @@ class TwitterAPI : NSObject,NSURLSessionDataDelegate {
     let APIVersion = "1.1"
     let DefaultAPIRoot = "https://api.twitter.com"
 
-    var callbacks = Dictionary<NSURLSessionTask,CallbackFunction>()
-    var urldata = Dictionary<NSURLSessionTask,NSMutableData>()
     var apiRoot : String!
     var account : ACAccount!
     var appToken : String?
@@ -62,7 +60,7 @@ class TwitterAPI : NSObject,NSURLSessionDataDelegate {
         get {
             let config = NSURLSessionConfiguration.defaultSessionConfiguration()
             config.timeoutIntervalForResource = 180
-            return NSURLSession(configuration:config, delegate:self, delegateQueue: queue)
+            return NSURLSession(configuration:config, delegate:nil, delegateQueue: queue)
         }
     }
     let queue : NSOperationQueue = NSOperationQueue()
@@ -227,48 +225,11 @@ class TwitterAPI : NSObject,NSURLSessionDataDelegate {
     {
         if let urlRequest = request {
             //NSLog("URLRequest: URL %@ Body %@ headers %@", urlRequest.URL, (urlRequest.HTTPBody) ? NSString(data:urlRequest.HTTPBody, encoding:NSUTF8StringEncoding) : "(empty)", (urlRequest.allHTTPHeaderFields) ? urlRequest.allHTTPHeaderFields : "(no headers)" )
-            let task : NSURLSessionTask = session.dataTaskWithRequest(urlRequest)
-            callbacks[task] = callback
+            let task = session.dataTaskWithRequest(urlRequest) {
+                (data, response, error) in
+                callback(response: response as? NSHTTPURLResponse, data: data, error: error)
+            }
             task.resume()
         }
-    }
-
-    func URLSession(session: NSURLSession!, task: NSURLSessionTask!, didCompleteWithError error: NSError!)
-    {
-        //println("Task \(task) completed, error \(error)")
-        let callback : CallbackFunction? = callbacks[task]
-        callback?(response: task.response as? NSHTTPURLResponse, data: urldata[task], error: error)
-        urldata[task] = nil
-        callbacks[task] = nil
-    }
-
-    func URLSession(session: NSURLSession!, dataTask: NSURLSessionDataTask!, didReceiveResponse response: NSURLResponse!, completionHandler: ((NSURLSessionResponseDisposition) -> Void)!)
-    {
-        if let headers = (dataTask?.response as? NSHTTPURLResponse)?.allHeaderFields {
-            let length = (headers["Content-Length"] as? String)?.toInt()
-            if length {
-                urldata[dataTask] = NSMutableData(capacity: length!)
-            }
-            completionHandler(.Allow)
-        }
-    }
-
-    func URLSession(session: NSURLSession!, dataTask: NSURLSessionDataTask!, didReceiveData data: NSData!)
-    {
-        let mdata = urldata[dataTask]
-        if !mdata {
-            return
-        }
-        //NSLog("data: %d bytes", data.length)
-        var newData = NSMutableData(length: data.length)
-        data.enumerateByteRangesUsingBlock() {
-            (var pointer : CConstVoidPointer, range : NSRange, stop : CMutablePointer<ObjCBool>) in
-            //NSLog("Range: %ld len %ld", range.location, range.length)
-            if range.location + range.length > newData.length {
-                newData.increaseLengthBy(newData.length - range.location + range.length)
-            }
-            newData.replaceBytesInRange(range, withBytes: pointer, length: range.length)
-        }
-        mdata!.appendData(newData)
     }
 }
