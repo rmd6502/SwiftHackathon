@@ -36,7 +36,7 @@ class TwitterAPI : NSObject {
     }
     var nonce : String! {
         get {
-            return NSUUID.UUID()?.UUIDString.dataUsingEncoding(NSUTF8StringEncoding, allowLossyConversion: false).base64Encoding()
+            return NSUUID.UUID()?.UUIDString.dataUsingEncoding(NSUTF8StringEncoding, allowLossyConversion: false)?.base64EncodedStringWithOptions(NSDataBase64EncodingOptions(0))
         }
     }
 
@@ -73,7 +73,7 @@ class TwitterAPI : NSObject {
 
     func _baseString(baseParams : Dictionary<String,String>, request : NSURLRequest) -> String
     {
-        let keys = sort(Array(baseParams.keys))
+        let keys = Array(baseParams.keys).sorted(>)
         var baseString = ""
         for (var key) in keys {
             if !baseString.isEmpty {
@@ -130,9 +130,9 @@ class TwitterAPI : NSObject {
         //NSLog("Key %@", keyString)
         let hmac = HMacEncoder(keyString: keyString)
         var signed = hmac.performEncoding(baseString)
-        oauthParams["oauth_signature"] = signed.base64Encoding()
+        oauthParams["oauth_signature"] = signed.base64EncodedStringWithOptions(NSDataBase64EncodingOptions(0))
 
-        let oauthKeys = sort(Array(oauthParams.keys))
+        let oauthKeys = Array(oauthParams.keys).sorted(>)
         var headerString = ""
         for (var key) in oauthKeys {
             if (!headerString.isEmpty) {

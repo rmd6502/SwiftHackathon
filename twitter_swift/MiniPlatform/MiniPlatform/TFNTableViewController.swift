@@ -44,8 +44,8 @@ class TFNTableViewController : UITableViewController {
     func _defaultRowAdapters() -> Dictionary<String,RowAdapter>
     {
         var newRowAdapters = Dictionary<String,RowAdapter>()
-        newRowAdapters[NSString(CString: class_getName(ErrorItem))] = ErrorItemRowAdapter()
-        newRowAdapters[NSString(CString: class_getName(FooterItem))] = FooterItemRowAdapter()
+        newRowAdapters[NSString(CString: class_getName(ErrorItem),encoding: NSUTF8StringEncoding)] = ErrorItemRowAdapter()
+        newRowAdapters[NSString(CString: class_getName(FooterItem),encoding: NSUTF8StringEncoding)] = FooterItemRowAdapter()
         return newRowAdapters
     }
 
@@ -73,7 +73,7 @@ class TFNTableViewController : UITableViewController {
         var cell : UITableViewCell? = nil;
         if sections?.count > indexPath.section && sections![indexPath.section].count > indexPath.row {
             let item : ModelObject = sections![indexPath.section][indexPath.row]
-            let itemClass = NSString(CString: class_getName((item as AnyObject).dynamicType))
+            let itemClass = NSString(CString: class_getName((item as AnyObject).dynamicType),encoding: NSUTF8StringEncoding)
             if rowAdapters![itemClass].getLogicValue() {
                 cell = rowAdapters?[itemClass]?.cellForItem(item,tableViewController: self)
             }
@@ -86,7 +86,7 @@ class TFNTableViewController : UITableViewController {
     {
         if sections?.count > indexPath.section && sections![indexPath.section].count > indexPath.row {
             let item : ModelObject = sections![indexPath.section][indexPath.row]
-            let itemClass = NSString(CString: class_getName((item as AnyObject).dynamicType))
+            let itemClass = NSString(CString: class_getName((item as AnyObject).dynamicType),encoding: NSUTF8StringEncoding)
             if let tIndexPath = indexPath {
                 if rowAdapters![itemClass].getLogicValue() {
                     // This may call right back into this class - beware confusion

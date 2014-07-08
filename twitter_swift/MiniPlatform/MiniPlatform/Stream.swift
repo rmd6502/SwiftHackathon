@@ -57,10 +57,10 @@ class Stream : NSObject {
         self.load(minID: nil, maxID: min_id, completion: completion)
     }
 
-    func integrateItems(newItems : ModelObject[]?)
+    func integrateItems(newItems : [ModelObject]?)
     {
         if let items = newItems {
-            var integrated = (self.streamObjects) ? self.streamObjects! : ModelObject[]()
+            var integrated = (self.streamObjects) ? self.streamObjects! : [ModelObject]()
             integrated = integrated.filter() {
                 (item) in
                 return item.ID >= 0

@@ -24,4 +24,9 @@ class TimelineCell : UITableViewCell {
     @IBOutlet var favoriteButton: UIButton
     @IBOutlet var followButton: UIButton
 
+    override func touchesEnded(touches: NSSet!, withEvent event: UIEvent!)
+    {
+        NSLog("touches %@ event %@", touches, event)
+        super.touchesEnded(touches, withEvent: event)
+    }
 }

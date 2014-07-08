@@ -11,7 +11,7 @@ import Foundation
 enum EntityType {
     case Url(String, NSURL, NSURL), Description(String, NSURL, NSURL)
     case Image(NSURL)
-    case Hashtag(String), UserMention(User), StockSymbol(String)
+    case Hashtag(String), UserMention(Int64,String,String), StockSymbol(String)
 }
 
 enum EntityKeys : String {
@@ -26,7 +26,7 @@ enum EntityKeys : String {
     case USER_ID = "id"
     case INDICES = "indices"
     case USER_NAME = "name"
-    case SCREEN_NAME = "screen_name"
+    case USER_HANDLE = "screen_name"
     case HASHTAG = "text"
 }
 
@@ -35,7 +35,7 @@ class Entity : NSObject {
     var entityType : EntityType
     var indices : NSRange!
 
-    class func entitiesWithDictionary(parent parentObject : ModelObject,dict : Dictionary<String,Array<AnyObject>>) -> Entity[]?
+    class func entitiesWithDictionary(parent parentObject : ModelObject,dict : Dictionary<String,Array<AnyObject>>) -> [Entity]?
     {
         var entities = Array<Entity>()
         for (k,v) in dict {
@@ -44,6 +44,8 @@ class Entity : NSObject {
                 entities.extend(_parseURLS(parent: parentObject,array: v)!)
             case EntityKeys.HASHTAGS.toRaw():
                 entities.extend(_parseHashtags(parent: parentObject,array: v)!)
+            case EntityKeys.USERS.toRaw():
+                entities.extend(_parseUserMentions(parent: parentObject,array: v)!)
             default:
                 break
             }
@@ -51,9 +53,9 @@ class Entity : NSObject {
         return entities
     }
 
-    class func _parseURLS(parent parentObject : ModelObject,array : Array<AnyObject>!) -> Entity[]?
+    class func _parseURLS(parent parentObject : ModelObject,array : Array<AnyObject>!) -> [Entity]?
     {
-        var entities = Entity[]()
+        var entities = [Entity]()
         for (var urlItem : AnyObject) in array {
             if let urlDict = urlItem as? Dictionary<String,AnyObject> {
                 var displayURL = urlDict[EntityKeys.DISPLAY_URL.toRaw()] as NSString
@@ -78,13 +80,29 @@ class Entity : NSObject {
         return nil
     }
 
-    class func _parseHashtags(parent parentObject : ModelObject,array : Array<AnyObject>!) -> Entity[]?
+    class func _parseHashtags(parent parentObject : ModelObject,array : Array<AnyObject>!) -> [Entity]?
     {
-        var entities = Entity[]()
+        var entities = [Entity]()
         for (var hashItem : AnyObject) in array {
             if let hashDict = hashItem as? Dictionary<String,AnyObject> {
                 var newEntity = Entity(parent: parentObject, type: EntityType.Hashtag(hashDict[EntityKeys.HASHTAG.toRaw()] as NSString))
                 newEntity.indices = _parseIndices(hashDict[EntityKeys.INDICES.toRaw()])
+                entities.append(newEntity)
+            }
+        }
+        return entities
+    }
+
+    class func _parseUserMentions(parent parentObject : ModelObject,array : Array<AnyObject>!) -> [Entity]?
+    {
+        var entities = [Entity]()
+        for (var userItem : AnyObject) in array {
+            if let userDict = userItem as? Dictionary<String,AnyObject> {
+                var userID = (userDict[EntityKeys.USER_ID.toRaw()] as NSNumber).longLongValue
+                var userName = userDict[EntityKeys.USER_NAME.toRaw()] as NSString
+                var userHandle = userDict[EntityKeys.USER_HANDLE.toRaw()] as NSString
+                var newEntity = Entity(parent: parentObject, type: EntityType.UserMention(userID, userName, userHandle))
+                newEntity.indices = _parseIndices(userDict[EntityKeys.INDICES.toRaw()])
                 entities.append(newEntity)
             }
         }

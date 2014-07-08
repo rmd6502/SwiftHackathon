@@ -46,15 +46,15 @@ import UIKit
     func formatTimeInterval(interval : NSTimeInterval) -> String?
     {
         switch (interval) {
-        case SECONDS_PER_DAY..7*SECONDS_PER_DAY:
+        case SECONDS_PER_DAY..<7*SECONDS_PER_DAY:
             return NSString(format: "%.0f day%@", interval/SECONDS_PER_DAY, (interval/SECONDS_PER_DAY >= 1.5) ? "s" : "")
-        case SECONDS_PER_HOUR..SECONDS_PER_DAY:
+        case SECONDS_PER_HOUR..<SECONDS_PER_DAY:
             return NSString(format: "%.0f hour%@", interval/SECONDS_PER_HOUR, (interval/SECONDS_PER_HOUR >= 1.5) ? "s" : "")
-        case SECONDS_PER_MINUTE..SECONDS_PER_HOUR:
+        case SECONDS_PER_MINUTE..<SECONDS_PER_HOUR:
             return NSString(format: "%.0f minute%@", interval/SECONDS_PER_MINUTE, (interval/SECONDS_PER_MINUTE >= 1.5) ? "s" : "")
-        case 1..SECONDS_PER_MINUTE:
+        case 1..<SECONDS_PER_MINUTE:
             return NSString(format: "%.0f second%@", interval, (interval >= 1.5) ? "s" : "")
-        case 0..1:
+        case 0..<1:
             return "now"
         default:
             return formatter.stringFromDate(NSDate(timeIntervalSinceNow: -interval))

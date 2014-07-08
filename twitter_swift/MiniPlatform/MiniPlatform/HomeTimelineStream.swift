@@ -29,8 +29,8 @@ class HomeTimelineStream : Stream {
             }
             if myError.getLogicValue() {
                 NSLog("error %@", myError!)
-                if let myData = data {
-                    NSLog("%@\nData %@", response!, NSString(data: myData, encoding: NSUTF8StringEncoding))
+                if data.getLogicValue() && data!.length > 0 {
+                    NSLog("%@\nData %@", response!, NSString(data: data!, encoding: NSUTF8StringEncoding))
                 }
                 completion(results: nil, error: myError)
             } else {
