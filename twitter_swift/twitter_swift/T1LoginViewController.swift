@@ -52,9 +52,10 @@ class T1LoginViewController : UIViewController,TwitterDeepLinkable,UIWebViewDele
                 }
                 //NSLog("token %@ userid %lld name %@", account.authToken!, account.userID!, account.userName!)
                 TFNTwitter.sharedTwitter.currentAccount = account
-            }
-            dispatch_async(dispatch_get_main_queue()) {
-                let dummy = self.navigationController.popToRootViewControllerAnimated(true)
+                dispatch_async(dispatch_get_main_queue()) {
+                    // TODO: figure out how to just ignore the return value.  as Void doesn't work
+                    let dummy = self.navigationController.popToRootViewControllerAnimated(true)
+                }
             }
         }
     }
