@@ -20,6 +20,12 @@ import UIKit
 
     var cellReuseIdentifier : String!
 
+    func heightForItem(item : ModelObject, tableViewController : UITableViewController) -> CGFloat
+    {
+        // subclasses must implement
+        return 0;
+    }
+    
     func cellForItem(item : ModelObject, tableViewController : UITableViewController) -> UITableViewCell?
     {
         assert(false, "Need to implement cellForItem", file: __FILE__, line: __LINE__)
