@@ -20,7 +20,7 @@ class T1LoginViewController : UIViewController,TwitterDeepLinkable,UIWebViewDele
     {
         super.viewDidLoad()
         if let url = incomingURL {
-            NSLog("Processing URL %@", url)
+            //NSLog("Processing URL %@", url)
             if let token = api.authToken {
                 let queryParams = api.splitQueryString(url.query)
                 if !queryParams.getLogicValue() || !queryParams?["oauth_token"].getLogicValue() || queryParams?["oauth_token"]! != token {
