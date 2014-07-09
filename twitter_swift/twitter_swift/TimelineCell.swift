@@ -21,9 +21,26 @@ class TimelineCell : UITableViewCell {
     @IBOutlet var followButton: UIButton
     @IBOutlet var tweetText : UITextView
 
+    var activeAreas : [Entity:AnyObject]?
+
     override func touchesEnded(touches: NSSet!, withEvent event: UIEvent!)
     {
-        NSLog("touches %@ event %@", touches, event)
-        super.touchesEnded(touches, withEvent: event)
+        var touchedEntity : Entity? = nil
+        for (let touch) in touches.allObjects {
+            let pt = touch.locationInView(self.tweetText)
+            if let activeMap = activeAreas {
+                for (let (entity,range)) in activeMap {
+                    for (let rect) in self.tweetText.selectionRectsForRange(range as UITextRange) {
+                        if (CGRectContainsPoint(rect.rect, pt)) {
+                            touchedEntity = entity
+                            NSLog("touched entity %@", touchedEntity!)
+                        }
+                    }
+                }
+            }
+        }
+        if !touchedEntity.getLogicValue() {
+            super.touchesEnded(touches, withEvent: event)
+        }
     }
 }
