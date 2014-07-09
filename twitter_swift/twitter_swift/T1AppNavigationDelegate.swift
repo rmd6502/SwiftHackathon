@@ -16,12 +16,15 @@ class T1AppNavigationDelegate : NSObject, NavigationDelegate, UITabBarController
         didSet {
             NSLog("navbar set")
             self.tabBarController = navigationController.viewControllers[0] as? UITabBarController
+            self.tabBarController!.delegate = self
             if (tabBarController?.viewControllers.count > 0) {
                 for (var vc : AnyObject) in tabBarController!.viewControllers {
                     if let tvc = vc as? TFNTableViewController {
                         tvc.navigationDelegate = self
                     }
                 }
+                navigationController.navigationItem.titleView = UILabel(frame: CGRectMake(0, 0, 50, 15))
+                self.tabBarController(self.tabBarController, didSelectViewController: self.tabBarController!.viewControllers[0] as UIViewController)
             }
         }
     }
@@ -49,5 +52,13 @@ class T1AppNavigationDelegate : NSObject, NavigationDelegate, UITabBarController
                 viewController?.navigationController?.pushViewController(loginVC, animated: true)
             }
         }
+    }
+
+    func tabBarController(tabBarController: UITabBarController!, didSelectViewController viewController: UIViewController!)
+    {
+        NSLog("selected title %@ label frame %@", viewController.title, NSStringFromCGRect(navigationController.navigationItem.titleView.frame))
+        (navigationController.navigationItem.titleView as UILabel).text = viewController.title
+        navigationController.navigationItem.titleView.sizeToFit()
+        navigationController.navigationItem.titleView.setNeedsDisplay()
     }
 }

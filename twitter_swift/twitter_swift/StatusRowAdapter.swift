@@ -10,12 +10,16 @@ import MiniPlatform
 import UIKit
 
 class StatusRowAdapter : RowAdapter {
+    var offlineCell : TimelineCell?
+
     override func cellForItem(item : ModelObject,tableViewController : UITableViewController) -> UITableViewCell?
     {
         var cell : TimelineCell = tableViewController.tableView.dequeueReusableCellWithIdentifier(self.cellReuseIdentifier) as TimelineCell
         let tweet = item as Tweet
 
+        cell.bounds = CGRect(x: 0, y: 0, width: tableViewController.tableView.bounds.size.width, height: CGRectGetHeight(cell.bounds))
         self._updateCell(cell, tweet: tweet)
+        NSLog("real cell height of text \"%@\" is %.2f cell height %.2f", cell.tweetText.text, cell.tweetText.bounds.size.height, cell.bounds.size.height)
         return cell
     }
 
@@ -26,10 +30,10 @@ class StatusRowAdapter : RowAdapter {
 
     func _attributedTextForTweet(tweet: Tweet) -> NSAttributedString?
     {
-        var value = NSMutableAttributedString(string:tweet.text,attributes:[NSFontAttributeName:UIFont(name: "HelveticaNeue", size: 11.0)])
+        var value = NSMutableAttributedString(string:tweet.text,attributes:[NSFontAttributeName:UIFont(name: "HelveticaNeue", size: 10.0)])
         if let entityArray = tweet.entities {
             for entity in entityArray {
-                value.setAttributes([NSForegroundColorAttributeName: UIColor.blueColor()], range: entity.indices)
+                value.setAttributes([NSForegroundColorAttributeName: UIColor.blueColor(), NSFontAttributeName:UIFont(name: "HelveticaNeue", size: 10.0)], range: entity.indices)
             }
         }
 
@@ -42,24 +46,32 @@ class StatusRowAdapter : RowAdapter {
         if let handle = tweet.user?.screenName {
             cell.userHandleLabel.text = "@"+handle
         }
-        cell.tweetTextLabel.attributedText = self._attributedTextForTweet(tweet)
+        cell.tweetText.attributedText = self._attributedTextForTweet(tweet)
         cell.timeLabel.text = self.formatTimeInterval(NSDate().timeIntervalSinceDate(tweet.createdAt))
         cell.userNameLabel.text = tweet.user?.name
+        cell.setNeedsUpdateConstraints()
+        cell.setNeedsLayout()
     }
 
     override func heightForItem(item: ModelObject, tableViewController: UITableViewController) -> CGFloat
     {
-        var offlineCell = tableViewController.tableView.dequeueReusableCellWithIdentifier(self.cellReuseIdentifier) as TimelineCell
-        offlineCell.setNeedsUpdateConstraints()
-        offlineCell.updateConstraintsIfNeeded()
-
+        if offlineCell == nil {
+            offlineCell = tableViewController.tableView.dequeueReusableCellWithIdentifier(self.cellReuseIdentifier) as? TimelineCell
+        }
         let tweet = item as Tweet
-        self._updateCell(offlineCell, tweet: tweet)
+        self._updateCell(offlineCell!, tweet: tweet)
 
-        offlineCell.bounds = CGRect(x: 0, y: 0, width: tableViewController.tableView.bounds.size.width, height: CGRectGetHeight(offlineCell.bounds))
-        offlineCell.setNeedsLayout()
-        offlineCell.layoutIfNeeded()
+        offlineCell!.updateConstraintsIfNeeded()
+        offlineCell!.bounds = CGRect(x: 0, y: 0, width: tableViewController.tableView.bounds.size.width, height: CGRectGetHeight(offlineCell!.bounds))
+        offlineCell!.layoutIfNeeded()
 
-        return offlineCell.contentView.systemLayoutSizeFittingSize(UILayoutFittingCompressedSize).height + 1
+        NSLog("height of text \"%@\" is %.2f cell height %.2f", offlineCell!.tweetText.text, offlineCell!.tweetText.bounds.size.height, offlineCell!.bounds.size.height)
+
+        return offlineCell!.contentView.systemLayoutSizeFittingSize(UILayoutFittingCompressedSize).height + 1
+    }
+
+    override func estimatedHeightForItem(item: ModelObject, tableViewController: UITableViewController) -> CGFloat
+    {
+        return 175.0
     }
 }

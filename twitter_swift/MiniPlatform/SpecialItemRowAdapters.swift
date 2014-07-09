@@ -34,7 +34,11 @@ class ErrorItemRowAdapter : RowAdapter {
 
     override func heightForItem(item: ModelObject, tableViewController: UITableViewController) -> CGFloat
     {
-        return 80
+        return 100
+    }
+    override func estimatedHeightForItem(item: ModelObject, tableViewController: UITableViewController) -> CGFloat
+    {
+        return 100
     }
 }
 
@@ -63,6 +67,10 @@ class FooterItemRowAdapter : RowAdapter {
 
     override func heightForItem(item: ModelObject, tableViewController: UITableViewController) -> CGFloat
     {
-        return 50
+        return 70
+    }
+    override func estimatedHeightForItem(item: ModelObject, tableViewController: UITableViewController) -> CGFloat
+    {
+        return 70
     }
 }

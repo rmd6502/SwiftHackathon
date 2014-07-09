@@ -26,6 +26,12 @@ import UIKit
         return 0;
     }
 
+    func estimatedHeightForItem(item : ModelObject, tableViewController : UITableViewController) -> CGFloat
+    {
+        // subclasses must implement
+        return 80;
+    }
+
     func cellForItem(item : ModelObject, tableViewController : UITableViewController) -> UITableViewCell?
     {
         assert(false, "Need to implement cellForItem", file: __FILE__, line: __LINE__)
