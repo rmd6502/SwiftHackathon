@@ -13,7 +13,7 @@ import UIKit
 class AppDelegate: UIResponder, UIApplicationDelegate {
     // TODO: Obfuscate these somehow
     let apiKey = "javHWc7kgZsQeyFijmrAjkCQC"
-    let apiSecret = NSData(base64EncodedString:"****", options:.IgnoreUnknownCharacters)
+    let apiSecret = "contact me for the api secret"
 
     var authToken : String?
     var authSecret : String?
@@ -23,7 +23,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: NSDictionary?) -> Bool {
         TFNTwitter.sharedTwitter.twitterAPI.appToken = apiKey
-        TFNTwitter.sharedTwitter.twitterAPI.appSecret = NSString(data: apiSecret, encoding:NSUTF8StringEncoding)
+        TFNTwitter.sharedTwitter.twitterAPI.appSecret = apiSecret
         return true
     }
 
