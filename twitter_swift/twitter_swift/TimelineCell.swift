@@ -21,26 +21,28 @@ class TimelineCell : UITableViewCell {
     @IBOutlet var followButton: UIButton
     @IBOutlet var tweetText : UITextView
 
-    var activeAreas : [Entity:AnyObject]?
+//    override func touchesEnded(touches: NSSet!, withEvent event: UIEvent!)
+//    {
+//        for (let touch) in touches.allObjects {
+//            let pt = touch.locationInView(self.tweetText)
+//            if let activeMap = activeAreas {
+//                for (let (entity,range)) in activeMap {
+//                    for (let rect) in self.tweetText.selectionRectsForRange(range as UITextRange) {
+//                        if (CGRectContainsPoint(rect.rect, pt)) {
+//                            NSLog("touched entity %@", entity)
+//                            delegate?.didSelectEntity(entity, cell: self)
+//                            return
+//                        }
+//                    }
+//                }
+//            }
+//        }
+//        super.touchesEnded(touches, withEvent: event)
+//    }
 
-    override func touchesEnded(touches: NSSet!, withEvent event: UIEvent!)
+    override func layoutSubviews()
     {
-        var touchedEntity : Entity? = nil
-        for (let touch) in touches.allObjects {
-            let pt = touch.locationInView(self.tweetText)
-            if let activeMap = activeAreas {
-                for (let (entity,range)) in activeMap {
-                    for (let rect) in self.tweetText.selectionRectsForRange(range as UITextRange) {
-                        if (CGRectContainsPoint(rect.rect, pt)) {
-                            touchedEntity = entity
-                            NSLog("touched entity %@", touchedEntity!)
-                        }
-                    }
-                }
-            }
-        }
-        if !touchedEntity.getLogicValue() {
-            super.touchesEnded(touches, withEvent: event)
-        }
+        super.layoutSubviews()
+        NSLog("bounds %@", NSStringFromCGRect(self.bounds))
     }
 }

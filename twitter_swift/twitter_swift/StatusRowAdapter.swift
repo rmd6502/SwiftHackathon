@@ -17,7 +17,6 @@ class StatusRowAdapter : RowAdapter {
         var cell : TimelineCell = tableViewController.tableView.dequeueReusableCellWithIdentifier(self.cellReuseIdentifier) as TimelineCell
         let tweet = item as Tweet
 
-        cell.bounds = CGRect(x: 0, y: 0, width: tableViewController.tableView.bounds.size.width, height: CGRectGetHeight(cell.bounds))
         self._updateCell(cell, tweet: tweet)
         //NSLog("real cell height of text \"%@\" is %.2f cell height %.2f", cell.tweetText.text, cell.tweetText.bounds.size.height, cell.bounds.size.height)
         return cell
@@ -63,8 +62,8 @@ class StatusRowAdapter : RowAdapter {
         cell.timeLabel.text = self.formatTimeInterval(NSDate().timeIntervalSinceDate(tweet.createdAt))
         cell.userNameLabel.text = tweet.user?.name
         cell.setNeedsUpdateConstraints()
-        cell.setNeedsLayout()
-        cell.activeAreas = self._activeAreasForTweet(tweet, cell: cell)
+        cell.updateConstraintsIfNeeded()
+        cell.contentView.setNeedsLayout()
     }
 
     override func heightForItem(item: ModelObject, tableViewController: UITableViewController) -> CGFloat
@@ -73,15 +72,18 @@ class StatusRowAdapter : RowAdapter {
             offlineCell = tableViewController.tableView.dequeueReusableCellWithIdentifier(self.cellReuseIdentifier) as? TimelineCell
         }
         let tweet = item as Tweet
+        offlineCell!.bounds = CGRect(x: 0, y: 0, width: tableViewController.tableView.bounds.size.width, height: CGRectGetHeight(offlineCell!.bounds))
         self._updateCell(offlineCell!, tweet: tweet)
 
-        offlineCell!.updateConstraintsIfNeeded()
-        offlineCell!.bounds = CGRect(x: 0, y: 0, width: tableViewController.tableView.bounds.size.width, height: CGRectGetHeight(offlineCell!.bounds))
         offlineCell!.layoutIfNeeded()
+
+        var s = offlineCell!.contentView.systemLayoutSizeFittingSize(UILayoutFittingCompressedSize)
+
+        NSLog("size %@ of text \"%@\" is %.2f cell %@", NSStringFromCGSize(s), offlineCell!.tweetText.text, NSStringFromCGRect(offlineCell!.tweetText.bounds), NSStringFromCGRect(offlineCell!.bounds))
 
         //NSLog("height of text \"%@\" is %.2f cell height %.2f", offlineCell!.tweetText.text, offlineCell!.tweetText.bounds.size.height, offlineCell!.bounds.size.height)
 
-        return offlineCell!.contentView.systemLayoutSizeFittingSize(UILayoutFittingCompressedSize).height + 1
+        return s.height + 1
     }
 
     override func estimatedHeightForItem(item: ModelObject, tableViewController: UITableViewController) -> CGFloat

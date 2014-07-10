@@ -20,11 +20,4 @@ class TimelineViewController : TFNTableViewController {
         rowAdapters[NSString(CString: class_getName(Tweet), encoding: NSUTF8StringEncoding)] = StatusRowAdapter(reuseIdentifier: "StatusCell")
         self.rowAdapters = rowAdapters
     }
-
-    override func viewDidLoad()
-    {
-        super.viewDidLoad()
-        self.tableView.rowHeight = UITableViewAutomaticDimension
-        self.tableView.estimatedRowHeight = 180
-    }
 }

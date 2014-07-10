@@ -40,6 +40,7 @@ class TFNTableViewController : UITableViewController {
     {
         // TODO: install default row adapters, e.g. String
         super.viewDidLoad()
+        self.tableView.rowHeight = UITableViewAutomaticDimension
         self.refreshControl?.addTarget(self, action: "refresh:", forControlEvents: .ValueChanged)
     }
 
@@ -122,6 +123,35 @@ class TFNTableViewController : UITableViewController {
                 }
             }
         }
+    }
+
+    override func tableView(tableView: UITableView!, heightForHeaderInSection section: Int) -> CGFloat
+    {
+        return (self.sectionAdapter.getLogicValue()) ? self.sectionAdapter!.tableViewController(self, heightForHeaderInSection: section) : 0
+    }
+
+    override func tableView(tableView: UITableView!, heightForFooterInSection section: Int) -> CGFloat
+    {
+        return (self.sectionAdapter.getLogicValue()) ? self.sectionAdapter!.tableViewController(self, heightForFooterInSection: section) : 0
+    }
+
+    override func tableView(tableView: UITableView!, viewForHeaderInSection section: Int) -> UIView!
+    {
+        return (self.sectionAdapter.getLogicValue()) ? self.sectionAdapter!.tableViewController(self, viewForHeaderInSection: section) : nil
+    }
+
+    override func tableView(tableView: UITableView!, viewForFooterInSection section: Int) -> UIView!
+    {
+        return (self.sectionAdapter.getLogicValue()) ? self.sectionAdapter!.tableViewController(self, viewForFooterInSection: section) : nil
+    }
+
+    override func tableView(tableView: UITableView!, estimatedHeightForHeaderInSection section: Int) -> CGFloat
+    {
+        return (self.sectionAdapter.getLogicValue()) ? self.sectionAdapter!.tableViewController(self, estimatedHeightForHeaderInSection: section) : 0
+    }
+    override func tableView(tableView: UITableView!, estimatedHeightForFooterInSection section: Int) -> CGFloat
+    {
+        return (self.sectionAdapter.getLogicValue()) ? self.sectionAdapter!.tableViewController(self, estimatedHeightForFooterInSection: section) : 0
     }
 
     func update()

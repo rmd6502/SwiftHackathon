@@ -15,4 +15,35 @@ class SectionAdapter : NSObject {
         // default implementation does nothing
         return nil
     }
+
+    func tableViewController(tableViewController: UITableViewController!, heightForHeaderInSection section: Int) -> CGFloat
+    {
+        return 0
+    }
+
+    func tableViewController(tableViewController: UITableViewController!, heightForFooterInSection section: Int) -> CGFloat
+    {
+        return 0
+    }
+
+    func tableViewController(tableViewController: UITableViewController!, estimatedHeightForHeaderInSection section: Int) -> CGFloat
+    {
+        return 0
+    }
+
+    func tableViewController(tableViewController: UITableViewController!, estimatedHeightForFooterInSection section: Int) -> CGFloat
+    {
+        return 0
+    }
+
+    func tableViewController(tableViewController: UITableViewController!, viewForHeaderInSection section: Int) -> UIView!
+    {
+        return nil
+    }
+
+    func tableViewController(tableViewController: UITableViewController!, viewForFooterInSection section: Int) -> UIView!
+    {
+        return nil
+    }
+
 }
