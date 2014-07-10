@@ -47,7 +47,7 @@ class EntityAdapter : NSObject {
      * Returns an action to perform when the entity is tapped.  May return nil if no action
      * is needed.  TODO: expand to more event types.
      */
-    func entityTapActionForEntity(entity : Entity, inItem item : ModelObject) -> EntityCallbackFunction?
+    func tapActionForEntity(entity : Entity, inItem item : ModelObject) -> EntityCallbackFunction?
     {
         return nil
     }
