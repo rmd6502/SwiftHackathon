@@ -11,7 +11,7 @@ import UIKit
 
 // TODO: stream, rowadapterfactory, and sectionadapter can be generics,
 // when this won't crash the compiler
-class TFNTableViewController : UITableViewController,UICollectionViewDataSource,UICollectionViewDelegate {
+class TFNTableViewController : UITableViewController {
     let DEFAULT_CELL_HEIGHT = 100.0
 
     var stream : Stream?
@@ -152,17 +152,6 @@ class TFNTableViewController : UITableViewController,UICollectionViewDataSource,
     override func tableView(tableView: UITableView!, estimatedHeightForFooterInSection section: Int) -> CGFloat
     {
         return (self.sectionAdapter.getLogicValue()) ? self.sectionAdapter!.tableViewController(self, estimatedHeightForFooterInSection: section) : 0
-    }
-
-    func collectionView(collectionView: UICollectionView!, numberOfItemsInSection section: Int) -> Int
-    {
-        return 0;
-    }
-
-    // The cell that is returned must be retrieved from a call to -dequeueReusableCellWithReuseIdentifier:forIndexPath:
-    func collectionView(collectionView: UICollectionView!, cellForItemAtIndexPath indexPath: NSIndexPath!) -> UICollectionViewCell!
-    {
-        return nil;
     }
 
     func update()

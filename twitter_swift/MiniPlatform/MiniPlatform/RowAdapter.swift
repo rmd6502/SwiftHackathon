@@ -12,7 +12,7 @@ import UIKit
 /**
  * Pluggables to handle cells in multiple view controllers
  */
-@objc class RowAdapter : NSObject {
+@objc class RowAdapter : NSObject,UICollectionViewDataSource {
     let SECONDS_PER_MINUTE : NSTimeInterval
     let SECONDS_PER_HOUR : NSTimeInterval
     let SECONDS_PER_DAY : NSTimeInterval
@@ -72,4 +72,25 @@ import UIKit
             return formatter.stringFromDate(NSDate(timeIntervalSinceNow: -interval))
         }
     }
+
+    /**
+     * Determines if a tap was in an entity, and handles the tap if the entity defines an action.
+     * Returns true if the tap was handled
+     */
+    func didTapRow(item : ModelObject, tableViewController : UITableViewController) -> Bool
+    {
+        return false
+    }
+
+    func collectionView(collectionView: UICollectionView!, numberOfItemsInSection section: Int) -> Int
+    {
+        return 0;
+    }
+
+    // The cell that is returned must be retrieved from a call to -dequeueReusableCellWithReuseIdentifier:forIndexPath:
+    func collectionView(collectionView: UICollectionView!, cellForItemAtIndexPath indexPath: NSIndexPath!) -> UICollectionViewCell!
+    {
+        return nil;
+    }
+
 }

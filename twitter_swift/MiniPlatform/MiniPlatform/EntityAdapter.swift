@@ -22,6 +22,34 @@
  * it will return false and eventually get called back in the standard
  * didSelectRowAtIndexPath we know and love.
  */
+
+typealias EntityCallbackFunction = (entity : Entity, item : ModelObject, tableViewController : UITableViewController) -> ()
+
 class EntityAdapter : NSObject {
+    /**
+    * Renders the entity's string.  May return nil.
+    */
+    func attributedStringForEntity(entity : Entity, inItem item : ModelObject) -> NSAttributedString?
+    {
+        return nil
+    }
+
+    /**
+    * Returns a collectionViewCell for an entity.  May return nil.
+    * It is up to the caller to ensure that the numberOfCellsInSection returns the correct number.
+    */
+    func collectionViewCellForEntity(entity : Entity, inItem item : ModelObject) -> UICollectionViewCell?
+    {
+        return nil
+    }
+
+    /**
+     * Returns an action to perform when the entity is tapped.  May return nil if no action
+     * is needed.  TODO: expand to more event types.
+     */
+    func entityTapActionForEntity(entity : Entity, inItem item : ModelObject) -> EntityCallbackFunction?
+    {
+        return nil
+    }
 
 }
