@@ -20,6 +20,7 @@ class TimelineCell : UITableViewCell {
     @IBOutlet var favoriteButton: UIButton
     @IBOutlet var followButton: UIButton
     @IBOutlet var tweetText : UITextView
+    @IBOutlet var mediaCollection: UICollectionView
 
 //    override func touchesEnded(touches: NSSet!, withEvent event: UIEvent!)
 //    {

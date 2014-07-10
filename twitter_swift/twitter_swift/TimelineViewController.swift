@@ -13,6 +13,8 @@ class TimelineViewController : TFNTableViewController {
     
     init(coder aDecoder: NSCoder)
     {
+        // TODO: Ultimately I don't want to even create this file - I want all the dependencies to be
+        // resolved via generics
         super.init(coder: aDecoder)
         self.stream = HomeTimelineStream()
         self.sectionAdapter = HomeTimelineSectionAdapter()

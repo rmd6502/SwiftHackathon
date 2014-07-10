@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6185.7" systemVersion="13E28" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="7wC-r7-6jS">
     <dependencies>
-        <deployment defaultVersion="1808" identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6181.2"/>
     </dependencies>
     <scenes>
@@ -55,12 +54,12 @@
         <scene sceneID="ggb-UQ-7cc">
             <objects>
                 <tableViewController title="Home Timeline" id="vm6-Kb-ctH" customClass="TimelineViewController" customModule="twitter_swift" sceneMemberID="viewController">
-                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" ambiguous="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="grouped" separatorStyle="default" rowHeight="119" sectionHeaderHeight="1" sectionFooterHeight="1" id="MPf-jq-iKh">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" ambiguous="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="grouped" separatorStyle="default" rowHeight="172" sectionHeaderHeight="1" sectionFooterHeight="1" id="MPf-jq-iKh">
                         <rect key="frame" x="0.0" y="0.0" width="480" height="480"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
                         <prototypes>
-                            <tableViewCell contentMode="scaleToFill" ambiguous="YES" placeholderIntrinsicWidth="infinite" placeholderIntrinsicHeight="175" selectionStyle="default" indentationWidth="10" reuseIdentifier="StatusCell" rowHeight="120" id="UQB-fN-P2d" customClass="TimelineCell" customModule="twitter_swift" customModuleProvider="target">
+                            <tableViewCell contentMode="scaleToFill" ambiguous="YES" placeholderIntrinsicWidth="infinite" placeholderIntrinsicHeight="175" selectionStyle="default" indentationWidth="10" reuseIdentifier="StatusCell" rowHeight="172" id="UQB-fN-P2d" customClass="TimelineCell" customModule="twitter_swift" customModuleProvider="target">
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" multipleTouchEnabled="YES" contentMode="scaleToFill" horizontalHuggingPriority="1000" placeholderIntrinsicWidth="480" placeholderIntrinsicHeight="118" tableViewCell="UQB-fN-P2d" id="RhP-g8-p8o">
                                     <autoresizingMask key="autoresizingMask"/>
@@ -79,15 +78,15 @@
                                             <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                             <nil key="highlightedColor"/>
                                         </label>
-                                        <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="750" verticalCompressionResistancePriority="1000" misplaced="YES" text="@handle" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vtp-gL-zFc" userLabel="User Handle">
-                                            <rect key="frame" x="82" y="32" width="39" height="27"/>
+                                        <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="750" verticalCompressionResistancePriority="1000" text="@handle" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vtp-gL-zFc" userLabel="User Handle">
+                                            <rect key="frame" x="82" y="32" width="39" height="12"/>
                                             <rect key="contentStretch" x="0.0" y="1" width="1" height="1"/>
                                             <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="10"/>
                                             <color key="textColor" cocoaTouchSystemColor="viewFlipsideBackgroundColor"/>
                                             <nil key="highlightedColor"/>
                                         </label>
-                                        <textView opaque="NO" multipleTouchEnabled="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="1000" ambiguous="YES" misplaced="YES" placeholderIntrinsicWidth="390" placeholderIntrinsicHeight="30" bounces="NO" scrollEnabled="NO" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" editable="NO" usesAttributedText="YES" translatesAutoresizingMaskIntoConstraints="NO" id="qup-sg-zcl" userLabel="Tweet Text">
-                                            <rect key="frame" x="82" y="63" width="390" height="30"/>
+                                        <textView opaque="NO" multipleTouchEnabled="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="1000" ambiguous="YES" placeholderIntrinsicWidth="390" placeholderIntrinsicHeight="30" bounces="NO" scrollEnabled="NO" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" editable="NO" usesAttributedText="YES" translatesAutoresizingMaskIntoConstraints="NO" id="qup-sg-zcl" userLabel="Tweet Text">
+                                            <rect key="frame" x="82" y="48" width="390" height="30"/>
                                             <attributedString key="attributedText">
                                                 <fragment>
                                                     <string key="content">Lorem Ipsem and all that
@@ -102,8 +101,15 @@ Ipsem.</string>
                                             </attributedString>
                                             <textInputTraits key="textInputTraits" autocorrectionType="no"/>
                                         </textView>
+                                        <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="749" verticalCompressionResistancePriority="1000" text="Time" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="iVA-qf-7fo">
+                                            <rect key="frame" x="450" y="32" width="22" height="12"/>
+                                            <rect key="contentStretch" x="0.0" y="1" width="1" height="1"/>
+                                            <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="10"/>
+                                            <color key="textColor" cocoaTouchSystemColor="viewFlipsideBackgroundColor"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
                                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Ua2-5w-89b">
-                                            <rect key="frame" x="226" y="97" width="46" height="21"/>
+                                            <rect key="frame" x="226" y="149" width="46" height="21"/>
                                             <constraints>
                                                 <constraint firstAttribute="width" constant="46" id="1dn-oy-hJ1"/>
                                                 <constraint firstAttribute="height" constant="21" id="VWd-Td-jSJ"/>
@@ -112,7 +118,7 @@ Ipsem.</string>
                                             <state key="normal" title="Reply"/>
                                         </button>
                                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="qFO-pD-dNv">
-                                            <rect key="frame" x="280" y="97" width="68" height="21"/>
+                                            <rect key="frame" x="280" y="149" width="68" height="21"/>
                                             <constraints>
                                                 <constraint firstAttribute="width" constant="68" id="pXY-lk-fzN"/>
                                             </constraints>
@@ -120,7 +126,7 @@ Ipsem.</string>
                                             <state key="normal" title="ReTweet"/>
                                         </button>
                                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="xBU-L8-tbB">
-                                            <rect key="frame" x="349" y="97" width="58" height="21"/>
+                                            <rect key="frame" x="349" y="149" width="58" height="21"/>
                                             <constraints>
                                                 <constraint firstAttribute="width" constant="58" id="vcf-dB-sA8"/>
                                             </constraints>
@@ -128,20 +134,33 @@ Ipsem.</string>
                                             <state key="normal" title="Favorite"/>
                                         </button>
                                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="4To-0p-hZf">
-                                            <rect key="frame" x="422" y="97" width="50" height="21"/>
+                                            <rect key="frame" x="422" y="149" width="50" height="21"/>
                                             <constraints>
                                                 <constraint firstAttribute="width" constant="50" id="JpG-IS-LgN"/>
                                             </constraints>
                                             <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="12"/>
                                             <state key="normal" title="Follow"/>
                                         </button>
-                                        <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="750" verticalCompressionResistancePriority="1000" misplaced="YES" text="Time" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="iVA-qf-7fo">
-                                            <rect key="frame" x="450" y="32" width="22" height="27"/>
-                                            <rect key="contentStretch" x="0.0" y="1" width="1" height="1"/>
-                                            <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="10"/>
-                                            <color key="textColor" cocoaTouchSystemColor="viewFlipsideBackgroundColor"/>
-                                            <nil key="highlightedColor"/>
-                                        </label>
+                                        <collectionView hidden="YES" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" placeholderIntrinsicWidth="462" placeholderIntrinsicHeight="60" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="5Cl-OJ-to2">
+                                            <rect key="frame" x="10" y="85" width="462" height="60"/>
+                                            <collectionViewFlowLayout key="collectionViewLayout" scrollDirection="horizontal" minimumLineSpacing="10" minimumInteritemSpacing="10" id="wlz-JV-ylo">
+                                                <size key="itemSize" width="50" height="50"/>
+                                                <size key="headerReferenceSize" width="0.0" height="0.0"/>
+                                                <size key="footerReferenceSize" width="0.0" height="0.0"/>
+                                                <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
+                                            </collectionViewFlowLayout>
+                                            <cells>
+                                                <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="Qjy-sQ-dhv">
+                                                    <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
+                                                    <autoresizingMask key="autoresizingMask"/>
+                                                    <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
+                                                        <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
+                                                        <autoresizingMask key="autoresizingMask"/>
+                                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                                    </view>
+                                                </collectionViewCell>
+                                            </cells>
+                                        </collectionView>
                                     </subviews>
                                     <color key="backgroundColor" name="controlBackgroundColor" catalog="System" colorSpace="catalog"/>
                                     <rect key="contentStretch" x="0.0" y="0.0" width="0.0" height="1"/>
@@ -154,6 +173,7 @@ Ipsem.</string>
                                         <constraint firstItem="iVA-qf-7fo" firstAttribute="top" secondItem="X1L-73-BUV" secondAttribute="bottom" constant="3" id="9gi-Xm-sce"/>
                                         <constraint firstItem="4To-0p-hZf" firstAttribute="leading" secondItem="xBU-L8-tbB" secondAttribute="trailing" constant="15" id="Ais-zv-d7X"/>
                                         <constraint firstAttribute="trailing" secondItem="iVA-qf-7fo" secondAttribute="trailing" constant="8" id="Bfj-x4-exA"/>
+                                        <constraint firstItem="iVA-qf-7fo" firstAttribute="trailing" secondItem="5Cl-OJ-to2" secondAttribute="trailing" id="CTK-3K-plU"/>
                                         <constraint firstItem="vtp-gL-zFc" firstAttribute="leading" secondItem="AZb-FH-viX" secondAttribute="trailing" constant="8" symbolic="YES" id="DSh-tf-0h0"/>
                                         <constraint firstItem="qup-sg-zcl" firstAttribute="trailing" secondItem="iVA-qf-7fo" secondAttribute="trailing" id="F3n-H8-Ur5"/>
                                         <constraint firstItem="qup-sg-zcl" firstAttribute="leading" secondItem="vtp-gL-zFc" secondAttribute="leading" id="IVM-14-RzO"/>
@@ -161,16 +181,18 @@ Ipsem.</string>
                                         <constraint firstItem="iVA-qf-7fo" firstAttribute="trailing" secondItem="4To-0p-hZf" secondAttribute="trailing" id="Js4-MJ-6z6"/>
                                         <constraint firstItem="xBU-L8-tbB" firstAttribute="top" secondItem="4To-0p-hZf" secondAttribute="top" id="Jsr-E6-ngY"/>
                                         <constraint firstItem="qFO-pD-dNv" firstAttribute="bottom" secondItem="Ua2-5w-89b" secondAttribute="bottom" id="KCe-sk-uhs"/>
+                                        <constraint firstItem="Ua2-5w-89b" firstAttribute="top" secondItem="5Cl-OJ-to2" secondAttribute="bottom" constant="4" id="KXM-Cb-Wcp"/>
                                         <constraint firstItem="iVA-qf-7fo" firstAttribute="baseline" secondItem="vtp-gL-zFc" secondAttribute="baseline" id="OUz-DA-aVy"/>
+                                        <constraint firstItem="5Cl-OJ-to2" firstAttribute="leading" secondItem="AZb-FH-viX" secondAttribute="leading" id="QJV-Nv-Ut6"/>
                                         <constraint firstItem="xBU-L8-tbB" firstAttribute="bottom" secondItem="qFO-pD-dNv" secondAttribute="bottom" id="Qki-ct-Fap"/>
                                         <constraint firstItem="vtp-gL-zFc" firstAttribute="top" secondItem="X1L-73-BUV" secondAttribute="bottom" constant="3" id="REM-x7-G4a"/>
-                                        <constraint firstItem="Ua2-5w-89b" firstAttribute="top" secondItem="qup-sg-zcl" secondAttribute="bottom" constant="4" id="RNN-P6-B7X"/>
                                         <constraint firstItem="4To-0p-hZf" firstAttribute="bottom" secondItem="xBU-L8-tbB" secondAttribute="bottom" id="SGk-Br-cbY"/>
                                         <constraint firstItem="qup-sg-zcl" firstAttribute="leading" secondItem="X1L-73-BUV" secondAttribute="leading" id="alt-vC-SQ9"/>
                                         <constraint firstItem="AZb-FH-viX" firstAttribute="leading" secondItem="RhP-g8-p8o" secondAttribute="leading" constant="10" id="b22-31-CnU"/>
                                         <constraint firstItem="AZb-FH-viX" firstAttribute="top" secondItem="RhP-g8-p8o" secondAttribute="top" constant="12" id="evB-dJ-oxw"/>
                                         <constraint firstItem="X1L-73-BUV" firstAttribute="leading" secondItem="AZb-FH-viX" secondAttribute="trailing" constant="8" symbolic="YES" id="fAh-gO-7Yb"/>
                                         <constraint firstItem="X1L-73-BUV" firstAttribute="top" secondItem="AZb-FH-viX" secondAttribute="top" id="gJ9-78-CH2"/>
+                                        <constraint firstItem="5Cl-OJ-to2" firstAttribute="top" secondItem="qup-sg-zcl" secondAttribute="bottom" constant="7" id="iHf-ax-cTf"/>
                                         <constraint firstItem="qup-sg-zcl" firstAttribute="top" secondItem="vtp-gL-zFc" secondAttribute="bottom" constant="4" id="oft-q9-Guj"/>
                                         <constraint firstItem="iVA-qf-7fo" firstAttribute="leading" relation="lessThanOrEqual" secondItem="vtp-gL-zFc" secondAttribute="trailing" constant="329" id="xcn-MN-ogo"/>
                                         <constraint firstItem="qup-sg-zcl" firstAttribute="leading" secondItem="AZb-FH-viX" secondAttribute="trailing" constant="8" symbolic="YES" id="yfy-DI-deq"/>
@@ -181,6 +203,7 @@ Ipsem.</string>
                                 <connections>
                                     <outlet property="favoriteButton" destination="xBU-L8-tbB" id="P2Y-tL-jGp"/>
                                     <outlet property="followButton" destination="4To-0p-hZf" id="yPC-aj-GFb"/>
+                                    <outlet property="mediaCollection" destination="5Cl-OJ-to2" id="ABO-Bc-7Wj"/>
                                     <outlet property="replyButton" destination="Ua2-5w-89b" id="tA9-ll-CNV"/>
                                     <outlet property="retweetButton" destination="qFO-pD-dNv" id="kr3-Ld-tnA"/>
                                     <outlet property="timeLabel" destination="iVA-qf-7fo" id="qU9-pv-UTT"/>
@@ -204,7 +227,7 @@ Ipsem.</string>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="i7j-le-qiP" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <tapGestureRecognizer id="d5q-Vw-7gi"/>
             </objects>
-            <point key="canvasLocation" x="2820" y="591"/>
+            <point key="canvasLocation" x="2820" y="587"/>
         </scene>
         <!--Profile-->
         <scene sceneID="eJf-4F-xyf">

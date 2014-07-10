@@ -12,8 +12,8 @@ import UIKit
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
     // TODO: Obfuscate these somehow
-    let apiKey = "7ly508IjQeZ38OUvuhTe0WaG0"
-    let apiSecret = NSData(base64EncodedString:"QzVGMzdwWDY4VG8waXJpOElSaWxqOGY1TVlySWVNNTlWWklUUkdzSEZWNVJYa2NyYjI=", options:.IgnoreUnknownCharacters)
+    let apiKey = "javHWc7kgZsQeyFijmrAjkCQC"
+    let apiSecret = NSData(base64EncodedString:"****", options:.IgnoreUnknownCharacters)
 
     var authToken : String?
     var authSecret : String?
