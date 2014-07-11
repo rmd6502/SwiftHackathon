@@ -10,6 +10,11 @@
 		9C92C3131967639B002721CA /* NavigationDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C92C3121967639B002721CA /* NavigationDelegate.swift */; };
 		9CDF2A98195F270500CE2DD5 /* RowAdapterFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CDF2A97195F270500CE2DD5 /* RowAdapterFactory.swift */; };
 		D602E3D4196F33ED00571A14 /* EntityAdapter.swift in Sources */ = {isa = PBXBuildFile; fileRef = D602E3D3196F33ED00571A14 /* EntityAdapter.swift */; };
+		D602E3D6197023DA00571A14 /* URLEntityAdapter.swift in Sources */ = {isa = PBXBuildFile; fileRef = D602E3D5197023DA00571A14 /* URLEntityAdapter.swift */; };
+		D602E3D81970242700571A14 /* UserMentionEntityAdapter.swift in Sources */ = {isa = PBXBuildFile; fileRef = D602E3D71970242700571A14 /* UserMentionEntityAdapter.swift */; };
+		D602E3DA1970245500571A14 /* HashtagEntityAdapter.swift in Sources */ = {isa = PBXBuildFile; fileRef = D602E3D91970245500571A14 /* HashtagEntityAdapter.swift */; };
+		D602E3DC1970247800571A14 /* CashtagEntityAdapter.swift in Sources */ = {isa = PBXBuildFile; fileRef = D602E3DB1970247800571A14 /* CashtagEntityAdapter.swift */; };
+		D602E3DE197024A000571A14 /* ImageEntityAdapter.swift in Sources */ = {isa = PBXBuildFile; fileRef = D602E3DD197024A000571A14 /* ImageEntityAdapter.swift */; };
 		D6251A1C195629AD00CE7E11 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6251A1B195629AD00CE7E11 /* User.swift */; };
 		D6251A1E195629B900CE7E11 /* Tweet.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6251A1D195629B900CE7E11 /* Tweet.swift */; };
 		D6251A2019562A8600CE7E11 /* Entity.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6251A1F19562A8600CE7E11 /* Entity.swift */; };
@@ -48,6 +53,11 @@
 		9C92C3121967639B002721CA /* NavigationDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NavigationDelegate.swift; sourceTree = "<group>"; };
 		9CDF2A97195F270500CE2DD5 /* RowAdapterFactory.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RowAdapterFactory.swift; sourceTree = "<group>"; };
 		D602E3D3196F33ED00571A14 /* EntityAdapter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EntityAdapter.swift; sourceTree = "<group>"; };
+		D602E3D5197023DA00571A14 /* URLEntityAdapter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = URLEntityAdapter.swift; sourceTree = "<group>"; };
+		D602E3D71970242700571A14 /* UserMentionEntityAdapter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserMentionEntityAdapter.swift; sourceTree = "<group>"; };
+		D602E3D91970245500571A14 /* HashtagEntityAdapter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HashtagEntityAdapter.swift; sourceTree = "<group>"; };
+		D602E3DB1970247800571A14 /* CashtagEntityAdapter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CashtagEntityAdapter.swift; sourceTree = "<group>"; };
+		D602E3DD197024A000571A14 /* ImageEntityAdapter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImageEntityAdapter.swift; sourceTree = "<group>"; };
 		D6251A1B195629AD00CE7E11 /* User.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		D6251A1D195629B900CE7E11 /* Tweet.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Tweet.swift; sourceTree = "<group>"; };
 		D6251A1F19562A8600CE7E11 /* Entity.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Entity.swift; sourceTree = "<group>"; };
@@ -99,6 +109,11 @@
 			isa = PBXGroup;
 			children = (
 				D602E3D3196F33ED00571A14 /* EntityAdapter.swift */,
+				D602E3D5197023DA00571A14 /* URLEntityAdapter.swift */,
+				D602E3D71970242700571A14 /* UserMentionEntityAdapter.swift */,
+				D602E3D91970245500571A14 /* HashtagEntityAdapter.swift */,
+				D602E3DB1970247800571A14 /* CashtagEntityAdapter.swift */,
+				D602E3DD197024A000571A14 /* ImageEntityAdapter.swift */,
 			);
 			name = "Entity Adapters";
 			sourceTree = "<group>";
@@ -324,11 +339,15 @@
 				D6BE3BBD1957A48000246307 /* HomeTimelineStream.swift in Sources */,
 				D6D0FD661958E98B00D8DE48 /* ModelObject.swift in Sources */,
 				D6AADDC5194F7C3200BBF226 /* TFNTwitter.swift in Sources */,
+				D602E3DA1970245500571A14 /* HashtagEntityAdapter.swift in Sources */,
 				D6C009101969CA8300D9EFEF /* SpecialItemRowAdapters.swift in Sources */,
+				D602E3D6197023DA00571A14 /* URLEntityAdapter.swift in Sources */,
 				9CDF2A98195F270500CE2DD5 /* RowAdapterFactory.swift in Sources */,
 				9C92C3131967639B002721CA /* NavigationDelegate.swift in Sources */,
+				D602E3DE197024A000571A14 /* ImageEntityAdapter.swift in Sources */,
 				D6A1E8A7195A4E4000379944 /* SectionAdapter.swift in Sources */,
 				D6C1BD6C196204A9008E2DE2 /* SpecialItems.swift in Sources */,
+				D602E3DC1970247800571A14 /* CashtagEntityAdapter.swift in Sources */,
 				D6A0CF3819429AF800436D50 /* TwitterAPI.swift in Sources */,
 				D6251A1C195629AD00CE7E11 /* User.swift in Sources */,
 				D6251A1E195629B900CE7E11 /* Tweet.swift in Sources */,
@@ -337,6 +356,7 @@
 				D602E3D4196F33ED00571A14 /* EntityAdapter.swift in Sources */,
 				D628765C195D109900A956C6 /* RowAdapter.swift in Sources */,
 				D6251A2219562AA100CE7E11 /* Place.swift in Sources */,
+				D602E3D81970242700571A14 /* UserMentionEntityAdapter.swift in Sources */,
 				D6ADD5F21954D34A0055E11F /* TwitterDeepLinkable.swift in Sources */,
 				D6C0090E1968ED6D00D9EFEF /* TFNCachedImageView.swift in Sources */,
 				D6B755731959BCEB00E0417B /* TFNTableViewController.swift in Sources */,

@@ -3,8 +3,16 @@
 import Cocoa
 import Foundation
 
-var t : Int64?
+enum Barcode {
+    case UPCA(Int, Int, Int, Int)
+    case QRCode(qr: String)
+}
 
-t = 7
+var b = Barcode.QRCode(qr: "hello")
 
-String(t!-1)
+switch b {
+case .QRCode(let qr):
+    println(qr)
+default:
+    break
+}

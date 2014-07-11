@@ -9,25 +9,25 @@
 import Foundation
 
 enum EntityType {
-    case Url(String, NSURL, NSURL), Description(String, NSURL, NSURL)
-    case Image(NSURL)
-    case Hashtag(String), UserMention(Int64,String,String), StockSymbol(String)
+    case Url(displayString: String, expandedURL: NSURL, url : NSURL), Description(displayString: String, expandedURL: NSURL, url : NSURL)
+    case Image(imageURL : NSURL)
+    case Hashtag(hashTag : String), UserMention(userID : Int64, userName : String, userHandle : String), StockSymbol(ticker : String)
 }
 
-enum EntityKeys : String {
-    case URLS = "urls"
-    case HASHTAGS = "hashtags"
-    case MEDIA = "media"
-    case USERS = "user_mentions"
-    case TICKERS = "symbols"
-    case DISPLAY_URL = "display_url"
-    case EXPANDED_URL = "expanded_url"
-    case URL = "url"
-    case USER_ID = "id"
-    case INDICES = "indices"
-    case USER_NAME = "name"
-    case USER_HANDLE = "screen_name"
-    case HASHTAG = "text"
+struct EntityKeys {
+    static let URLS = "urls"
+    static let HASHTAGS = "hashtags"
+    static let MEDIA = "media"
+    static let USERS = "user_mentions"
+    static let TICKERS = "symbols"
+    static let DISPLAY_URL = "display_url"
+    static let EXPANDED_URL = "expanded_url"
+    static let URL = "url"
+    static let USER_ID = "id"
+    static let INDICES = "indices"
+    static let USER_NAME = "name"
+    static let USER_HANDLE = "screen_name"
+    static let HASHTAG = "text"
 }
 
 class Entity : NSObject {
@@ -40,11 +40,11 @@ class Entity : NSObject {
         var entities = Array<Entity>()
         for (k,v) in dict {
             switch (k) {
-            case EntityKeys.URLS.toRaw():
+            case EntityKeys.URLS:
                 entities.extend(_parseURLS(parent: parentObject,array: v)!)
-            case EntityKeys.HASHTAGS.toRaw():
+            case EntityKeys.HASHTAGS:
                 entities.extend(_parseHashtags(parent: parentObject,array: v)!)
-            case EntityKeys.USERS.toRaw():
+            case EntityKeys.USERS:
                 entities.extend(_parseUserMentions(parent: parentObject,array: v)!)
             default:
                 break
@@ -58,12 +58,12 @@ class Entity : NSObject {
         var entities = [Entity]()
         for (var urlItem : AnyObject) in array {
             if let urlDict = urlItem as? Dictionary<String,AnyObject> {
-                var displayURL = urlDict[EntityKeys.DISPLAY_URL.toRaw()] as NSString
-                var expandedURL = urlDict[EntityKeys.EXPANDED_URL.toRaw()] as NSString
-                var url = urlDict[EntityKeys.URL.toRaw()] as NSString
+                var displayURL = urlDict[EntityKeys.DISPLAY_URL] as NSString
+                var expandedURL = urlDict[EntityKeys.EXPANDED_URL] as NSString
+                var url = urlDict[EntityKeys.URL] as NSString
 
-                var newEntity = Entity(parent: parentObject, type: EntityType.Url(displayURL, NSURL(string: expandedURL), NSURL(string: url)))
-                newEntity.indices = _parseIndices(urlDict[EntityKeys.INDICES.toRaw()])
+                var newEntity = Entity(parent: parentObject, type: EntityType.Url(displayString: displayURL, expandedURL: NSURL(string: expandedURL), url: NSURL(string: url)))
+                newEntity.indices = _parseIndices(urlDict[EntityKeys.INDICES])
                 entities.append(newEntity)
             }
         }
@@ -85,8 +85,8 @@ class Entity : NSObject {
         var entities = [Entity]()
         for (var hashItem : AnyObject) in array {
             if let hashDict = hashItem as? Dictionary<String,AnyObject> {
-                var newEntity = Entity(parent: parentObject, type: EntityType.Hashtag(hashDict[EntityKeys.HASHTAG.toRaw()] as NSString))
-                newEntity.indices = _parseIndices(hashDict[EntityKeys.INDICES.toRaw()])
+                var newEntity = Entity(parent: parentObject, type: EntityType.Hashtag(hashTag: hashDict[EntityKeys.HASHTAG] as NSString))
+                newEntity.indices = _parseIndices(hashDict[EntityKeys.INDICES])
                 entities.append(newEntity)
             }
         }
@@ -98,11 +98,11 @@ class Entity : NSObject {
         var entities = [Entity]()
         for (var userItem : AnyObject) in array {
             if let userDict = userItem as? Dictionary<String,AnyObject> {
-                var userID = (userDict[EntityKeys.USER_ID.toRaw()] as NSNumber).longLongValue
-                var userName = userDict[EntityKeys.USER_NAME.toRaw()] as NSString
-                var userHandle = userDict[EntityKeys.USER_HANDLE.toRaw()] as NSString
-                var newEntity = Entity(parent: parentObject, type: EntityType.UserMention(userID, userName, userHandle))
-                newEntity.indices = _parseIndices(userDict[EntityKeys.INDICES.toRaw()])
+                var userID = (userDict[EntityKeys.USER_ID] as NSNumber).longLongValue
+                var userName = userDict[EntityKeys.USER_NAME] as NSString
+                var userHandle = userDict[EntityKeys.USER_HANDLE] as NSString
+                var newEntity = Entity(parent: parentObject, type: EntityType.UserMention(userID: userID, userName: userName, userHandle: userHandle))
+                newEntity.indices = _parseIndices(userDict[EntityKeys.INDICES])
                 entities.append(newEntity)
             }
         }

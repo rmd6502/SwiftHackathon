@@ -23,33 +23,29 @@
  * didSelectRowAtIndexPath we know and love.
  */
 
-typealias EntityCallbackFunction = (entity : Entity, item : ModelObject, tableViewController : UITableViewController) -> ()
+typealias EntityCallbackFunction = (entity : Entity, item : ModelObject, tableViewController : UITableViewController) -> Bool
 
-class EntityAdapter : NSObject {
+protocol EntityAdapter {
+    /**
+     * If this adapter returns collectionViewCells, this needs to be set
+     */
+    var reuseIdentifier : String? { get set }
+
     /**
     * Renders the entity's string.  May return nil.
     */
     func attributedStringForEntity(entity : Entity, inItem item : ModelObject) -> NSAttributedString?
-    {
-        return nil
-    }
 
     /**
     * Returns a collectionViewCell for an entity.  May return nil.
     * It is up to the caller to ensure that the numberOfCellsInSection returns the correct number.
     */
-    func collectionViewCellForEntity(entity : Entity, inItem item : ModelObject) -> UICollectionViewCell?
-    {
-        return nil
-    }
+    func collectionViewCellForEntity(entity : Entity, inItem item : ModelObject, collectionView : UICollectionView) -> UICollectionViewCell?
 
     /**
      * Returns an action to perform when the entity is tapped.  May return nil if no action
-     * is needed.  TODO: expand to more event types.
+     * is needed.  TODO: expand to more event types.  The action returns true on successfully
+     * handling the event.
      */
     func tapActionForEntity(entity : Entity, inItem item : ModelObject) -> EntityCallbackFunction?
-    {
-        return nil
-    }
-
 }
