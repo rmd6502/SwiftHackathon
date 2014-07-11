@@ -11,10 +11,17 @@ class UserMentionEntityAdapter : NSObject,EntityAdapter {
     
     func attributedStringForEntity(entity : Entity, inItem item : ModelObject) -> NSAttributedString?
     {
-        return nil
+        var userDisplayString = ""
+        switch entity.entityType {
+        case .UserMention(let userID, let userName, let userHandle):
+            userDisplayString = "@" + userHandle
+        default:
+            return nil
+        }
+        return NSAttributedString(string: userDisplayString,attributes: [NSForegroundColorAttributeName: UIColor.blueColor()])
     }
-
-    func collectionViewCellForEntity(entity : Entity, inItem item : ModelObject, collectionView : UICollectionView) -> UICollectionViewCell?
+    
+    func collectionViewCellForEntity(entity : Entity, inItem item : ModelObject, collectionView : UICollectionView, indexPath : NSIndexPath) -> UICollectionViewCell?
     {
         // we don't display images for these
         return nil

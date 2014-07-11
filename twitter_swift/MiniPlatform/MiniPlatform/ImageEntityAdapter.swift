@@ -15,9 +15,18 @@ class ImageEntityAdapter : NSObject,EntityAdapter {
         return nil
     }
 
-    func collectionViewCellForEntity(entity : Entity, inItem item : ModelObject, collectionView : UICollectionView) -> UICollectionViewCell?
+    func collectionViewCellForEntity(entity : Entity, inItem item : ModelObject, collectionView : UICollectionView, indexPath : NSIndexPath) -> UICollectionViewCell?
     {
-        return nil
+        var cell = collectionView.dequeueReusableCellWithReuseIdentifier(self.reuseIdentifier, forIndexPath: indexPath) as ImageEntityCell
+
+        switch (entity.entityType) {
+        case .Image(let imageURL):
+            cell.imageView.url = imageURL
+        default:
+            break
+        }
+
+        return cell
     }
 
     func tapActionForEntity(entity : Entity, inItem item : ModelObject) -> EntityCallbackFunction?

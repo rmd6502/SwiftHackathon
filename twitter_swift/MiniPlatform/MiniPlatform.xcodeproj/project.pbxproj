@@ -15,6 +15,7 @@
 		D602E3DA1970245500571A14 /* HashtagEntityAdapter.swift in Sources */ = {isa = PBXBuildFile; fileRef = D602E3D91970245500571A14 /* HashtagEntityAdapter.swift */; };
 		D602E3DC1970247800571A14 /* CashtagEntityAdapter.swift in Sources */ = {isa = PBXBuildFile; fileRef = D602E3DB1970247800571A14 /* CashtagEntityAdapter.swift */; };
 		D602E3DE197024A000571A14 /* ImageEntityAdapter.swift in Sources */ = {isa = PBXBuildFile; fileRef = D602E3DD197024A000571A14 /* ImageEntityAdapter.swift */; };
+		D602E3E119704D7200571A14 /* ImageEntityCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D602E3E019704D7200571A14 /* ImageEntityCell.swift */; };
 		D6251A1C195629AD00CE7E11 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6251A1B195629AD00CE7E11 /* User.swift */; };
 		D6251A1E195629B900CE7E11 /* Tweet.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6251A1D195629B900CE7E11 /* Tweet.swift */; };
 		D6251A2019562A8600CE7E11 /* Entity.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6251A1F19562A8600CE7E11 /* Entity.swift */; };
@@ -58,6 +59,7 @@
 		D602E3D91970245500571A14 /* HashtagEntityAdapter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HashtagEntityAdapter.swift; sourceTree = "<group>"; };
 		D602E3DB1970247800571A14 /* CashtagEntityAdapter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CashtagEntityAdapter.swift; sourceTree = "<group>"; };
 		D602E3DD197024A000571A14 /* ImageEntityAdapter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImageEntityAdapter.swift; sourceTree = "<group>"; };
+		D602E3E019704D7200571A14 /* ImageEntityCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImageEntityCell.swift; sourceTree = "<group>"; };
 		D6251A1B195629AD00CE7E11 /* User.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		D6251A1D195629B900CE7E11 /* Tweet.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Tweet.swift; sourceTree = "<group>"; };
 		D6251A1F19562A8600CE7E11 /* Entity.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Entity.swift; sourceTree = "<group>"; };
@@ -118,6 +120,14 @@
 			name = "Entity Adapters";
 			sourceTree = "<group>";
 		};
+		D602E3DF19704D4E00571A14 /* Cells */ = {
+			isa = PBXGroup;
+			children = (
+				D602E3E019704D7200571A14 /* ImageEntityCell.swift */,
+			);
+			name = Cells;
+			sourceTree = "<group>";
+		};
 		D6251A1A1956299B00CE7E11 /* Model */ = {
 			isa = PBXGroup;
 			children = (
@@ -156,6 +166,7 @@
 		D6A0CF1419429AAB00436D50 /* MiniPlatform */ = {
 			isa = PBXGroup;
 			children = (
+				D602E3DF19704D4E00571A14 /* Cells */,
 				D602E3D2196F33DA00571A14 /* Entity Adapters */,
 				D6C00911196A0B5F00D9EFEF /* SectionAdapters */,
 				D6251A1A1956299B00CE7E11 /* Model */,
@@ -351,6 +362,7 @@
 				D6A0CF3819429AF800436D50 /* TwitterAPI.swift in Sources */,
 				D6251A1C195629AD00CE7E11 /* User.swift in Sources */,
 				D6251A1E195629B900CE7E11 /* Tweet.swift in Sources */,
+				D602E3E119704D7200571A14 /* ImageEntityCell.swift in Sources */,
 				D6251A2019562A8600CE7E11 /* Entity.swift in Sources */,
 				D6AADDC7194F7C7F00BBF226 /* TFNTwitterAccount.swift in Sources */,
 				D602E3D4196F33ED00571A14 /* EntityAdapter.swift in Sources */,

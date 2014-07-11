@@ -11,10 +11,17 @@ class HashtagEntityAdapter : NSObject,EntityAdapter {
     
     func attributedStringForEntity(entity : Entity, inItem item : ModelObject) -> NSAttributedString?
     {
-        return nil
+        var hashDisplayString = ""
+        switch entity.entityType {
+        case .Hashtag(let hashTag):
+            hashDisplayString = "#" + hashTag
+        default:
+            return nil
+        }
+        return NSAttributedString(string: hashDisplayString,attributes: [NSForegroundColorAttributeName: UIColor.blueColor()])
     }
 
-    func collectionViewCellForEntity(entity : Entity, inItem item : ModelObject, collectionView : UICollectionView) -> UICollectionViewCell?
+    func collectionViewCellForEntity(entity : Entity, inItem item : ModelObject, collectionView : UICollectionView, indexPath : NSIndexPath) -> UICollectionViewCell?
     {
         // we don't display images for these
         return nil

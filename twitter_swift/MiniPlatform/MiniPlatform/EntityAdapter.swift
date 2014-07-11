@@ -40,7 +40,7 @@ protocol EntityAdapter {
     * Returns a collectionViewCell for an entity.  May return nil.
     * It is up to the caller to ensure that the numberOfCellsInSection returns the correct number.
     */
-    func collectionViewCellForEntity(entity : Entity, inItem item : ModelObject, collectionView : UICollectionView) -> UICollectionViewCell?
+    func collectionViewCellForEntity(entity : Entity, inItem item : ModelObject, collectionView : UICollectionView, indexPath : NSIndexPath) -> UICollectionViewCell?
 
     /**
      * Returns an action to perform when the entity is tapped.  May return nil if no action
