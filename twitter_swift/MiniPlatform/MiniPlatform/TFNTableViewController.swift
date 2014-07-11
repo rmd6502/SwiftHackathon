@@ -12,7 +12,7 @@ import UIKit
 // TODO: stream, rowadapterfactory, and sectionadapter can be generics,
 // when this won't crash the compiler
 class TFNTableViewController : UITableViewController {
-    let DEFAULT_CELL_HEIGHT = 100.0
+    let DEFAULT_CELL_HEIGHT : CGFloat = 100.0
 
     var stream : Stream?
     var rowAdapters : Dictionary<String,RowAdapter>?
@@ -108,7 +108,7 @@ class TFNTableViewController : UITableViewController {
                 height = rowAdapters?[itemClass]?.estimatedHeightForItem(item,tableViewController: self)
             }
         }
-        return (height) ? height! : DEFAULT_CELL_HEIGHT
+        return (height.getLogicValue()) ? height! : DEFAULT_CELL_HEIGHT
     }
 
     override func tableView(tableView: UITableView!, didSelectRowAtIndexPath indexPath: NSIndexPath!)

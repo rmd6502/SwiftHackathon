@@ -72,6 +72,7 @@ class StatusRowAdapter : RowAdapter {
             offlineCell = tableViewController.tableView.dequeueReusableCellWithIdentifier(self.cellReuseIdentifier) as? TimelineCell
         }
         let tweet = item as Tweet
+
         offlineCell!.bounds = CGRect(x: 0, y: 0, width: tableViewController.tableView.bounds.size.width, height: CGRectGetHeight(offlineCell!.bounds))
         self._updateCell(offlineCell!, tweet: tweet)
 
