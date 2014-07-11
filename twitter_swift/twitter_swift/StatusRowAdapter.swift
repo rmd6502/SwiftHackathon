@@ -15,6 +15,7 @@ class StatusRowAdapter : RowAdapter {
     override func cellForItem(item : ModelObject,tableViewController : UITableViewController) -> UITableViewCell?
     {
         var cell : TimelineCell = tableViewController.tableView.dequeueReusableCellWithIdentifier(self.cellReuseIdentifier) as TimelineCell
+        cell.mediaCollection.registerClass(ImageEntityCell.self, forCellWithReuseIdentifier: ImageEntityAdapter().reuseIdentifier)
         let tweet = item as Tweet
 
         self._updateCell(cell, tweet: tweet)

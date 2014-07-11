@@ -20,6 +20,8 @@ import UIKit
 
     var cellReuseIdentifier : String!
 
+    var entityAdapters : [String:EntityAdapter]
+
     func heightForItem(item : ModelObject, tableViewController : UITableViewController) -> CGFloat
     {
         // subclasses must implement
@@ -32,6 +34,9 @@ import UIKit
         return 80;
     }
 
+    /**
+     * Returns the UITableViewCell that corresponds to the ModelObject
+     */
     func cellForItem(item : ModelObject, tableViewController : UITableViewController) -> UITableViewCell?
     {
         assert(false, "Need to implement cellForItem", file: __FILE__, line: __LINE__)
@@ -49,6 +54,8 @@ import UIKit
         SECONDS_PER_MINUTE = 60.0
         SECONDS_PER_HOUR = 60.0 * self.SECONDS_PER_MINUTE
         SECONDS_PER_DAY = 24.0 * self.SECONDS_PER_HOUR
+
+        entityAdapters = ["URL" : URLEntityAdapter(), "UserMention" : UserMentionEntityAdapter(), "Hashtag" : HashtagEntityAdapter(), "Cashtag" : CashtagEntityAdapter(), "Image" : ImageEntityAdapter()]
         super.init()
         self.cellReuseIdentifier = reuseIdentifier
         formatter.dateStyle = .ShortStyle
