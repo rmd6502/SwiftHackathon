@@ -68,7 +68,10 @@ class StatusRowAdapter : RowAdapter {
                     for (let (entity,range)) in activeMap {
                         for (let rect) in cell!.tweetText.selectionRectsForRange(range as UITextRange) {
                             if (CGRectContainsPoint(rect.rect, pt)) {
-                                NSLog("touched entity %@", entity)
+                                NSLog("touched entity %@ type %@", entity, self._nameForClass(entity.dynamicType))
+                                if let adapter = self.entityAdapters[entity.typeString()] {
+                                    adapter.tapActionForEntity(entity, inItem: item)?(entity: entity,item: item,tableViewController: controller)
+                                }
                                 return
                             }
                         }

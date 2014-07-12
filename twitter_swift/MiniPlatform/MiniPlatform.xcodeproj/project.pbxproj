@@ -22,6 +22,7 @@
 		D6251A2219562AA100CE7E11 /* Place.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6251A2119562AA100CE7E11 /* Place.swift */; };
 		D6251A2419562B3100CE7E11 /* Stream.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6251A2319562B3100CE7E11 /* Stream.swift */; };
 		D628765C195D109900A956C6 /* RowAdapter.swift in Sources */ = {isa = PBXBuildFile; fileRef = D628765B195D109900A956C6 /* RowAdapter.swift */; };
+		D6496A331971E28E00B122FA /* WebViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6496A321971E28E00B122FA /* WebViewController.swift */; };
 		D6A0CF1819429AAB00436D50 /* MiniPlatform.h in Headers */ = {isa = PBXBuildFile; fileRef = D6A0CF1719429AAB00436D50 /* MiniPlatform.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		D6A0CF1E19429AAB00436D50 /* MiniPlatform.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D6A0CF1219429AAB00436D50 /* MiniPlatform.framework */; };
 		D6A0CF2519429AAB00436D50 /* MiniPlatformTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6A0CF2419429AAB00436D50 /* MiniPlatformTests.swift */; };
@@ -66,6 +67,7 @@
 		D6251A2119562AA100CE7E11 /* Place.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Place.swift; sourceTree = "<group>"; };
 		D6251A2319562B3100CE7E11 /* Stream.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Stream.swift; sourceTree = "<group>"; };
 		D628765B195D109900A956C6 /* RowAdapter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = RowAdapter.swift; path = MiniPlatform/RowAdapter.swift; sourceTree = "<group>"; };
+		D6496A321971E28E00B122FA /* WebViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WebViewController.swift; sourceTree = "<group>"; };
 		D6A0CF1219429AAB00436D50 /* MiniPlatform.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = MiniPlatform.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		D6A0CF1619429AAB00436D50 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		D6A0CF1719429AAB00436D50 /* MiniPlatform.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MiniPlatform.h; sourceTree = "<group>"; };
@@ -234,6 +236,7 @@
 			isa = PBXGroup;
 			children = (
 				D6B755721959BCEB00E0417B /* TFNTableViewController.swift */,
+				D6496A321971E28E00B122FA /* WebViewController.swift */,
 			);
 			name = ViewControllers;
 			sourceTree = "<group>";
@@ -358,6 +361,7 @@
 				D602E3DE197024A000571A14 /* ImageEntityAdapter.swift in Sources */,
 				D6A1E8A7195A4E4000379944 /* SectionAdapter.swift in Sources */,
 				D6C1BD6C196204A9008E2DE2 /* SpecialItems.swift in Sources */,
+				D6496A331971E28E00B122FA /* WebViewController.swift in Sources */,
 				D602E3DC1970247800571A14 /* CashtagEntityAdapter.swift in Sources */,
 				D6A0CF3819429AF800436D50 /* TwitterAPI.swift in Sources */,
 				D6251A1C195629AD00CE7E11 /* User.swift in Sources */,

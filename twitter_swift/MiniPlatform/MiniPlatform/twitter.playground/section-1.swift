@@ -14,5 +14,7 @@ switch b {
 case .QRCode(let qr):
     println(qr)
 default:
+    println("other")
     break
 }
+

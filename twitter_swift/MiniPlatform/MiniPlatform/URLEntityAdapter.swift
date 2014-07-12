@@ -29,6 +29,16 @@ class URLEntityAdapter : NSObject,EntityAdapter {
 
     func tapActionForEntity(entity : Entity, inItem item : ModelObject) -> EntityCallbackFunction?
     {
-        return nil
+        return { (entity, item, controller) in
+            var responseURL : NSURL? = nil
+            switch entity.entityType {
+            case .Url(let displayString, let expandedURL, let url):
+                responseURL = expandedURL
+            default:
+                return false
+            }
+            controller.navigationController.pushViewController(WebViewController(url: responseURL), animated: true)
+            return true
+        }
     }
 }

@@ -55,11 +55,17 @@ import UIKit
         SECONDS_PER_HOUR = 60.0 * self.SECONDS_PER_MINUTE
         SECONDS_PER_DAY = 24.0 * self.SECONDS_PER_HOUR
 
-        entityAdapters = ["URL" : URLEntityAdapter(), "UserMention" : UserMentionEntityAdapter(), "Hashtag" : HashtagEntityAdapter(), "Cashtag" : CashtagEntityAdapter(), "Image" : ImageEntityAdapter()]
+        entityAdapters = [:]
         super.init()
+        entityAdapters = [EntityKeys.URLS : URLEntityAdapter(), EntityKeys.USERS : UserMentionEntityAdapter(), EntityKeys.HASHTAGS : HashtagEntityAdapter(), EntityKeys.TICKERS : CashtagEntityAdapter(), EntityKeys.IMAGES : ImageEntityAdapter()]
         self.cellReuseIdentifier = reuseIdentifier
         formatter.dateStyle = .ShortStyle
         formatter.timeStyle = .NoStyle
+    }
+
+    func _nameForClass(classObject : AnyClass) -> NSString
+    {
+        return NSString(CString: class_getName(classObject), encoding: NSUTF8StringEncoding)
     }
 
     func formatTimeInterval(interval : NSTimeInterval) -> String?

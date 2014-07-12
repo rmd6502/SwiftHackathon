@@ -28,6 +28,8 @@ struct EntityKeys {
     static let USER_NAME = "name"
     static let USER_HANDLE = "screen_name"
     static let HASHTAG = "text"
+    static let DESCRIPTIONS = "descriptions"
+    static let IMAGES = "images"
 }
 
 class Entity : NSObject {
@@ -107,6 +109,24 @@ class Entity : NSObject {
             }
         }
         return entities
+    }
+
+    func typeString() -> String
+    {
+        switch(self.entityType) {
+        case .Url:
+            return EntityKeys.URLS
+        case .Hashtag:
+            return EntityKeys.HASHTAGS
+        case .Description:
+            return EntityKeys.DESCRIPTIONS
+        case .Image:
+            return EntityKeys.IMAGES
+        case .StockSymbol:
+            return EntityKeys.TICKERS
+        case .UserMention:
+            return EntityKeys.USERS
+        }
     }
 
     init(parent parentObject : ModelObject, type : EntityType)
