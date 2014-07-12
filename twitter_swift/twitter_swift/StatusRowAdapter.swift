@@ -11,11 +11,24 @@ import UIKit
 
 class StatusRowAdapter : RowAdapter {
     var offlineCell : TimelineCell?
+    // TODO: any way we can pass the controller into the touch detect
+    // instead of holding onto it?
+    weak var controller : UITableViewController?
+
+    init(reuseIdentifier: String, tableViewController : UITableViewController)
+    {
+        controller = tableViewController
+        super.init(reuseIdentifier: reuseIdentifier)
+    }
 
     override func cellForItem(item : ModelObject,tableViewController : UITableViewController) -> UITableViewCell?
     {
         let width = tableViewController.tableView.bounds.size.width
         var cell : TimelineCell = tableViewController.tableView.dequeueReusableCellWithIdentifier(self.cellReuseIdentifier) as TimelineCell
+
+        if !cell.gestureRecognizers || cell.gestureRecognizers.count == 0 {
+            cell.addGestureRecognizer(UITapGestureRecognizer(target: self, action: "_didTouchItem:"))
+        }
         cell.mediaCollection.registerClass(ImageEntityCell.self, forCellWithReuseIdentifier: ImageEntityAdapter().reuseIdentifier)
         let tweet = item as Tweet
 
@@ -41,6 +54,28 @@ class StatusRowAdapter : RowAdapter {
         }
 
         return value
+    }
+
+    // TODO: This method is a mess
+    func _didTouchItem(recognizer: UIGestureRecognizer)
+    {
+        if let controller = self.controller {
+            let cell = recognizer.view as? TimelineCell
+            let indexPath = controller.tableView.indexPathForCell(cell)
+            if let item = (controller as? TFNTableViewController)?.itemAtIndexPath(indexPath) as? Tweet {
+                let pt = recognizer.locationInView(cell!.tweetText)
+                if let activeMap = self._activeAreasForTweet(item, cell: cell!) {
+                    for (let (entity,range)) in activeMap {
+                        for (let rect) in cell!.tweetText.selectionRectsForRange(range as UITextRange) {
+                            if (CGRectContainsPoint(rect.rect, pt)) {
+                                NSLog("touched entity %@", entity)
+                                return
+                            }
+                        }
+                    }
+                }
+            }
+        }
     }
 
     func _activeAreasForTweet(tweet : Tweet, cell : TimelineCell) -> [Entity:AnyObject]!

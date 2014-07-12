@@ -71,6 +71,15 @@ class TFNTableViewController : UITableViewController {
         }
     }
 
+    func itemAtIndexPath(indexPath : NSIndexPath!) -> ModelObject?
+    {
+        if indexPath != nil && sections?.count > indexPath.section && sections![indexPath.section].count > indexPath.row {
+            return sections![indexPath.section][indexPath.row]
+        } else {
+            return nil
+        }
+    }
+
     override func tableView(tableView: UITableView!, cellForRowAtIndexPath indexPath: NSIndexPath!) -> UITableViewCell!
     {
         var cell : UITableViewCell? = nil;

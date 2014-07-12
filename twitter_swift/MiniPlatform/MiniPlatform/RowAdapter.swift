@@ -84,7 +84,7 @@ import UIKit
      * Determines if a tap was in an entity, and handles the tap if the entity defines an action.
      * Returns true if the tap was handled
      */
-    func didTapRow(item : ModelObject, tableViewController : UITableViewController) -> Bool
+    func didTapRow(point : CGPoint, item : ModelObject, tableViewController : UITableViewController) -> Bool
     {
         return false
     }
