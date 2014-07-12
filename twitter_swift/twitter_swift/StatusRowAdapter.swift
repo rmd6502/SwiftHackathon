@@ -14,9 +14,12 @@ class StatusRowAdapter : RowAdapter {
 
     override func cellForItem(item : ModelObject,tableViewController : UITableViewController) -> UITableViewCell?
     {
+        let width = tableViewController.tableView.bounds.size.width
         var cell : TimelineCell = tableViewController.tableView.dequeueReusableCellWithIdentifier(self.cellReuseIdentifier) as TimelineCell
         cell.mediaCollection.registerClass(ImageEntityCell.self, forCellWithReuseIdentifier: ImageEntityAdapter().reuseIdentifier)
         let tweet = item as Tweet
+
+        cell.bounds = CGRectMake(0, 0, width, 999)
 
         self._updateCell(cell, tweet: tweet)
         //NSLog("real cell height of text \"%@\" is %.2f cell height %.2f", cell.tweetText.text, cell.tweetText.bounds.size.height, cell.bounds.size.height)
@@ -55,6 +58,10 @@ class StatusRowAdapter : RowAdapter {
 
     func _updateCell(cell: TimelineCell, tweet: Tweet)
     {
+        cell.setNeedsUpdateConstraints()
+        cell.setNeedsLayout()
+        cell.layoutIfNeeded()
+
         cell.userAvatar.url = tweet.user?.profileImageURL
         if let handle = tweet.user?.screenName {
             cell.userHandleLabel.text = "@"+handle
@@ -62,26 +69,32 @@ class StatusRowAdapter : RowAdapter {
         cell.tweetText.attributedText = self._attributedTextForTweet(tweet)
         cell.timeLabel.text = self.formatTimeInterval(NSDate().timeIntervalSinceDate(tweet.createdAt))
         cell.userNameLabel.text = tweet.user?.name
+        cell.widthConstraint.constant = CGRectGetWidth(cell.tweetText.bounds)
+
+        let textSize = cell.tweetText.attributedText.boundingRectWithSize(CGSizeMake(CGRectGetWidth(cell.tweetText.bounds), 999), options:.UsesLineFragmentOrigin, context: nil)
+
+        cell.heightConstraint.constant = CGRectGetHeight(textSize) + 30.0
+
         cell.setNeedsUpdateConstraints()
-        cell.updateConstraintsIfNeeded()
-        cell.contentView.setNeedsLayout()
+        cell.setNeedsLayout()
+        cell.layoutIfNeeded()
     }
 
     override func heightForItem(item: ModelObject, tableViewController: UITableViewController) -> CGFloat
     {
+        let width = tableViewController.tableView.bounds.size.width
         if offlineCell == nil {
             offlineCell = tableViewController.tableView.dequeueReusableCellWithIdentifier(self.cellReuseIdentifier) as? TimelineCell
         }
+
         let tweet = item as Tweet
 
-        offlineCell!.bounds = CGRect(x: 0, y: 0, width: tableViewController.tableView.bounds.size.width, height: CGRectGetHeight(offlineCell!.bounds))
+        offlineCell!.bounds = CGRectMake(0, 0, width, 999)
         self._updateCell(offlineCell!, tweet: tweet)
-
-        offlineCell!.layoutIfNeeded()
 
         var s = offlineCell!.contentView.systemLayoutSizeFittingSize(UILayoutFittingCompressedSize)
 
-        NSLog("size %@ of text \"%@\" is %.2f cell %@", NSStringFromCGSize(s), offlineCell!.tweetText.text, NSStringFromCGRect(offlineCell!.tweetText.bounds), NSStringFromCGRect(offlineCell!.bounds))
+        NSLog("size %@ of text \"%@\" is %@ cell %@", NSStringFromCGSize(s), offlineCell!.tweetText.text, NSStringFromCGRect(offlineCell!.tweetText.bounds), NSStringFromCGRect(offlineCell!.bounds))
 
         //NSLog("height of text \"%@\" is %.2f cell height %.2f", offlineCell!.tweetText.text, offlineCell!.tweetText.bounds.size.height, offlineCell!.bounds.size.height)
 

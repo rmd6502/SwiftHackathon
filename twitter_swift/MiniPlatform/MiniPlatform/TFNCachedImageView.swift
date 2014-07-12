@@ -8,6 +8,7 @@
 
 struct TFNImageCache {
     static var dictionary = Dictionary<String,NSData>()
+    static var bgQueue : dispatch_queue_t?
 }
 
 class TFNCachedImageView : UIImageView {
@@ -16,6 +17,11 @@ class TFNCachedImageView : UIImageView {
     didSet {
         self.updateURL()
     }
+    }
+
+    override class func initialize()
+    {
+        TFNImageCache.bgQueue = dispatch_queue_create("imageCache", nil)
     }
 
     init(coder aDecoder: NSCoder!)
@@ -36,14 +42,16 @@ class TFNCachedImageView : UIImageView {
             if let data = TFNImageCache.dictionary[self.url!.absoluteString] {
                 self.image = UIImage(data: data)
             } else {
-                let req = NSURLRequest(URL: url)
-                TFNTwitter.sharedTwitter.twitterAPI.requestWithResponse(req) {
-                    (response, data, error) in
-                    if error == nil && response?.statusCode == 200 && data.getLogicValue() {
-                        TFNImageCache.dictionary[self.url!.absoluteString] = data!
-                        dispatch_async(dispatch_get_main_queue()) {
-                            self.image = UIImage(data: data!)
-                            self.setNeedsDisplay()
+                dispatch_async(TFNImageCache.bgQueue) {
+                    let req = NSURLRequest(URL: self.url)
+                    TFNTwitter.sharedTwitter.twitterAPI.requestWithResponse(req) {
+                        (response, data, error) in
+                        if error == nil && response?.statusCode == 200 && data.getLogicValue() {
+                            TFNImageCache.dictionary[self.url!.absoluteString] = data!
+                            dispatch_async(dispatch_get_main_queue()) {
+                                self.image = UIImage(data: data!)
+                                self.setNeedsDisplay()
+                            }
                         }
                     }
                 }

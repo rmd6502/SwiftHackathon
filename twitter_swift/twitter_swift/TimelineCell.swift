@@ -10,6 +10,8 @@ import MiniPlatform
 import UIKit
 
 class TimelineCell : UITableViewCell {
+    @IBOutlet var widthConstraint: NSLayoutConstraint
+    @IBOutlet var heightConstraint: NSLayoutConstraint
     
     @IBOutlet var userAvatar: TFNCachedImageView
     @IBOutlet var userNameLabel: UILabel
