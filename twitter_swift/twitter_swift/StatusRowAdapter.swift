@@ -73,7 +73,10 @@ class StatusRowAdapter : RowAdapter {
 
         let textSize = cell.tweetText.attributedText.boundingRectWithSize(CGSizeMake(CGRectGetWidth(cell.tweetText.bounds), 999), options:.UsesLineFragmentOrigin, context: nil)
 
-        cell.heightConstraint.constant = CGRectGetHeight(textSize) + 30.0
+        // TODO: figure out if there is a way to eliminate the need for this
+        // magic constant.  I think it represents the scrolling insets of the
+        // textView.
+        cell.heightConstraint.constant = CGRectGetHeight(textSize) + 30
 
         cell.setNeedsUpdateConstraints()
         cell.setNeedsLayout()
@@ -94,15 +97,11 @@ class StatusRowAdapter : RowAdapter {
 
         var s = offlineCell!.contentView.systemLayoutSizeFittingSize(UILayoutFittingCompressedSize)
 
-        NSLog("size %@ of text \"%@\" is %@ cell %@", NSStringFromCGSize(s), offlineCell!.tweetText.text, NSStringFromCGRect(offlineCell!.tweetText.bounds), NSStringFromCGRect(offlineCell!.bounds))
-
-        //NSLog("height of text \"%@\" is %.2f cell height %.2f", offlineCell!.tweetText.text, offlineCell!.tweetText.bounds.size.height, offlineCell!.bounds.size.height)
-
         return s.height + 1
     }
 
     override func estimatedHeightForItem(item: ModelObject, tableViewController: UITableViewController) -> CGFloat
     {
-        return 175.0
+        return 135.0
     }
 }

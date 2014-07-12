@@ -43,9 +43,4 @@ class TimelineCell : UITableViewCell {
 //        super.touchesEnded(touches, withEvent: event)
 //    }
 
-    override func layoutSubviews()
-    {
-        super.layoutSubviews()
-        NSLog("bounds %@", NSStringFromCGRect(self.bounds))
-    }
 }
