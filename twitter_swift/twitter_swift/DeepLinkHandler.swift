@@ -15,7 +15,7 @@ class DeepLinkHandler : NSObject {
 
     func handleURL(url: NSURL) -> Bool
     {
-        //NSLog("host %@ path %@ query %@", url.host, url.path, url.query)
+        NSLog("host %@ path %@ query %@", url.host, url.path, url.query)
         if let storyBoardID = linkmap[url.host.lowercaseString] {
             if let navController = UIApplication.sharedApplication().delegate.window?.rootViewController as? UINavigationController {
                 navController.popToRootViewControllerAnimated(false)

@@ -6,33 +6,21 @@
 //  Copyright (c) 2014 Robert Diamond. All rights reserved.
 //
 
-class SpecialItem : ModelObject {
-    init()
-    {
-        super.init()
-        ID = -1
-    }
+class SpecialItem : NSObject,Identifiable {
+    var ID : Int64 = -1
 }
 
 class ErrorItem : SpecialItem {
     var error : NSError?
-    init()
+    override init()
     {
         super.init()
         self.ID = -5
     }
 }
 
-class EmptyStreamItem : SpecialItem {
-    init()
-    {
-        super.init()
-        self.ID = -6
-    }
-}
-
 class PTRItem : SpecialItem {
-    init()
+    override init()
     {
         super.init()
         self.ID = -2
@@ -40,7 +28,7 @@ class PTRItem : SpecialItem {
 }
 
 class FooterItem : SpecialItem {
-    init()
+    override init()
     {
         super.init()
         self.ID = -3
@@ -48,7 +36,7 @@ class FooterItem : SpecialItem {
 }
 
 class GapItem : SpecialItem {
-    init()
+    override init()
     {
         super.init()
         self.ID = -4

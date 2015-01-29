@@ -7,22 +7,30 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		9C92C3131967639B002721CA /* NavigationDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C92C3121967639B002721CA /* NavigationDelegate.swift */; };
+		1E93C9C61A7A87EF00F91F00 /* HMacEncoder.m in Sources */ = {isa = PBXBuildFile; fileRef = D6C22DBB19452A1100F719DE /* HMacEncoder.m */; };
+		1E93C9C71A7A89EF00F91F00 /* Stream.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6251A2319562B3100CE7E11 /* Stream.swift */; };
+		1E93C9C81A7A89F200F91F00 /* HomeTimelineStream.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6BE3BBC1957A48000246307 /* HomeTimelineStream.swift */; };
+		1E93C9C91A7A89F600F91F00 /* TwitterAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6A0CF3719429AF800436D50 /* TwitterAPI.swift */; };
+		1E93C9CA1A7A89FA00F91F00 /* Identifiable.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6D0FD651958E98B00D8DE48 /* Identifiable.swift */; };
+		1E93C9CB1A7A89FF00F91F00 /* TFNTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6B755721959BCEB00E0417B /* TFNTableViewController.swift */; };
+		1E93C9CC1A7A8A0600F91F00 /* TFNTwitterAccount.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6AADDC6194F7C7F00BBF226 /* TFNTwitterAccount.swift */; };
+		1E93C9CD1A7A8A0600F91F00 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6251A1B195629AD00CE7E11 /* User.swift */; };
+		1E93C9CE1A7A8A0600F91F00 /* Tweet.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6251A1D195629B900CE7E11 /* Tweet.swift */; };
+		1E93C9CF1A7A8A0600F91F00 /* Entity.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6251A1F19562A8600CE7E11 /* Entity.swift */; };
+		1E93C9D01A7A8A0600F91F00 /* Place.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6251A2119562AA100CE7E11 /* Place.swift */; };
+		1E93C9D11A7A8A0600F91F00 /* TFNTwitter.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6AADDC4194F7C3200BBF226 /* TFNTwitter.swift */; };
+		1E93C9D21A7A8A0600F91F00 /* TwitterDeepLinkable.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6ADD5F11954D34A0055E11F /* TwitterDeepLinkable.swift */; };
+		1E93C9D31A7A8A0600F91F00 /* SpecialItems.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6C1BD6B196204A9008E2DE2 /* SpecialItems.swift */; };
+		1E93C9D41A7A8A0900F91F00 /* SectionAdapter.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6A1E8A6195A4E4000379944 /* SectionAdapter.swift */; };
+		1E93C9D51A7A8A0900F91F00 /* RowAdapter.swift in Sources */ = {isa = PBXBuildFile; fileRef = D628765B195D109900A956C6 /* RowAdapter.swift */; };
+		1E93C9D61A7A8A0900F91F00 /* RowAdapterFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CDF2A97195F270500CE2DD5 /* RowAdapterFactory.swift */; };
 		9CDF2A98195F270500CE2DD5 /* RowAdapterFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CDF2A97195F270500CE2DD5 /* RowAdapterFactory.swift */; };
-		D602E3D4196F33ED00571A14 /* EntityAdapter.swift in Sources */ = {isa = PBXBuildFile; fileRef = D602E3D3196F33ED00571A14 /* EntityAdapter.swift */; };
-		D602E3D6197023DA00571A14 /* URLEntityAdapter.swift in Sources */ = {isa = PBXBuildFile; fileRef = D602E3D5197023DA00571A14 /* URLEntityAdapter.swift */; };
-		D602E3D81970242700571A14 /* UserMentionEntityAdapter.swift in Sources */ = {isa = PBXBuildFile; fileRef = D602E3D71970242700571A14 /* UserMentionEntityAdapter.swift */; };
-		D602E3DA1970245500571A14 /* HashtagEntityAdapter.swift in Sources */ = {isa = PBXBuildFile; fileRef = D602E3D91970245500571A14 /* HashtagEntityAdapter.swift */; };
-		D602E3DC1970247800571A14 /* CashtagEntityAdapter.swift in Sources */ = {isa = PBXBuildFile; fileRef = D602E3DB1970247800571A14 /* CashtagEntityAdapter.swift */; };
-		D602E3DE197024A000571A14 /* ImageEntityAdapter.swift in Sources */ = {isa = PBXBuildFile; fileRef = D602E3DD197024A000571A14 /* ImageEntityAdapter.swift */; };
-		D602E3E119704D7200571A14 /* ImageEntityCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D602E3E019704D7200571A14 /* ImageEntityCell.swift */; };
 		D6251A1C195629AD00CE7E11 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6251A1B195629AD00CE7E11 /* User.swift */; };
 		D6251A1E195629B900CE7E11 /* Tweet.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6251A1D195629B900CE7E11 /* Tweet.swift */; };
 		D6251A2019562A8600CE7E11 /* Entity.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6251A1F19562A8600CE7E11 /* Entity.swift */; };
 		D6251A2219562AA100CE7E11 /* Place.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6251A2119562AA100CE7E11 /* Place.swift */; };
 		D6251A2419562B3100CE7E11 /* Stream.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6251A2319562B3100CE7E11 /* Stream.swift */; };
 		D628765C195D109900A956C6 /* RowAdapter.swift in Sources */ = {isa = PBXBuildFile; fileRef = D628765B195D109900A956C6 /* RowAdapter.swift */; };
-		D6496A331971E28E00B122FA /* WebViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6496A321971E28E00B122FA /* WebViewController.swift */; };
 		D6A0CF1819429AAB00436D50 /* MiniPlatform.h in Headers */ = {isa = PBXBuildFile; fileRef = D6A0CF1719429AAB00436D50 /* MiniPlatform.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		D6A0CF1E19429AAB00436D50 /* MiniPlatform.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D6A0CF1219429AAB00436D50 /* MiniPlatform.framework */; };
 		D6A0CF2519429AAB00436D50 /* MiniPlatformTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6A0CF2419429AAB00436D50 /* MiniPlatformTests.swift */; };
@@ -33,12 +41,10 @@
 		D6ADD5F21954D34A0055E11F /* TwitterDeepLinkable.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6ADD5F11954D34A0055E11F /* TwitterDeepLinkable.swift */; };
 		D6B755731959BCEB00E0417B /* TFNTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6B755721959BCEB00E0417B /* TFNTableViewController.swift */; };
 		D6BE3BBD1957A48000246307 /* HomeTimelineStream.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6BE3BBC1957A48000246307 /* HomeTimelineStream.swift */; };
-		D6C0090E1968ED6D00D9EFEF /* TFNCachedImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6C0090D1968ED6D00D9EFEF /* TFNCachedImageView.swift */; };
-		D6C009101969CA8300D9EFEF /* SpecialItemRowAdapters.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6C0090F1969CA8300D9EFEF /* SpecialItemRowAdapters.swift */; };
 		D6C1BD6C196204A9008E2DE2 /* SpecialItems.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6C1BD6B196204A9008E2DE2 /* SpecialItems.swift */; };
 		D6C22DBC19452A1100F719DE /* HMacEncoder.h in Headers */ = {isa = PBXBuildFile; fileRef = D6C22DBA19452A1100F719DE /* HMacEncoder.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		D6C22DBD19452A1100F719DE /* HMacEncoder.m in Sources */ = {isa = PBXBuildFile; fileRef = D6C22DBB19452A1100F719DE /* HMacEncoder.m */; };
-		D6D0FD661958E98B00D8DE48 /* ModelObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6D0FD651958E98B00D8DE48 /* ModelObject.swift */; };
+		D6D0FD661958E98B00D8DE48 /* Identifiable.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6D0FD651958E98B00D8DE48 /* Identifiable.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -52,22 +58,13 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		9C92C3121967639B002721CA /* NavigationDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NavigationDelegate.swift; sourceTree = "<group>"; };
 		9CDF2A97195F270500CE2DD5 /* RowAdapterFactory.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RowAdapterFactory.swift; sourceTree = "<group>"; };
-		D602E3D3196F33ED00571A14 /* EntityAdapter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EntityAdapter.swift; sourceTree = "<group>"; };
-		D602E3D5197023DA00571A14 /* URLEntityAdapter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = URLEntityAdapter.swift; sourceTree = "<group>"; };
-		D602E3D71970242700571A14 /* UserMentionEntityAdapter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserMentionEntityAdapter.swift; sourceTree = "<group>"; };
-		D602E3D91970245500571A14 /* HashtagEntityAdapter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HashtagEntityAdapter.swift; sourceTree = "<group>"; };
-		D602E3DB1970247800571A14 /* CashtagEntityAdapter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CashtagEntityAdapter.swift; sourceTree = "<group>"; };
-		D602E3DD197024A000571A14 /* ImageEntityAdapter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImageEntityAdapter.swift; sourceTree = "<group>"; };
-		D602E3E019704D7200571A14 /* ImageEntityCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImageEntityCell.swift; sourceTree = "<group>"; };
 		D6251A1B195629AD00CE7E11 /* User.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		D6251A1D195629B900CE7E11 /* Tweet.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Tweet.swift; sourceTree = "<group>"; };
 		D6251A1F19562A8600CE7E11 /* Entity.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Entity.swift; sourceTree = "<group>"; };
 		D6251A2119562AA100CE7E11 /* Place.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Place.swift; sourceTree = "<group>"; };
 		D6251A2319562B3100CE7E11 /* Stream.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Stream.swift; sourceTree = "<group>"; };
 		D628765B195D109900A956C6 /* RowAdapter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = RowAdapter.swift; path = MiniPlatform/RowAdapter.swift; sourceTree = "<group>"; };
-		D6496A321971E28E00B122FA /* WebViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WebViewController.swift; sourceTree = "<group>"; };
 		D6A0CF1219429AAB00436D50 /* MiniPlatform.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = MiniPlatform.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		D6A0CF1619429AAB00436D50 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		D6A0CF1719429AAB00436D50 /* MiniPlatform.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MiniPlatform.h; sourceTree = "<group>"; };
@@ -75,19 +72,17 @@
 		D6A0CF2319429AAB00436D50 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		D6A0CF2419429AAB00436D50 /* MiniPlatformTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MiniPlatformTests.swift; sourceTree = "<group>"; };
 		D6A0CF3719429AF800436D50 /* TwitterAPI.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TwitterAPI.swift; sourceTree = "<group>"; };
-		D6A1E8A6195A4E4000379944 /* SectionAdapter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SectionAdapter.swift; sourceTree = "<group>"; };
+		D6A1E8A6195A4E4000379944 /* SectionAdapter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SectionAdapter.swift; path = MiniPlatform/SectionAdapter.swift; sourceTree = "<group>"; };
 		D6AADDC4194F7C3200BBF226 /* TFNTwitter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = TFNTwitter.swift; path = MiniPlatform/TFNTwitter.swift; sourceTree = "<group>"; };
 		D6AADDC6194F7C7F00BBF226 /* TFNTwitterAccount.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = TFNTwitterAccount.swift; path = MiniPlatform/TFNTwitterAccount.swift; sourceTree = "<group>"; };
 		D6ADD5F11954D34A0055E11F /* TwitterDeepLinkable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = TwitterDeepLinkable.swift; path = MiniPlatform/TwitterDeepLinkable.swift; sourceTree = "<group>"; };
 		D6B755721959BCEB00E0417B /* TFNTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TFNTableViewController.swift; sourceTree = "<group>"; };
 		D6BE3BBC1957A48000246307 /* HomeTimelineStream.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeTimelineStream.swift; sourceTree = "<group>"; };
-		D6C0090D1968ED6D00D9EFEF /* TFNCachedImageView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TFNCachedImageView.swift; sourceTree = "<group>"; };
-		D6C0090F1969CA8300D9EFEF /* SpecialItemRowAdapters.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SpecialItemRowAdapters.swift; sourceTree = "<group>"; };
 		D6C1BD6B196204A9008E2DE2 /* SpecialItems.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SpecialItems.swift; sourceTree = "<group>"; };
 		D6C22DB9194527A900F719DE /* twitter.playground */ = {isa = PBXFileReference; lastKnownFileType = file.playground; path = twitter.playground; sourceTree = "<group>"; };
 		D6C22DBA19452A1100F719DE /* HMacEncoder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HMacEncoder.h; sourceTree = "<group>"; };
 		D6C22DBB19452A1100F719DE /* HMacEncoder.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HMacEncoder.m; sourceTree = "<group>"; };
-		D6D0FD651958E98B00D8DE48 /* ModelObject.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ModelObject.swift; path = MiniPlatform/ModelObject.swift; sourceTree = "<group>"; };
+		D6D0FD651958E98B00D8DE48 /* Identifiable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Identifiable.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -109,31 +104,9 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		D602E3D2196F33DA00571A14 /* Entity Adapters */ = {
-			isa = PBXGroup;
-			children = (
-				D602E3D3196F33ED00571A14 /* EntityAdapter.swift */,
-				D602E3D5197023DA00571A14 /* URLEntityAdapter.swift */,
-				D602E3D71970242700571A14 /* UserMentionEntityAdapter.swift */,
-				D602E3D91970245500571A14 /* HashtagEntityAdapter.swift */,
-				D602E3DB1970247800571A14 /* CashtagEntityAdapter.swift */,
-				D602E3DD197024A000571A14 /* ImageEntityAdapter.swift */,
-			);
-			name = "Entity Adapters";
-			sourceTree = "<group>";
-		};
-		D602E3DF19704D4E00571A14 /* Cells */ = {
-			isa = PBXGroup;
-			children = (
-				D602E3E019704D7200571A14 /* ImageEntityCell.swift */,
-			);
-			name = Cells;
-			sourceTree = "<group>";
-		};
 		D6251A1A1956299B00CE7E11 /* Model */ = {
 			isa = PBXGroup;
 			children = (
-				D6D0FD651958E98B00D8DE48 /* ModelObject.swift */,
 				D6AADDC6194F7C7F00BBF226 /* TFNTwitterAccount.swift */,
 				D6251A1B195629AD00CE7E11 /* User.swift */,
 				D6251A1D195629B900CE7E11 /* Tweet.swift */,
@@ -168,21 +141,17 @@
 		D6A0CF1419429AAB00436D50 /* MiniPlatform */ = {
 			isa = PBXGroup;
 			children = (
-				D602E3DF19704D4E00571A14 /* Cells */,
-				D602E3D2196F33DA00571A14 /* Entity Adapters */,
-				D6C00911196A0B5F00D9EFEF /* SectionAdapters */,
 				D6251A1A1956299B00CE7E11 /* Model */,
 				D6E85C8E195DD9480091A945 /* RowAdapters */,
 				D6A0CF1519429AAB00436D50 /* Supporting Files */,
 				D6E85C8F195DD9B00091A945 /* ViewControllers */,
+				D6D0FD651958E98B00D8DE48 /* Identifiable.swift */,
 				D6A0CF1719429AAB00436D50 /* MiniPlatform.h */,
 				D6A0CF3719429AF800436D50 /* TwitterAPI.swift */,
 				D6C22DBA19452A1100F719DE /* HMacEncoder.h */,
 				D6C22DBB19452A1100F719DE /* HMacEncoder.m */,
 				D6251A2319562B3100CE7E11 /* Stream.swift */,
 				D6BE3BBC1957A48000246307 /* HomeTimelineStream.swift */,
-				9C92C3121967639B002721CA /* NavigationDelegate.swift */,
-				D6C0090D1968ED6D00D9EFEF /* TFNCachedImageView.swift */,
 			);
 			path = MiniPlatform;
 			sourceTree = "<group>";
@@ -213,20 +182,12 @@
 			name = "Supporting Files";
 			sourceTree = "<group>";
 		};
-		D6C00911196A0B5F00D9EFEF /* SectionAdapters */ = {
-			isa = PBXGroup;
-			children = (
-				D6A1E8A6195A4E4000379944 /* SectionAdapter.swift */,
-			);
-			name = SectionAdapters;
-			sourceTree = "<group>";
-		};
 		D6E85C8E195DD9480091A945 /* RowAdapters */ = {
 			isa = PBXGroup;
 			children = (
+				D6A1E8A6195A4E4000379944 /* SectionAdapter.swift */,
 				D628765B195D109900A956C6 /* RowAdapter.swift */,
 				9CDF2A97195F270500CE2DD5 /* RowAdapterFactory.swift */,
-				D6C0090F1969CA8300D9EFEF /* SpecialItemRowAdapters.swift */,
 			);
 			name = RowAdapters;
 			path = ..;
@@ -236,7 +197,6 @@
 			isa = PBXGroup;
 			children = (
 				D6B755721959BCEB00E0417B /* TFNTableViewController.swift */,
-				D6496A321971E28E00B122FA /* WebViewController.swift */,
 			);
 			name = ViewControllers;
 			sourceTree = "<group>";
@@ -351,30 +311,19 @@
 			buildActionMask = 2147483647;
 			files = (
 				D6BE3BBD1957A48000246307 /* HomeTimelineStream.swift in Sources */,
-				D6D0FD661958E98B00D8DE48 /* ModelObject.swift in Sources */,
+				D6D0FD661958E98B00D8DE48 /* Identifiable.swift in Sources */,
 				D6AADDC5194F7C3200BBF226 /* TFNTwitter.swift in Sources */,
-				D602E3DA1970245500571A14 /* HashtagEntityAdapter.swift in Sources */,
-				D6C009101969CA8300D9EFEF /* SpecialItemRowAdapters.swift in Sources */,
-				D602E3D6197023DA00571A14 /* URLEntityAdapter.swift in Sources */,
 				9CDF2A98195F270500CE2DD5 /* RowAdapterFactory.swift in Sources */,
-				9C92C3131967639B002721CA /* NavigationDelegate.swift in Sources */,
-				D602E3DE197024A000571A14 /* ImageEntityAdapter.swift in Sources */,
 				D6A1E8A7195A4E4000379944 /* SectionAdapter.swift in Sources */,
 				D6C1BD6C196204A9008E2DE2 /* SpecialItems.swift in Sources */,
-				D6496A331971E28E00B122FA /* WebViewController.swift in Sources */,
-				D602E3DC1970247800571A14 /* CashtagEntityAdapter.swift in Sources */,
 				D6A0CF3819429AF800436D50 /* TwitterAPI.swift in Sources */,
 				D6251A1C195629AD00CE7E11 /* User.swift in Sources */,
 				D6251A1E195629B900CE7E11 /* Tweet.swift in Sources */,
-				D602E3E119704D7200571A14 /* ImageEntityCell.swift in Sources */,
 				D6251A2019562A8600CE7E11 /* Entity.swift in Sources */,
 				D6AADDC7194F7C7F00BBF226 /* TFNTwitterAccount.swift in Sources */,
-				D602E3D4196F33ED00571A14 /* EntityAdapter.swift in Sources */,
 				D628765C195D109900A956C6 /* RowAdapter.swift in Sources */,
 				D6251A2219562AA100CE7E11 /* Place.swift in Sources */,
-				D602E3D81970242700571A14 /* UserMentionEntityAdapter.swift in Sources */,
 				D6ADD5F21954D34A0055E11F /* TwitterDeepLinkable.swift in Sources */,
-				D6C0090E1968ED6D00D9EFEF /* TFNCachedImageView.swift in Sources */,
 				D6B755731959BCEB00E0417B /* TFNTableViewController.swift in Sources */,
 				D6C22DBD19452A1100F719DE /* HMacEncoder.m in Sources */,
 				D6251A2419562B3100CE7E11 /* Stream.swift in Sources */,
@@ -385,7 +334,24 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				1E93C9D51A7A8A0900F91F00 /* RowAdapter.swift in Sources */,
 				D6A0CF2519429AAB00436D50 /* MiniPlatformTests.swift in Sources */,
+				1E93C9D11A7A8A0600F91F00 /* TFNTwitter.swift in Sources */,
+				1E93C9CE1A7A8A0600F91F00 /* Tweet.swift in Sources */,
+				1E93C9CA1A7A89FA00F91F00 /* Identifiable.swift in Sources */,
+				1E93C9D01A7A8A0600F91F00 /* Place.swift in Sources */,
+				1E93C9D41A7A8A0900F91F00 /* SectionAdapter.swift in Sources */,
+				1E93C9D31A7A8A0600F91F00 /* SpecialItems.swift in Sources */,
+				1E93C9CC1A7A8A0600F91F00 /* TFNTwitterAccount.swift in Sources */,
+				1E93C9C71A7A89EF00F91F00 /* Stream.swift in Sources */,
+				1E93C9C61A7A87EF00F91F00 /* HMacEncoder.m in Sources */,
+				1E93C9CD1A7A8A0600F91F00 /* User.swift in Sources */,
+				1E93C9D21A7A8A0600F91F00 /* TwitterDeepLinkable.swift in Sources */,
+				1E93C9CF1A7A8A0600F91F00 /* Entity.swift in Sources */,
+				1E93C9C91A7A89F600F91F00 /* TwitterAPI.swift in Sources */,
+				1E93C9D61A7A8A0900F91F00 /* RowAdapterFactory.swift in Sources */,
+				1E93C9C81A7A89F200F91F00 /* HomeTimelineStream.swift in Sources */,
+				1E93C9CB1A7A89FF00F91F00 /* TFNTableViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -498,7 +464,6 @@
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
 				INFOPLIST_FILE = MiniPlatform/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
@@ -517,7 +482,6 @@
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
 				INFOPLIST_FILE = MiniPlatform/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = NO;

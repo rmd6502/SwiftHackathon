@@ -13,49 +13,31 @@ class HomeTimelineStream : Stream {
     override func load(#minID : Int64?, maxID : Int64?, completion : CompletionFunction)
     {
         var params = Dictionary<String,String>()
-        if minID.getLogicValue() {
+        if (minID != nil) {
             params["since_id"] = String(minID!)
         }
-        if maxID.getLogicValue() {
+        if maxID != nil {
             params["max_id"] = String(maxID!)
         }
         TFNTwitter.sharedTwitter.twitterAPI.twitterGetRequestWithResponse(.GetHomeTimeline, parameters: params) { (response, data, error) in
             var myError : NSError? = error
-            if let myData = data {
-                //NSLog("%@\nData %@", response!, NSString(data: myData, encoding: NSUTF8StringEncoding))
-            }
-            if response?.statusCode > 299 {
-                myError = NSError(domain: "HTTPStatus", code: response!.statusCode, userInfo: [NSLocalizedDescriptionKey: NSString(format: "HTTP error %d", response!.statusCode)])
-            }
-            if myError.getLogicValue() {
-                NSLog("error %@", myError!)
-                if data.getLogicValue() && data!.length > 0 {
-                    NSLog("%@\nData %@", response!, NSString(data: data!, encoding: NSUTF8StringEncoding))
+            NSLog("got a reply! %@\nData %@", response!, NSString(data: data!, encoding: NSUTF8StringEncoding)!)
+            if (response?.statusCode >= 400 && response?.statusCode <= 499) {
+                TFNTwitter.sharedTwitter.currentAccount = nil
+                if error == nil {
+                    myError = NSError(domain: self.STREAM_ERROR_DOMAIN, code: response!.statusCode, userInfo: [NSLocalizedDescriptionKey: "Credentials invalid"])
                 }
+            }
+            if myError != nil {
                 completion(results: nil, error: myError)
             } else {
                 var options = NSJSONReadingOptions(0)
-                var results : Array<Tweet>? = nil
+                var results : AnyObject? = nil
                 if let resultData = data {
-                    var jsonData : AnyObject! = NSJSONSerialization.JSONObjectWithData(resultData, options: options, error: &myError)
-                    results = self._parseJSONData(jsonData)
-                    self.integrateItems(results)
+                    results = NSJSONSerialization.JSONObjectWithData(resultData, options: options, error: &myError)
                 }
                 completion(results: results, error: myError)
             }
         }
-    }
-    
-    func _parseJSONData(data: AnyObject!) -> Array<Tweet>?
-    {
-        var results = Array<Tweet>()
-        if let jsonArray = data as? Array<Dictionary<String,AnyObject>> {
-            for (var tweetDict) in jsonArray {
-                var tweet = Tweet(dict: tweetDict)
-                results.append(tweet)
-            }
-        }
-        
-        return results
     }
 }

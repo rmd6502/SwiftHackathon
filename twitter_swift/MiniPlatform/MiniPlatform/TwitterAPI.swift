@@ -8,7 +8,7 @@
 
 import Accounts
 
-class TwitterAPI : NSObject {
+class TwitterAPI : NSObject,NSURLSessionDataDelegate {
     enum TwitterAPIRequest : String {
         case GetOAuthRequestToken = "oauth/request_token"
         case GetOAuthAccessToken = "oauth/access_token"
@@ -23,6 +23,8 @@ class TwitterAPI : NSObject {
     let APIVersion = "1.1"
     let DefaultAPIRoot = "https://api.twitter.com"
 
+    var callbacks = Dictionary<NSURLSessionTask,CallbackFunction>()
+    var urldata = Dictionary<NSURLSessionTask,NSMutableData>()
     var apiRoot : String!
     var account : ACAccount!
     var appToken : String?
@@ -36,7 +38,7 @@ class TwitterAPI : NSObject {
     }
     var nonce : String! {
         get {
-            return NSUUID.UUID()?.UUIDString.dataUsingEncoding(NSUTF8StringEncoding, allowLossyConversion: false)?.base64EncodedStringWithOptions(NSDataBase64EncodingOptions(0))
+            return NSUUID.UUID()?.UUIDString.dataUsingEncoding(NSUTF8StringEncoding, allowLossyConversion: false).base64Encoding()
         }
     }
 
@@ -44,7 +46,7 @@ class TwitterAPI : NSObject {
     var oauth_headers : Dictionary<String,()->String!>!
     let characterSet : NSCharacterSet
     
-    init()
+    override init()
     {
         apiRoot = DefaultAPIRoot
         oauth_headers = nil
@@ -60,20 +62,20 @@ class TwitterAPI : NSObject {
         get {
             let config = NSURLSessionConfiguration.defaultSessionConfiguration()
             config.timeoutIntervalForResource = 180
-            return NSURLSession(configuration:config, delegate:nil, delegateQueue: queue)
+            return NSURLSession(configuration:config, delegate:self, delegateQueue: queue)
         }
     }
     let queue : NSOperationQueue = NSOperationQueue()
 
 
-    func _urlEncode(original : NSString) -> NSString
+    func _urlEncode(original : NSString) -> NSString?
     {
         return original.stringByAddingPercentEncodingWithAllowedCharacters(characterSet)
     }
 
     func _baseString(baseParams : Dictionary<String,String>, request : NSURLRequest) -> String
     {
-        let keys = Array(baseParams.keys).sorted(<)
+        let keys = sort(Array(baseParams.keys))
         var baseString = ""
         for (var key) in keys {
             if !baseString.isEmpty {
@@ -83,7 +85,7 @@ class TwitterAPI : NSObject {
         }
         let pathURL = request.URL.scheme + "://" + request.URL.host + ((request.URL.port != nil && request.URL.port != 80 && request.URL.port != 443) ? ":\(request.URL.port)" : "") + request.URL.path
         baseString = request.HTTPMethod + "&" + _urlEncode(pathURL) + "&" + _urlEncode(baseString)
-        //NSLog("baseString %@", baseString)
+        NSLog("baseString %@", baseString)
         return baseString
     }
 
@@ -108,11 +110,8 @@ class TwitterAPI : NSObject {
         // Pull in the parameters from the query string
         if let components = request.URL.query?.componentsSeparatedByString("&") {
             for (var param) in components {
-                //NSLog("param: %@", param)
                 let comps = param.componentsSeparatedByString("=")
-                if comps.count > 1 {
-                    params[comps[0]] = comps[1]
-                }
+                params[comps[0]] = comps[1]
             }
         }
 
@@ -127,12 +126,12 @@ class TwitterAPI : NSObject {
         var baseString = self._baseString(params, request: request)
 
         var keyString = ((appSecret) ? appSecret! : "") + "&" + ((authSecret) ? authSecret! : "")
-        //NSLog("Key %@", keyString)
+        NSLog("Key %@", keyString)
         let hmac = HMacEncoder(keyString: keyString)
         var signed = hmac.performEncoding(baseString)
-        oauthParams["oauth_signature"] = signed.base64EncodedStringWithOptions(NSDataBase64EncodingOptions(0))
+        oauthParams["oauth_signature"] = signed.base64Encoding()
 
-        let oauthKeys = Array(oauthParams.keys).sorted(<)
+        let oauthKeys = sort(Array(oauthParams.keys))
         var headerString = ""
         for (var key) in oauthKeys {
             if (!headerString.isEmpty) {
@@ -143,8 +142,8 @@ class TwitterAPI : NSObject {
         headerString = "OAuth "+headerString
         var newRequest = request.mutableCopy() as NSMutableURLRequest
         newRequest.setValue(headerString, forHTTPHeaderField: "Authorization")
-        //NSLog("headers", newRequest.allHTTPHeaderFields)
-        //NSLog("header %@", headerString)
+        NSLog("headers", newRequest.allHTTPHeaderFields)
+        NSLog("header %@", headerString)
 
         return newRequest as NSURLRequest
     }
@@ -217,19 +216,56 @@ class TwitterAPI : NSObject {
             }
             bodyString += "\(self._urlEncode(k))=\(self._urlEncode(v))"
         }
-        //NSLog("body %@", bodyString)
+        NSLog("body %@", bodyString)
         return bodyString
     }
 
     func requestWithResponse(let request : NSURLRequest?, callback : CallbackFunction)
     {
         if let urlRequest = request {
-            //NSLog("URLRequest: URL %@ Body %@ headers %@", urlRequest.URL, (urlRequest.HTTPBody) ? NSString(data:urlRequest.HTTPBody, encoding:NSUTF8StringEncoding) : "(empty)", (urlRequest.allHTTPHeaderFields) ? urlRequest.allHTTPHeaderFields : "(no headers)" )
-            let task = session.dataTaskWithRequest(urlRequest) {
-                (data, response, error) in
-                callback(response: response as? NSHTTPURLResponse, data: data, error: error)
-            }
+            NSLog("URLRequest: URL %@ Body %@ headers %@", urlRequest.URL, NSString(data:urlRequest.HTTPBody, encoding:NSUTF8StringEncoding), urlRequest.allHTTPHeaderFields)
+            let task : NSURLSessionTask = session.dataTaskWithRequest(urlRequest)
+            callbacks[task] = callback
             task.resume()
         }
+    }
+
+    func URLSession(session: NSURLSession!, task: NSURLSessionTask!, didCompleteWithError error: NSError!)
+    {
+        println("Task \(task) completed, error \(error)")
+        let callback : CallbackFunction? = callbacks[task]
+        callback?(response: task.response as? NSHTTPURLResponse, data: urldata[task], error: error)
+        urldata[task] = nil
+        callbacks[task] = nil
+    }
+
+    func URLSession(session: NSURLSession!, dataTask: NSURLSessionDataTask!, didReceiveResponse response: NSURLResponse!, completionHandler: ((NSURLSessionResponseDisposition) -> Void)!)
+    {
+        if let headers = (dataTask?.response as? NSHTTPURLResponse)?.allHeaderFields {
+            let length = (headers["Content-Length"] as? String)?.toInt()
+            if length {
+                urldata[dataTask] = NSMutableData(capacity: length!)
+            }
+            completionHandler(.Allow)
+        }
+    }
+
+    func URLSession(session: NSURLSession!, dataTask: NSURLSessionDataTask!, didReceiveData data: NSData!)
+    {
+        let mdata = urldata[dataTask]
+        if !mdata {
+            return
+        }
+        NSLog("data: %d bytes", data.length)
+        var newData = NSMutableData(length: data.length)
+        data.enumerateByteRangesUsingBlock() {
+            (var pointer : CConstVoidPointer, range : NSRange, stop : CMutablePointer<ObjCBool>) in
+            NSLog("Range: %ld len %ld", range.location, range.length)
+            if range.location + range.length > newData.length {
+                newData.increaseLengthBy(newData.length - range.location + range.length)
+            }
+            newData.replaceBytesInRange(range, withBytes: pointer, length: range.length)
+        }
+        mdata!.appendData(newData)
     }
 }

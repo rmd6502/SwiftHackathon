@@ -3,18 +3,11 @@
 import Cocoa
 import Foundation
 
-enum Barcode {
-    case UPCA(Int, Int, Int, Int)
-    case QRCode(qr: String)
-}
+var t : Array<Int>?
+t = Int[]()
 
-var b = Barcode.QRCode(qr: "hello")
+t?.append(5)
 
-switch b {
-case .QRCode(let qr):
-    println(qr)
-default:
-    println("other")
-    break
-}
+
+t.getLogicValue() == false || t?.count > 0
 

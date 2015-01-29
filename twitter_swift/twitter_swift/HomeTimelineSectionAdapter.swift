@@ -9,9 +9,9 @@
 import MiniPlatform
 
 class HomeTimelineSectionAdapter : SectionAdapter {
-    override func sectionArray(inArray: Array<ModelObject>?) -> Array<Array<ModelObject>>?
+    override func sectionArray(inArray: Array<Identifiable>?) -> Array<Array<Identifiable>>?
     {
-        if inArray.getLogicValue() == false || inArray?.count == 0 {
+        if inArray != nil == false || inArray?.count == 0 {
             // Empty, just return nothing
             return [[]];
         }
@@ -20,7 +20,8 @@ class HomeTimelineSectionAdapter : SectionAdapter {
             return [inArray!]
         }
         // otherwise, tack on a PTR and a footer (we'll deal with gaps later)
-        var sections = [ModelObject]()
+        var sections = Identifiable[]()
+        sections.append(PTRItem())
         sections.extend(inArray!)
         sections.append(FooterItem())
         return [sections]

@@ -11,15 +11,15 @@ import MiniPlatform
 
 class TimelineViewController : TFNTableViewController {
     
-    init(coder aDecoder: NSCoder)
+    init(nibName nibNameOrNil: String!, bundle nibBundleOrNil: NSBundle!)
     {
-        // TODO: Ultimately I don't want to even create this file - I want all the dependencies to be
-        // resolved via generics
-        super.init(coder: aDecoder)
+        super.init(nibName: nibNameOrNil, bundle: nibBundleOrNil)
         self.stream = HomeTimelineStream()
         self.sectionAdapter = HomeTimelineSectionAdapter()
-        var rowAdapters = self.rowAdapters!
-        rowAdapters[NSString(CString: class_getName(Tweet), encoding: NSUTF8StringEncoding)] = StatusRowAdapter(reuseIdentifier: "StatusCell", tableViewController:self)
-        self.rowAdapters = rowAdapters
+        // Can't just say Tweet here since it'll be a mangled Swift name
+        var newRowAdapters : Dictionary<String,RowAdapter> = RowAdapterFactory().adapters()
+        newRowAdapters[NSString(CString: class_getName(Tweet))] = StatusRowAdapter(reuseIdentifier: "StatusCell")
+        self.rowAdapters = newRowAdapters
     }
+
 }

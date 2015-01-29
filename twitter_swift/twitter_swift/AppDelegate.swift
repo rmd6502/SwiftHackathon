@@ -12,8 +12,8 @@ import UIKit
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
     // TODO: Obfuscate these somehow
-    let apiKey = "javHWc7kgZsQeyFijmrAjkCQC"
-    let apiSecret = "contact me for the api secret"
+    let apiKey = "7ly508IjQeZ38OUvuhTe0WaG0"
+    let apiSecret = NSData(base64EncodedString:"QzVGMzdwWDY4VG8waXJpOElSaWxqOGY1TVlySWVNNTlWWklUUkdzSEZWNVJYa2NyYjI=", options:.IgnoreUnknownCharacters)
 
     var authToken : String?
     var authSecret : String?
@@ -23,7 +23,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: NSDictionary?) -> Bool {
         TFNTwitter.sharedTwitter.twitterAPI.appToken = apiKey
-        TFNTwitter.sharedTwitter.twitterAPI.appSecret = apiSecret
+        TFNTwitter.sharedTwitter.twitterAPI.appSecret = NSString(data: apiSecret, encoding:NSUTF8StringEncoding)
         return true
     }
 
@@ -57,11 +57,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             }
         }
         return false
-    }
-
-    func applicationDidReceiveMemoryWarning(application: UIApplication!)
-    {
-        TFNImageCache.dictionary.removeAll(keepCapacity: false)
     }
 }
 

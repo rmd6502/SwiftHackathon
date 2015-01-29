@@ -11,13 +11,13 @@ import Foundation
 typealias CompletionFunction = (results : AnyObject?, error : NSError?) -> Void
 class Stream : NSObject {
     let STREAM_ERROR_DOMAIN = "stream"
-    var streamObjects : Array<ModelObject>?
+    var streamObjects : Array<Identifiable>
     var error : NSError?
     var api : TwitterAPI?
 
-    init()
+    override init()
     {
-        streamObjects = Array<ModelObject>()
+        streamObjects = Array<Identifiable>()
         super.init()
     }
 
@@ -26,17 +26,17 @@ class Stream : NSObject {
      */
     func minID() -> Int64?
     {
-        return streamObjects?.reduce(nil) {
+        return streamObjects.reduce(nil) {
             (minValue : Int64?, element) in
-            return (!minValue.getLogicValue() || (element.ID < minValue! && element.ID >= 0)) ? element.ID : minValue
+            return (minValue == nil || element.ID < minValue!) ? element.ID : minValue
         }
     }
 
     func maxID() -> Int64?
     {
-        return streamObjects?.reduce(nil) {
+        return streamObjects.reduce(nil) {
             (maxValue : Int64?, element) in
-            return (!maxValue.getLogicValue() || element.ID > maxValue!) ? element.ID : maxValue
+            return (maxValue == nil || element.ID > maxValue!) ? element.ID : maxValue
         }
     }
 
@@ -52,25 +52,6 @@ class Stream : NSObject {
 
     func loadBottom(completion : CompletionFunction)
     {
-        var min_id = self.minID()
-        min_id = (min_id) ? min_id! - 1 : min_id
-        self.load(minID: nil, maxID: min_id, completion: completion)
-    }
-
-    func integrateItems(newItems : [ModelObject]?)
-    {
-        if let items = newItems {
-            var integrated = (self.streamObjects) ? self.streamObjects! : [ModelObject]()
-            integrated = integrated.filter() {
-                (item) in
-                return item.ID >= 0
-            }
-            integrated.extend(items)
-            integrated.sort() {
-                (a,b) in
-                return a.ID > b.ID
-            }
-            self.streamObjects = integrated
-        }
+        self.load(minID: nil, maxID: self.minID(), completion: completion)
     }
 }
